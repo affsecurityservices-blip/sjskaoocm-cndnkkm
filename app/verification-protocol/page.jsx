@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { Shield, ShieldCheck, CheckCircle2, ArrowLeft, Award, Lock, FileCheck, UserCheck, Activity, MapPin } from "lucide-react";
+import { COMPANY_NAME, DIRECTOR_NAME } from "../../utils/whatsapp";
 
 export default function VerificationProtocolPage() {
   const steps = [
     {
       num: "01",
       title: "Police Clearance Certificate (PCC) & Background Check",
-      desc: "Every applicant undergoes rigorous criminal background verification through local police stations and district crime record bureaus before joining the AegisGuard roster.",
+      desc: `Every applicant undergoes rigorous criminal background verification through local police stations and district crime record bureaus before joining the ${COMPANY_NAME} roster.`,
       icon: FileCheck,
       status: "Mandatory 100% Pass"
     },
@@ -73,7 +74,7 @@ export default function VerificationProtocolPage() {
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">7-Step Operative Verification Protocol</h1>
-            <p className="text-xs text-slate-500 dark:text-gray-400">Strict Personnel Vetting & Quality Assurance Standard | AegisGuard Operatives</p>
+            <p className="text-xs text-slate-500 dark:text-gray-400">Strict Personnel Vetting & Quality Assurance Standard | {COMPANY_NAME} (Director: {DIRECTOR_NAME})</p>
           </div>
         </div>
       </div>
@@ -87,7 +88,7 @@ export default function VerificationProtocolPage() {
           </div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">Only Top 5% Candidates Clear Our Vetting Process</h2>
           <p className="text-xs text-slate-600 dark:text-gray-400 max-w-xl">
-            Every bouncer, bodyguard, and security guard available on AegisGuard has passed all 7 stringent verification stages.
+            Every bouncer, bodyguard, and security guard available on {COMPANY_NAME} has passed all 7 stringent verification stages under the supervision of Director Bhupendra Kumar (Sonu Singh).
           </p>
         </div>
         <div className="shrink-0 text-center bg-slate-50 dark:bg-[#0A0A0F] p-4 rounded-xl border border-slate-200 dark:border-[#262636]">

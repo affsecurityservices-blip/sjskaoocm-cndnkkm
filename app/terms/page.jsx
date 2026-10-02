@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Shield, FileText, AlertTriangle, CheckCircle2, ArrowLeft, Scale } from "lucide-react";
+import { COMPANY_NAME, DIRECTOR_NAME } from "../../utils/whatsapp";
 
 export default function TermsPage() {
   return (
@@ -21,7 +22,7 @@ export default function TermsPage() {
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Terms of Service</h1>
-            <p className="text-xs text-slate-500 dark:text-gray-400">Client Deployment Agreement & Service Terms | AegisGuard V1</p>
+            <p className="text-xs text-slate-500 dark:text-gray-400">Client Deployment Agreement & Service Terms | {COMPANY_NAME} (Director: {DIRECTOR_NAME})</p>
           </div>
         </div>
       </div>
@@ -32,10 +33,10 @@ export default function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <FileText className="w-5 h-5 text-amber-500" />
-            1. Scope of Tactical Security Deployment
+            1. Scope of Security Deployment & Services
           </h2>
           <p className="text-slate-600 dark:text-gray-300 text-xs sm:text-sm">
-            AegisGuard provides verified security personnel, bouncers, and personal bodyguards for private protection, nightclub door security, corporate events, and escort duties across registered Indian districts. All operative assignments are strictly bound by Indian Penal Code (IPC) self-defense protocols and civil protection laws.
+            {COMPANY_NAME} provides verified security personnel, bouncers, armed guards, manned guarding, CCTV surveillance, mobile patrolling, and personal bodyguards for private protection, nightclub security, corporate events, and escort duties across registered Indian districts. All operative assignments are strictly bound by Indian Penal Code (IPC) self-defense protocols and civil protection laws.
           </p>
         </section>
 
@@ -63,7 +64,7 @@ export default function TermsPage() {
 
         <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-400 text-xs flex items-center gap-3">
           <CheckCircle2 className="w-5 h-5 shrink-0 text-amber-500" />
-          <span>By submitting a booking request on AegisGuard, you agree to comply with all terms stated in this agreement.</span>
+          <span>By submitting a booking request on {COMPANY_NAME}, you agree to comply with all terms stated in this agreement.</span>
         </div>
 
       </div>

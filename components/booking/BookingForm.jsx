@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useBooking } from "../../context/BookingContext";
+import { useLanguage } from "../../context/LanguageContext";
 import { calculatePrice } from "../../utils/calculatePrice";
 import { createWhatsAppBookingUrl } from "../../utils/whatsapp";
 import PriceSummary from "./PriceSummary";
@@ -12,6 +13,7 @@ import WhatsAppIcon from "../common/WhatsAppIcon";
 export default function BookingForm({ guard }) {
   const router = useRouter();
   const { addBooking } = useBooking();
+  const { t } = useLanguage();
 
   const todayStr = new Date().toISOString().split("T")[0];
 
@@ -90,17 +92,17 @@ export default function BookingForm({ guard }) {
         <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-[#262636]">
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-amber-500" />
-            Guard Deployment Enquiry Form
+            {t("bookingForm.header")}
           </h2>
           <span className="text-xs text-emerald-500 font-mono flex items-center gap-1">
-            <WhatsAppIcon className="w-3.5 h-3.5 fill-current" /> Direct WhatsApp Enquiry
+            <WhatsAppIcon className="w-3.5 h-3.5 fill-current" /> {t("bookingForm.whatsappSub")}
           </span>
         </div>
 
         {/* Customer Information */}
         <div className="space-y-4">
           <h3 className="text-xs uppercase tracking-widest font-semibold text-amber-500">
-            Client Contact Info
+            {t("bookingForm.clientSection")}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -109,12 +111,12 @@ export default function BookingForm({ guard }) {
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5">
                 <User className="w-3.5 h-3.5 text-amber-500" />
-                Full Name *
+                {t("bookingForm.nameLabel")}
               </label>
               <input
                 type="text"
                 required
-                placeholder="e.g. Vikram Malhotra"
+                placeholder={t("bookingForm.namePlaceholder")}
                 value={formData.name}
                 onChange={(e) => handleChange("name", e.target.value)}
                 className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
@@ -125,12 +127,12 @@ export default function BookingForm({ guard }) {
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-amber-500" />
-                Phone Number *
+                {t("bookingForm.phoneLabel")}
               </label>
               <input
                 type="tel"
                 required
-                placeholder="+91 98765 43210"
+                placeholder={t("bookingForm.phonePlaceholder")}
                 value={formData.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
                 className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
@@ -143,7 +145,7 @@ export default function BookingForm({ guard }) {
         {/* Event & Location details */}
         <div className="space-y-4 pt-4 border-t border-slate-200 dark:border-[#262636]">
           <h3 className="text-xs uppercase tracking-widest font-semibold text-amber-500">
-            Event & Deployment Venue
+            {t("bookingForm.venueSection")}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -151,7 +153,7 @@ export default function BookingForm({ guard }) {
             {/* Event Type */}
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-slate-700 dark:text-gray-300">
-                Type of Event / Security Request *
+                {t("bookingForm.eventTypeLabel")}
               </label>
               <select
                 value={formData.eventType}
@@ -171,12 +173,12 @@ export default function BookingForm({ guard }) {
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-amber-500" />
-                Venue Full Address *
+                {t("bookingForm.addressLabel")}
               </label>
               <input
                 type="text"
                 required
-                placeholder="Building, Street, Landmark, City"
+                placeholder={t("bookingForm.addressPlaceholder")}
                 value={formData.address}
                 onChange={(e) => handleChange("address", e.target.value)}
                 className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
@@ -189,7 +191,7 @@ export default function BookingForm({ guard }) {
         {/* Date, Time & Duration */}
         <div className="space-y-4 pt-4 border-t border-slate-200 dark:border-[#262636]">
           <h3 className="text-xs uppercase tracking-widest font-semibold text-amber-500">
-            Shift Schedule & Duration
+            {t("bookingForm.scheduleSection")}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -198,7 +200,7 @@ export default function BookingForm({ guard }) {
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-amber-500" />
-                Deployment Date *
+                {t("bookingForm.dateLabel")}
               </label>
               <input
                 type="date"
@@ -214,7 +216,7 @@ export default function BookingForm({ guard }) {
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-amber-500" />
-                Start Time *
+                {t("bookingForm.timeLabel")}
               </label>
               <select
                 value={formData.startTime}
@@ -235,7 +237,7 @@ export default function BookingForm({ guard }) {
           {/* Duration Slider / Counter */}
           <div className="space-y-2 pt-2">
             <div className="flex items-center justify-between text-xs font-medium">
-              <span className="text-slate-700 dark:text-gray-300">Duration (Hours)</span>
+              <span className="text-slate-700 dark:text-gray-300">{t("bookingForm.durationLabel")}</span>
               <span className="text-amber-500 font-bold text-sm">
                 {formData.hours} {formData.hours === 1 ? "Hour" : "Hours"}
                 {formData.hours >= 8 && " (Daily Shift)"}
@@ -271,11 +273,11 @@ export default function BookingForm({ guard }) {
         className="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-extrabold text-base flex items-center justify-center gap-3 transition-all shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_35px_rgba(16,185,129,0.5)] active:scale-[0.99] disabled:opacity-50 cursor-pointer"
       >
         {isSubmitting ? (
-          <span>Opening WhatsApp Enquiry...</span>
+          <span>{t("bookingForm.submitting")}</span>
         ) : (
           <>
             <WhatsAppIcon className="w-5 h-5 fill-black" />
-            <span>Send Enquiry on WhatsApp</span>
+            <span>{t("bookingForm.submitBtn")}</span>
             <ArrowRight className="w-5 h-5" />
           </>
         )}

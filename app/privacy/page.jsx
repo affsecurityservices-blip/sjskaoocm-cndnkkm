@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Shield, Lock, Eye, FileText, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { COMPANY_NAME, COMPANY_EMAIL, DIRECTOR_NAME } from "../../utils/whatsapp";
 
 export default function PrivacyPage() {
   return (
@@ -21,7 +22,7 @@ export default function PrivacyPage() {
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Privacy Policy</h1>
-            <p className="text-xs text-slate-500 dark:text-gray-400">Effective Date: January 1, 2026 | AegisGuard Security Operations</p>
+            <p className="text-xs text-slate-500 dark:text-gray-400">Effective Date: January 1, 2026 | {COMPANY_NAME} • Director: {DIRECTOR_NAME}</p>
           </div>
         </div>
       </div>
@@ -35,17 +36,17 @@ export default function PrivacyPage() {
             1. Information Collection & Client Confidentiality
           </h2>
           <p className="text-slate-600 dark:text-gray-300 text-xs sm:text-sm">
-            At AegisGuard, we understand the utmost necessity for privacy and discretion in security deployments. We collect personal information (Name, Contact Number, Deployment Venue, and Event Details) strictly for authenticating client identities and assigning designated security personnel.
+            At {COMPANY_NAME}, we understand the utmost necessity for privacy and discretion in security deployments. We collect personal information (Name, Contact Number, Deployment Venue, and Event Details) strictly for authenticating client identities and assigning designated security personnel.
           </p>
         </section>
 
         <section className="space-y-3 pt-4 border-t border-slate-200 dark:border-[#262636]">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Shield className="w-5 h-5 text-amber-500" />
-            2. Tactical Data Encryption & Protection
+            2. Data Encryption & Protection
           </h2>
           <p className="text-slate-600 dark:text-gray-300 text-xs sm:text-sm">
-            All client location coordinates, event details, and booking logs are encrypted using enterprise 256-bit SSL protocols. Access to deployment records is restricted strictly to assigned field team leaders and emergency command center personnel.
+            All client location coordinates, event details, and booking logs are encrypted using enterprise SSL protocols. Access to deployment records is restricted strictly to assigned field team leaders and emergency command center personnel.
           </p>
           <ul className="space-y-2 text-xs text-slate-500 dark:text-gray-400 pl-4 list-disc">
             <li>No client data is ever sold, rented, or shared with third-party advertisers.</li>
@@ -60,13 +61,13 @@ export default function PrivacyPage() {
             3. Client Rights & Profile Control
           </h2>
           <p className="text-slate-600 dark:text-gray-300 text-xs sm:text-sm">
-            Clients have full control to request complete deletion of their account records, past booking history, and venue addresses by contacting our 24/7 Command Dispatch Center.
+            Clients have full control to request complete deletion of their account records, past booking history, and venue addresses by contacting our 24/7 Command Center.
           </p>
         </section>
 
         <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-400 text-xs flex items-center gap-3">
           <CheckCircle2 className="w-5 h-5 shrink-0 text-amber-500" />
-          <span>For privacy inquiries or compliance data requests, reach out directly to <strong className="text-slate-900 dark:text-white">privacy@aegisguard.in</strong></span>
+          <span>For privacy inquiries or compliance data requests, reach out directly to <a href={`mailto:${COMPANY_EMAIL}`} className="font-bold underline text-slate-900 dark:text-white">{COMPANY_EMAIL}</a></span>
         </div>
 
       </div>

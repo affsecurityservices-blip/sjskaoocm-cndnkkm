@@ -132,19 +132,19 @@ function SuccessContent() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs px-6 py-3.5 rounded-xl transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer"
+          className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-extrabold text-xs px-6 py-3.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,211,102,0.35)] cursor-pointer"
         >
-          <WhatsAppIcon className="w-4 h-4 fill-black" />
+          <WhatsAppIcon className="w-4 h-4 fill-white" />
           Send Enquiry on WhatsApp
         </a>
 
-        {/* Call Dispatch Button */}
+        {/* Call Now Button */}
         <a
           href={`tel:${COMPANY_PHONE.replace(/\s+/g, '')}`}
-          className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] hover:border-amber-500/50 text-amber-600 dark:text-amber-500 font-extrabold text-xs px-6 py-3.5 rounded-xl transition-colors shadow-sm cursor-pointer"
+          className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-[#16161F] border border-amber-500/40 hover:bg-amber-500 hover:text-black text-amber-700 dark:text-amber-400 font-extrabold text-xs px-6 py-3.5 rounded-xl transition-all shadow-sm cursor-pointer group"
         >
-          <PhoneCall className="w-4 h-4 text-amber-500" />
-          Call Dispatch ({COMPANY_PHONE})
+          <PhoneCall className="w-4 h-4 text-amber-500 group-hover:text-black" />
+          Call Now ({COMPANY_PHONE})
         </a>
 
       </div>

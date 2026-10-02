@@ -1,20 +1,83 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { GUARDS } from "../data/guards";
 import { CITIES, GUARD_TYPES } from "../data/cities";
-import GuardCard from "../components/guards/GuardCard";
 import CustomSelect from "../components/common/CustomSelect";
-import { ShieldCheck, Search, ArrowRight, CheckCircle2, Lock, MapPin, Shield } from "lucide-react";
+import WhatsAppIcon from "../components/common/WhatsAppIcon";
+import { useLanguage } from "../context/LanguageContext";
+import {
+  COMPANY_NAME,
+  DIRECTOR_NAME,
+  COMPANY_EMAIL,
+  COMPANY_ADDRESS,
+  COMPANY_WHATSAPP_NUMBER
+} from "../utils/whatsapp";
+import {
+  ShieldCheck,
+  Search,
+  ArrowRight,
+  CheckCircle2,
+  Lock,
+  MapPin,
+  Shield,
+  PhoneCall,
+  Camera,
+  Radio,
+  Users,
+  AlertTriangle,
+  Award,
+  Clock,
+  UserCheck,
+  FileCheck
+} from "lucide-react";
 
 export default function HomePage() {
   const router = useRouter();
+  const { language, t } = useLanguage();
   const [selectedCity, setSelectedCity] = useState("All Cities/Districts");
   const [selectedType, setSelectedType] = useState("All Types");
 
-  const featuredGuards = GUARDS.filter((g) => g.featured).slice(0, 3);
+  const localizedCities = useMemo(() => {
+    return CITIES.map((city) => {
+      if (city === "All Cities/Districts") {
+        return {
+          value: city,
+          label: language === "hi" ? "सभी शहर / जिला (All Cities)" : city
+        };
+      }
+      return city;
+    });
+  }, [language]);
+
+  const localizedGuardTypes = useMemo(() => {
+    return GUARD_TYPES.map((type) => {
+      if (type === "All Types") {
+        return {
+          value: type,
+          label: language === "hi" ? "सभी गार्ड प्रकार (All Types)" : type
+        };
+      }
+      if (language === "hi") {
+        const hindiMap = {
+          "Manned Guarding": "सुरक्षा गार्ड (Manned Guarding)",
+          "CCTV Surveillance": "सीसीटीवी निगरानी (CCTV)",
+          "Mobile Patrolling": "मोबाइल गश्त (Mobile Patrol)",
+          "Event Security": "इवेंट एवं भीड़ सुरक्षा (Event Security)",
+          "Risk Management": "रिस्क मैनेजमेंट (Risk Management)",
+          "Armed Security": "सशस्त्र गनमैन (Armed Security)",
+          "Bouncer": "बाउंसर (Bouncers)",
+          "Personal Bodyguard": "पर्सनल बॉडीगार्ड (Personal Bodyguard)"
+        };
+        return {
+          value: type,
+          label: hindiMap[type] || type
+        };
+      }
+      return type;
+    });
+  }, [language]);
 
   const handleQuickSearch = (e) => {
     e.preventDefault();
@@ -24,43 +87,133 @@ export default function HomePage() {
     router.push(`/guards?${queryParams.toString()}`);
   };
 
+  const coreServices = [
+    {
+      id: "manned-guarding",
+      title: t("services.s1Title"),
+      desc: t("services.s1Desc"),
+      icon: Shield,
+      badge: t("services.s1Badge")
+    },
+    {
+      id: "cctv-surveillance",
+      title: t("services.s2Title"),
+      desc: t("services.s2Desc"),
+      icon: Camera,
+      badge: t("services.s2Badge")
+    },
+    {
+      id: "mobile-patrolling",
+      title: t("services.s3Title"),
+      desc: t("services.s3Desc"),
+      icon: Radio,
+      badge: t("services.s3Badge")
+    },
+    {
+      id: "event-security",
+      title: t("services.s4Title"),
+      desc: t("services.s4Desc"),
+      icon: Users,
+      badge: t("services.s4Badge")
+    },
+    {
+      id: "risk-management",
+      title: t("services.s5Title"),
+      desc: t("services.s5Desc"),
+      icon: AlertTriangle,
+      badge: t("services.s5Badge")
+    },
+    {
+      id: "armed-security",
+      title: t("services.s6Title"),
+      desc: t("services.s6Desc"),
+      icon: Lock,
+      badge: t("services.s6Badge")
+    },
+    {
+      id: "bouncers-security",
+      title: t("services.s7Title"),
+      desc: t("services.s7Desc"),
+      icon: Award,
+      badge: t("services.s7Badge")
+    },
+    {
+      id: "vip-bodyguards",
+      title: t("services.s8Title"),
+      desc: t("services.s8Desc"),
+      icon: UserCheck,
+      badge: t("services.s8Badge")
+    }
+  ];
+
+  const keyFeatures = [
+    {
+      title: t("whyChoose.f1Title"),
+      desc: t("whyChoose.f1Desc"),
+      icon: FileCheck
+    },
+    {
+      title: t("whyChoose.f2Title"),
+      desc: t("whyChoose.f2Desc"),
+      icon: Clock
+    },
+    {
+      title: t("whyChoose.f3Title"),
+      desc: t("whyChoose.f3Desc"),
+      icon: CheckCircle2
+    },
+    {
+      title: t("whyChoose.f4Title"),
+      desc: t("whyChoose.f4Desc"),
+      icon: ShieldCheck
+    }
+  ];
+
   return (
     <div className="space-y-20 pb-16 bg-slate-50 dark:bg-[#0A0A0F] text-slate-900 dark:text-[#E5E5E5] transition-colors duration-300">
       
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-20 border-b border-slate-200 dark:border-[#262636] bg-slate-100/70 dark:bg-[#0A0A0F] transition-colors duration-300">
+      <section className="relative pt-12 pb-20 border-b border-slate-200 dark:border-[#262636] bg-slate-100/70 dark:bg-[#0A0A0F] transition-colors duration-300">
         
-        {/* Background glow effects */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+        {/* Background ambient glow */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-amber-500/10 rounded-full blur-[130px]" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          <div className="text-center max-w-3xl mx-auto space-y-6">
+          <div className="text-center max-w-4xl mx-auto space-y-6">
             
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-              ELITE PRIVATE PROTECTION. <br className="hidden sm:inline" />
+            {/* ESTD 2026 & Tagline Badge */}
+            <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-[11px] sm:text-xs font-bold font-mono tracking-wider shadow-sm max-w-full">
+              <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 shrink-0" />
+              <span>{t("hero.badge")}</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+              {t("hero.title1")} <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 dark:from-amber-400 dark:via-amber-500 dark:to-amber-600">
-                INSTANT DISPATCH.
+                {t("hero.title2")}
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-slate-600 dark:text-gray-300 leading-relaxed font-normal">
-              Book verified Bouncers, Personal Bodyguards, and Event Security Operatives across major metro cities & districts in minutes. No contracts. Transparent pricing.
+            <p className="text-base sm:text-lg text-slate-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto font-normal">
+              {t("hero.subtitle")}
             </p>
 
             {/* Quick Search Card */}
-            <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 sm:p-6 rounded-2xl shadow-xl hover:border-amber-500/40 transition-all text-left max-w-2xl mx-auto mt-8">
+            <div className="relative z-40 bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 sm:p-6 rounded-2xl shadow-xl hover:border-amber-500/40 transition-all text-left max-w-2xl mx-auto mt-8">
               <form onSubmit={handleQuickSearch} className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
                 
-                {/* Custom City/District Picker */}
+                {/* Location / District Picker */}
                 <div className="space-y-1">
                   <label className="text-[11px] font-semibold text-slate-700 dark:text-gray-300 uppercase tracking-wider block">
-                    Location / District
+                    {t("hero.locationLabel")}
                   </label>
                   <CustomSelect
-                    options={CITIES}
+                    options={localizedCities}
                     value={selectedCity}
                     onChange={setSelectedCity}
                     icon={MapPin}
@@ -68,13 +221,13 @@ export default function HomePage() {
                   />
                 </div>
 
-                {/* Custom Guard Type Picker */}
+                {/* Guard Type Picker */}
                 <div className="space-y-1">
                   <label className="text-[11px] font-semibold text-slate-700 dark:text-gray-300 uppercase tracking-wider block">
-                    Guard Type
+                    {t("hero.guardTypeLabel")}
                   </label>
                   <CustomSelect
-                    options={GUARD_TYPES}
+                    options={localizedGuardTypes}
                     value={selectedType}
                     onChange={setSelectedType}
                     icon={Shield}
@@ -89,7 +242,7 @@ export default function HomePage() {
                     className="w-full py-2.5 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(245,158,11,0.3)] cursor-pointer"
                   >
                     <Search className="w-4 h-4" />
-                    Find Available Guards
+                    {t("hero.findGuardsBtn")}
                   </button>
                 </div>
 
@@ -97,22 +250,25 @@ export default function HomePage() {
             </div>
 
             {/* Metrics Badges */}
-            <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
-              <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md">
-                <div className="text-2xl font-black text-slate-900 dark:text-white font-mono">100%</div>
-                <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">Background Checked</div>
+            <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+              <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md hover:border-amber-500/40 transition-all flex flex-col items-center justify-center">
+                <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white font-mono">{t("hero.stat1Val")}</div>
+                <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">{t("hero.stat1Desc")}</div>
               </div>
-              <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md">
-                <div className="text-2xl font-black text-amber-500 font-mono">25+</div>
-                <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">Top Rated Personnel</div>
+
+              <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md hover:border-amber-500/40 transition-all flex flex-col items-center justify-center">
+                <div className="text-xl sm:text-2xl font-black text-amber-500 font-mono">{t("hero.stat2Val")}</div>
+                <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">{t("hero.stat2Desc")}</div>
               </div>
-              <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md">
-                <div className="text-2xl font-black text-slate-900 dark:text-white font-mono">15 States</div>
-                <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">Districts Covered</div>
+
+              <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md hover:border-amber-500/40 transition-all flex flex-col items-center justify-center">
+                <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white font-mono">{t("hero.stat3Val")}</div>
+                <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">{t("hero.stat3Desc")}</div>
               </div>
-              <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md">
-                <div className="text-2xl font-black text-amber-500 font-mono">24/7</div>
-                <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">Command Center</div>
+
+              <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md hover:border-amber-500/40 transition-all flex flex-col items-center justify-center">
+                <div className="text-xl sm:text-2xl font-black text-amber-500 font-mono">{t("hero.stat4Val")}</div>
+                <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">{t("hero.stat4Desc")}</div>
               </div>
             </div>
 
@@ -121,141 +277,159 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED GUARDS SECTION */}
+      {/* DIRECTOR LEADERSHIP & CONTACT CARD BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
-          <div>
-            <div className="text-xs font-semibold text-amber-500 uppercase tracking-widest flex items-center gap-1.5 mb-1">
-              <ShieldCheck className="w-4 h-4" /> Top Tier Roster
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-              Featured Tactical Personnel
-            </h2>
-          </div>
-          <Link
-            href="/guards"
-            className="inline-flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400 hover:underline font-semibold group"
-          >
-            <span>View All Personnel ({GUARDS.length})</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
+        <div className="bg-gradient-to-r from-amber-500/10 via-slate-100 to-amber-500/10 dark:from-amber-500/10 dark:via-[#16161F] dark:to-amber-500/10 border border-amber-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Director Information */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500 text-black text-xs font-black uppercase tracking-wider">
+                <UserCheck className="w-4 h-4" /> {t("director.tag")}
+              </div>
+              
+              <h2 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white">
+                {t("director.title")}
+              </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredGuards.map((guard) => (
-            <GuardCard key={guard.id} guard={guard} />
-          ))}
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-gray-300 leading-relaxed">
+                {t("director.desc")}
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs">
+                <div className="flex items-center gap-2 bg-white dark:bg-[#0A0A0F] px-4 py-2 rounded-xl border border-slate-200 dark:border-[#262636] font-mono font-bold text-amber-600 dark:text-amber-400">
+                  <PhoneCall className="w-4 h-4 text-amber-500" />
+                  <span>9730218260 • 9465857462 • 7004951129</span>
+                </div>
+
+                <a
+                  href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Sonu%20Singh%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-4 py-2 rounded-xl transition-all shadow-md"
+                >
+                  <WhatsAppIcon className="w-4 h-4 fill-black" />
+                  {t("director.whatsappBtn")}
+                </a>
+              </div>
+            </div>
+
+            {/* Address & Office Box */}
+            <div className="lg:col-span-5 bg-white dark:bg-[#0A0A0F] p-6 rounded-2xl border border-slate-200 dark:border-[#262636] space-y-4 shadow-xl">
+              <h3 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-amber-500 flex items-center gap-2">
+                <MapPin className="w-4 h-4" /> {t("director.officeTitle")}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-800 dark:text-gray-200 leading-relaxed font-semibold">
+                {t("director.companyAddress")}
+              </p>
+              <div className="pt-2 border-t border-slate-200 dark:border-[#262636] flex items-center justify-between text-xs">
+                <span className="text-slate-500 dark:text-gray-400">{t("director.emailLabel")}</span>
+                <a href={`mailto:${COMPANY_EMAIL}`} className="font-bold text-amber-600 dark:text-amber-400 hover:underline">
+                  {COMPANY_EMAIL}
+                </a>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
-      {/* HOW IT WORKS SECTION */}
+      {/* OUR 8 CORE SERVICES SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <span className="text-xs font-bold text-amber-500 uppercase tracking-widest px-3 py-1 bg-amber-500/10 rounded-full border border-amber-500/30">
+            {t("services.tag")}
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+            {t("services.title")}
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300">
+            {t("services.subtitle")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {coreServices.map((service) => {
+            const IconComp = service.icon;
+            return (
+              <div
+                key={service.id}
+                className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-6 rounded-2xl space-y-4 hover:border-amber-500/50 hover:shadow-[0_0_25px_rgba(245,158,11,0.2)] transition-all duration-300 group shadow-md flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-black transition-all">
+                      <IconComp className="w-6 h-6" />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-[#0A0A0F] text-slate-700 dark:text-gray-300 border border-slate-200 dark:border-[#262636]">
+                      {service.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed">
+                    {service.desc}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 dark:border-[#262636]/60">
+                  <Link
+                    href="/guards"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
+                  >
+                    <span>{t("services.requestService")}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* KEY FEATURES BANNER */}
       <section className="bg-slate-100 dark:bg-[#0F0F17] border-y border-slate-200 dark:border-[#262636] py-16 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
           <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
             <span className="text-xs font-semibold text-amber-500 uppercase tracking-widest">
-              Seamless Deployment
+              {t("whyChoose.tag")}
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-              How AegisGuard Works
+              {t("whyChoose.title")}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-gray-300">
-              Three simple steps to secure your venue, VIP convoy, or private party.
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {keyFeatures.map((feat, idx) => {
+              const IconComp = feat.icon;
+              return (
+                <div
+                  key={idx}
+                  className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-6 rounded-2xl space-y-3 shadow-md text-left"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center">
+                    <IconComp className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">{feat.title}</h3>
+                  <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed">{feat.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 text-center bg-gradient-to-r from-amber-500 to-amber-600 p-6 rounded-2xl text-black space-y-2 shadow-xl">
+            <h3 className="text-xl sm:text-2xl font-black uppercase tracking-wide">
+              {t("whyChoose.ctaTitle")}
+            </h3>
+            <p className="text-xs font-bold opacity-90">
+              {t("whyChoose.ctaDesc")}
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Step 1 */}
-            <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-6 rounded-2xl relative space-y-4 hover:border-amber-500/40 transition-all shadow-md">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 font-mono font-bold text-xl flex items-center justify-center">
-                01
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Select Your Guard</h3>
-              <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed">
-                Filter by location, bodyguard height/weight, tactical skills, or specific guard role (Bouncer, Bodyguard, Premise Guard).
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-6 rounded-2xl relative space-y-4 hover:border-amber-500/40 transition-all shadow-md">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 font-mono font-bold text-xl flex items-center justify-center">
-                02
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Set Schedule & Time</h3>
-              <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed">
-                Choose hours and start time. Automatic calculation applies daily shift savings for 8+ hours and night slot +20% rates.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-6 rounded-2xl relative space-y-4 hover:border-amber-500/40 transition-all shadow-md">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 font-mono font-bold text-xl flex items-center justify-center">
-                03
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Security Deployed</h3>
-              <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed">
-                Receive instant booking confirmation ID. Guard arrives fully briefed and prepared at your specified venue address.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* WHY CHOOSE US / TRUST SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          
-          <div className="space-y-6">
-            <span className="text-xs font-semibold text-amber-500 uppercase tracking-widest">
-              Uncompromising Standards
-            </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              Why High-Profile Clients Trust AegisGuard
-            </h2>
-            
-            <ul className="space-y-4 text-sm text-slate-700 dark:text-gray-300">
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white">Strict Background Vetting:</strong> All guards undergo criminal background checks, identity verification, and physical fitness certification.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white">Ex-Commando & Tactical Expertise:</strong> Senior bodyguards are former military/police tactical unit veterans trained in close-quarters defense.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                <div>
-                  <strong className="text-slate-900 dark:text-white">Transparent Hourly & Daily Rates:</strong> No hidden surcharges. Clear pricing breakdown provided prior to booking confirmation.
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-8 rounded-3xl space-y-6 shadow-xl relative">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/40 text-amber-500 flex items-center justify-center">
-                <Lock className="w-7 h-7" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Need Event Security?</h3>
-                <p className="text-xs text-slate-500 dark:text-gray-300">Nightclubs • Weddings • VIP Escort</p>
-              </div>
-            </div>
-            <p className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed">
-              Whether you need a single bodyguard for a VIP evening or a team of 10 bouncers for a stadium concert, our personnel are ready for rapid deployment.
-            </p>
-            <Link
-              href="/guards"
-              className="w-full inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-sm py-3.5 rounded-xl transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)]"
-            >
-              <Search className="w-4 h-4" />
-              Browse Guard Roster
-            </Link>
           </div>
 
         </div>

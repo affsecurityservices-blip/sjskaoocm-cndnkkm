@@ -31,6 +31,30 @@ export default function CustomSelect({
     setIsOpen(false);
   };
 
+  // Find label for trigger display
+  let selectedOption = null;
+  if (isGrouped) {
+    for (const group of options) {
+      const match = group.items.find((item) =>
+        typeof item === "object" ? item.value === value : item === value
+      );
+      if (match) {
+        selectedOption = match;
+        break;
+      }
+    }
+  } else {
+    selectedOption = options.find((opt) =>
+      typeof opt === "object" ? opt.value === value : opt === value
+    );
+  }
+
+  const displayLabel = selectedOption
+    ? typeof selectedOption === "object"
+      ? selectedOption.label
+      : selectedOption
+    : value || placeholder;
+
   return (
     <div ref={containerRef} className={`relative w-full ${className}`}>
       
@@ -46,8 +70,8 @@ export default function CustomSelect({
       >
         <div className="flex items-center gap-2 truncate pr-2">
           {Icon && <Icon className="w-3.5 h-3.5 text-amber-500 shrink-0" />}
-          <span className="truncate text-left font-medium">
-            {value || placeholder}
+          <span className="truncate text-left font-medium text-xs sm:text-sm text-slate-800 dark:text-gray-200">
+            {displayLabel}
           </span>
         </div>
         <ChevronDown
@@ -59,7 +83,7 @@ export default function CustomSelect({
 
       {/* Popover Menu */}
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] rounded-xl shadow-2xl z-50 max-h-64 overflow-y-auto p-1.5 space-y-1 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] rounded-xl shadow-2xl z-[100] max-h-64 overflow-y-auto p-1.5 space-y-1 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150">
           
           {isGrouped ? (
             /* Grouped Options Rendering */
@@ -78,7 +102,7 @@ export default function CustomSelect({
                       key={itemIdx}
                       type="button"
                       onClick={() => handleSelect(itemVal)}
-                      className={`w-full text-left px-3 py-2 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
+                      className={`w-full text-left px-3 py-2 rounded-lg text-xs sm:text-sm flex items-center justify-between transition-colors cursor-pointer ${
                         isSelected
                           ? "bg-amber-500 text-black font-bold"
                           : "text-slate-800 dark:text-gray-200 hover:bg-slate-100 dark:hover:bg-[#262636] hover:text-amber-600 dark:hover:text-amber-400"
@@ -103,7 +127,7 @@ export default function CustomSelect({
                   key={idx}
                   type="button"
                   onClick={() => handleSelect(optVal)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
+                  className={`w-full text-left px-3 py-2 rounded-lg text-xs sm:text-sm flex items-center justify-between transition-colors cursor-pointer ${
                     isSelected
                       ? "bg-amber-500 text-black font-bold"
                       : "text-slate-800 dark:text-gray-200 hover:bg-slate-100 dark:hover:bg-[#262636] hover:text-amber-600 dark:hover:text-amber-400"

@@ -1,8 +1,22 @@
 /**
- * Generates a pre-formatted WhatsApp API link for direct company booking enquiries.
+ * AAF SECURITY SERVICES - Company Credentials & WhatsApp API Link Generator
  */
-export const COMPANY_PHONE = "+91 1800-234-478";
-export const COMPANY_WHATSAPP_NUMBER = "919876543210"; // International format without +
+export const COMPANY_NAME = "AAF SECURITY SERVICES";
+export const COMPANY_TAGLINE = "Trusted Security. Complete Protection.";
+export const COMPANY_MOTTO = "Your Safety Our Priority";
+export const COMPANY_ESTD = "2026";
+export const DIRECTOR_NAME = "Bhupendra Kumar (Sonu Singh)";
+
+export const COMPANY_PHONES = [
+  "+91 97302 18260",
+  "+91 94658 57462",
+  "+91 70049 51129"
+];
+
+export const COMPANY_PHONE = "+91 97302 18260";
+export const COMPANY_WHATSAPP_NUMBER = "919730218260";
+export const COMPANY_EMAIL = "singhsonu45000@gmail.com";
+export const COMPANY_ADDRESS = "Narbdeshwar Nagar, Rambillash Nagar, Bharthauli Road, Jasoiya, Near Haveli Resort, Dist.- Aurangabad (Bihar) - 824101";
 
 export const createWhatsAppBookingUrl = ({
   bookingId,
@@ -18,7 +32,7 @@ export const createWhatsAppBookingUrl = ({
   totalPrice
 }) => {
   const text =
-`🛡️ *NEW GUARD ENQUIRY - AEGISGUARD*
+`🛡️ *NEW SECURITY ENQUIRY - AAF SECURITY SERVICES*
 -----------------------------------
 📋 *Booking Ref:* ${bookingId}
 👤 *Guard Requested:* ${guardName} (${guardType})
@@ -28,14 +42,19 @@ export const createWhatsAppBookingUrl = ({
 • Phone: ${phone}
 
 📍 *DEPLOYMENT DETAILS:*
-• Event Type: ${eventType}
+• Event / Service: ${eventType}
 • Venue Address: ${address}
 • Date: ${date}
 • Start Time: ${startTime}
 • Shift Duration: ${hours} hours
 💰 *Estimated Total:* ₹${totalPrice}
 -----------------------------------
-Please confirm guard availability and dispatch protocol!`;
+🏢 *AAF SECURITY SERVICES* (Estd 2026)
+👤 Director: ${DIRECTOR_NAME}
+📞 Contact: 9730218260, 9465857462, 7004951129
+📍 Aurangabad (Bihar) - 824101
+
+Please confirm operative availability & dispatch protocol!`;
 
   return `https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=${encodeURIComponent(text)}`;
 };

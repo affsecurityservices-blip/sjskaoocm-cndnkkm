@@ -2,6 +2,7 @@ export const STATE_DISTRICTS_MAP = [
   {
     state: "Bihar",
     districts: [
+      "Aurangabad (Headquarters)",
       "Patna",
       "Gaya",
       "Muzaffarpur",
@@ -242,7 +243,12 @@ export const STATES = [
 
 export const GUARD_TYPES = [
   "All Types",
+  "Manned Guarding",
+  "CCTV Surveillance",
+  "Mobile Patrolling",
+  "Event Security",
+  "Risk Management",
+  "Armed Security",
   "Bouncer",
-  "Security Guard",
   "Personal Bodyguard"
 ];
