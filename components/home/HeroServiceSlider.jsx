@@ -32,7 +32,6 @@ export default function HeroServiceSlider() {
       descHi: "24/7 सत्यापित सुरक्षा गार्ड एवं सक्रिय परिसर रक्षा",
       badgeEn: "24/7 Active Protection",
       badgeHi: "24/7 सक्रिय सुरक्षा",
-      rate: "₹600 / Shift",
       image: "/images/services/manned-guarding.jpg",
       icon: Shield
     },
@@ -45,7 +44,6 @@ export default function HeroServiceSlider() {
       descHi: "AI कमांड सेंटर निगरानी एवं त्वरित अलार्म सिस्टम",
       badgeEn: "Smart Surveillance",
       badgeHi: "स्मार्ट निगरानी",
-      rate: "₹800 / Setup",
       image: "/images/services/cctv-surveillance.jpg",
       icon: Camera
     },
@@ -58,7 +56,6 @@ export default function HeroServiceSlider() {
       descHi: "लाइसेंस प्राप्त गनमैन, बैंक एवं उच्च जोखिम सुरक्षा",
       badgeEn: "Elite Armed Gunners",
       badgeHi: "सशस्त्र सुरक्षा दस्ता",
-      rate: "₹1,500 / Gunner",
       image: "/images/services/armed-security.jpg",
       icon: Lock
     },
@@ -71,7 +68,6 @@ export default function HeroServiceSlider() {
       descHi: "वीआईपी क्लोज़ प्रोटेक्शन एवं पर्सनल सुरक्षा दस्ता",
       badgeEn: "Executive Escort",
       badgeHi: "वीआईपी एस्कॉर्ट",
-      rate: "₹1,800 / Officer",
       image: "/images/services/vip-bodyguard.jpg",
       icon: UserCheck
     },
@@ -84,7 +80,6 @@ export default function HeroServiceSlider() {
       descHi: "त्वरित रिस्पांस पेट्रोल वैन एवं शेड्यूल रात्रि गश्त",
       badgeEn: "Rapid Response",
       badgeHi: "त्वरित रिस्पांस",
-      rate: "₹1,000 / Shift",
       image: "/images/services/mobile-patrol.jpg",
       icon: Radio
     },
@@ -97,7 +92,6 @@ export default function HeroServiceSlider() {
       descHi: "भीड़ नियंत्रण, स्टेज सुरक्षा एवं ट्रेंड बाउंसर स्क्वाड",
       badgeEn: "Crowd Management",
       badgeHi: "भीड़ नियंत्रण",
-      rate: "₹900 / Shift",
       image: "/images/services/event-security.jpg",
       icon: Users
     }
@@ -177,15 +171,15 @@ export default function HeroServiceSlider() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent" />
               
-              {/* Top Status & Rate Bar */}
+              {/* Top Status Bar */}
               <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-2 z-20">
                 <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-500/40 text-amber-400 text-[10px] sm:text-xs font-black shadow-lg">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span>{language === "hi" ? slide.badgeHi : slide.badgeEn}</span>
                 </div>
 
-                <div className="px-2.5 sm:px-3 py-1 rounded-full bg-amber-500 text-black text-[10px] sm:text-xs font-black font-mono shadow-lg">
-                  {slide.rate}
+                <div className="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-500/30 text-amber-400 text-[10px] sm:text-xs font-mono font-bold shadow-lg">
+                  {String(idx + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
                 </div>
               </div>
 
@@ -204,18 +198,14 @@ export default function HeroServiceSlider() {
                 </div>
 
                 {/* Direct Action Row */}
-                <div className="flex items-center justify-between pt-1 gap-2">
+                <div className="pt-1">
                   <Link
                     href={`/book?type=${encodeURIComponent(slide.guardType)}`}
-                    className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-black text-xs sm:text-sm shadow-[0_0_15px_rgba(245,158,11,0.4)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-black text-xs sm:text-sm shadow-[0_0_15px_rgba(245,158,11,0.4)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
                   >
                     <span>{language === "hi" ? "यह सेवा बुक करें" : "Book This Service"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
-
-                  <span className="text-[10px] sm:text-xs font-mono font-bold text-amber-400/90 bg-slate-950/70 px-2 py-0.5 rounded-md border border-amber-500/20">
-                    {String(idx + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-                  </span>
                 </div>
 
               </div>
