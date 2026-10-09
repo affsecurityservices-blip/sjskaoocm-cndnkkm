@@ -391,17 +391,14 @@ function BookingPageContent() {
                   <Shield className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "सुरक्षा प्रकार *" : "Security Type *"}
                 </label>
-                <select
+                <CustomSelect
+                  options={serviceOptions}
                   value={formData.guardType}
-                  onChange={(e) => handleChange("guardType", e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors shadow-sm"
-                >
-                  {serviceOptions.map((opt) => (
-                    <option key={opt.value} value={opt.value} className="bg-white dark:bg-[#16161F] text-slate-900 dark:text-white font-bold">
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(val) => handleChange("guardType", val)}
+                  size="lg"
+                  icon={Shield}
+                  placeholder="Select Security Type"
+                />
               </div>
 
               {/* Dynamic Quantity / Units / Guards Selector */}
@@ -410,17 +407,14 @@ function BookingPageContent() {
                   <quantityConfig.icon className="w-4 h-4 text-amber-500" />
                   {quantityConfig.label}
                 </label>
-                <select
+                <CustomSelect
+                  options={quantityConfig.options}
                   value={formData.guardCount}
-                  onChange={(e) => handleChange("guardCount", Number(e.target.value))}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors shadow-sm"
-                >
-                  {quantityConfig.options.map((opt) => (
-                    <option key={opt.value} value={opt.value} className="bg-white dark:bg-[#16161F] font-bold">
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(val) => handleChange("guardCount", Number(val))}
+                  size="lg"
+                  icon={quantityConfig.icon}
+                  placeholder="Select Quantity / Units"
+                />
               </div>
 
             </div>

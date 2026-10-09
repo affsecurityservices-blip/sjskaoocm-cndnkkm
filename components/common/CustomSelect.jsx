@@ -9,7 +9,10 @@ export default function CustomSelect({
   onChange,
   placeholder = "Select Option",
   icon: Icon,
-  className = ""
+  className = "",
+  triggerClassName = "",
+  menuClassName = "",
+  size = "md"
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
@@ -55,6 +58,8 @@ export default function CustomSelect({
       : selectedOption
     : value || placeholder;
 
+  const isLarge = size === "lg";
+
   return (
     <div ref={containerRef} className={`relative w-full ${className}`}>
       
@@ -62,20 +67,22 @@ export default function CustomSelect({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full bg-white dark:bg-[#0A0A0F] border ${
+        className={`w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 ${
           isOpen
-            ? "border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
-            : "border-slate-300 dark:border-[#262636] hover:border-amber-500"
-        } rounded-xl px-3.5 py-2.5 text-xs text-slate-900 dark:text-white flex items-center justify-between transition-all duration-200 cursor-pointer focus:outline-none shadow-sm`}
+            ? "border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.25)]"
+            : "border-slate-300 dark:border-[#38384E] hover:border-amber-500"
+        } rounded-xl ${
+          isLarge ? "px-4 py-3.5 text-base font-bold" : "px-3.5 py-2.5 text-xs sm:text-sm font-semibold"
+        } text-slate-900 dark:text-white flex items-center justify-between transition-all duration-200 cursor-pointer focus:outline-none shadow-sm ${triggerClassName}`}
       >
-        <div className="flex items-center gap-2 truncate pr-2">
-          {Icon && <Icon className="w-3.5 h-3.5 text-amber-500 shrink-0" />}
-          <span className="truncate text-left font-medium text-xs sm:text-sm text-slate-800 dark:text-gray-200">
+        <div className="flex items-center gap-2.5 truncate pr-2">
+          {Icon && <Icon className={`${isLarge ? "w-4 h-4" : "w-3.5 h-3.5"} text-amber-500 shrink-0`} />}
+          <span className="truncate text-left font-bold text-slate-900 dark:text-white">
             {displayLabel}
           </span>
         </div>
         <ChevronDown
-          className={`w-4 h-4 text-slate-500 dark:text-gray-400 shrink-0 transition-transform duration-300 ${
+          className={`${isLarge ? "w-5 h-5" : "w-4 h-4"} text-slate-600 dark:text-gray-300 shrink-0 transition-transform duration-300 ${
             isOpen ? "rotate-180 text-amber-500" : ""
           }`}
         />
@@ -83,13 +90,13 @@ export default function CustomSelect({
 
       {/* Popover Menu */}
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] rounded-xl shadow-2xl z-[100] max-h-64 overflow-y-auto p-1.5 space-y-1 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150">
+        <div className={`absolute left-0 min-w-full w-max max-w-[min(100vw-2rem,480px)] top-full mt-2 bg-white dark:bg-[#16161F] border-2 border-slate-300 dark:border-[#262636] rounded-2xl shadow-2xl z-[100] p-2 space-y-1 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${menuClassName}`}>
           
           {isGrouped ? (
             /* Grouped Options Rendering */
             options.map((group, groupIdx) => (
               <div key={groupIdx} className="space-y-1">
-                <div className="px-3 py-1 text-[10px] uppercase tracking-wider font-extrabold text-amber-600 dark:text-amber-500 bg-slate-100 dark:bg-[#0A0A0F]/90 rounded-md my-1 sticky top-0 backdrop-blur-md">
+                <div className="px-3.5 py-1.5 text-[11px] uppercase tracking-wider font-black text-amber-600 dark:text-amber-500 bg-slate-100 dark:bg-[#0A0A0F] rounded-lg my-1 sticky top-0 backdrop-blur-md">
                   {group.groupName || group.state}
                 </div>
                 {group.items.map((item, itemIdx) => {
@@ -102,14 +109,14 @@ export default function CustomSelect({
                       key={itemIdx}
                       type="button"
                       onClick={() => handleSelect(itemVal)}
-                      className={`w-full text-left px-3 py-2 rounded-lg text-xs sm:text-sm flex items-center justify-between transition-colors cursor-pointer ${
+                      className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between gap-3 transition-colors cursor-pointer ${
                         isSelected
-                          ? "bg-amber-500 text-black font-bold"
-                          : "text-slate-800 dark:text-gray-200 hover:bg-slate-100 dark:hover:bg-[#262636] hover:text-amber-600 dark:hover:text-amber-400"
+                          ? "bg-amber-500 text-black shadow-sm font-black"
+                          : "text-slate-900 dark:text-gray-100 hover:bg-amber-500/10 hover:text-amber-600 dark:hover:text-amber-400"
                       }`}
                     >
-                      <span className="truncate">{itemLabel}</span>
-                      {isSelected && <Check className="w-3.5 h-3.5 shrink-0" />}
+                      <span className="whitespace-normal break-words leading-snug">{itemLabel}</span>
+                      {isSelected && <Check className="w-4 h-4 shrink-0" />}
                     </button>
                   );
                 })}
@@ -127,14 +134,14 @@ export default function CustomSelect({
                   key={idx}
                   type="button"
                   onClick={() => handleSelect(optVal)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-xs sm:text-sm flex items-center justify-between transition-colors cursor-pointer ${
+                  className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between gap-3 transition-colors cursor-pointer ${
                     isSelected
-                      ? "bg-amber-500 text-black font-bold"
-                      : "text-slate-800 dark:text-gray-200 hover:bg-slate-100 dark:hover:bg-[#262636] hover:text-amber-600 dark:hover:text-amber-400"
+                      ? "bg-amber-500 text-black shadow-sm font-black"
+                      : "text-slate-900 dark:text-gray-100 hover:bg-amber-500/10 hover:text-amber-600 dark:hover:text-amber-400"
                   }`}
                 >
-                  <span className="truncate">{optLabel}</span>
-                  {isSelected && <Check className="w-3.5 h-3.5 shrink-0" />}
+                  <span className="whitespace-normal break-words leading-snug">{optLabel}</span>
+                  {isSelected && <Check className="w-4 h-4 shrink-0" />}
                 </button>
               );
             })
