@@ -71,7 +71,11 @@ export default function BookingCard({ booking, onCancel }) {
           <div className="flex items-center gap-2">
             <Clock className="w-4 h-4 text-amber-500 shrink-0" />
             <span>
-              Time: <strong className="text-slate-900 dark:text-white">{formatTime12h(booking.startTime)}</strong> ({booking.hours} hrs shift)
+              Time: <strong className="text-slate-900 dark:text-white">
+                {booking.shiftType ? `${booking.shiftType}: ` : ""}
+                {formatTime12h(booking.startTime)}
+                {booking.endTime ? ` - ${formatTime12h(booking.endTime)}` : ""}
+              </strong> ({booking.hours} hrs)
             </span>
           </div>
           <div className="flex items-start gap-2">

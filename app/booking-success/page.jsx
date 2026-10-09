@@ -97,7 +97,10 @@ function SuccessContent() {
                 <Clock className="w-3.5 h-3.5 text-amber-500" /> Time & Duration
               </span>
               <span className="font-semibold text-slate-900 dark:text-white block">
-                {formatTime12h(booking.startTime)} ({booking.hours} hours)
+                {booking.shiftType ? `${booking.shiftType}: ` : ""}
+                {formatTime12h(booking.startTime)}
+                {booking.endTime ? ` to ${formatTime12h(booking.endTime)}` : ""}
+                {` (${booking.hours} hours)`}
               </span>
             </div>
 

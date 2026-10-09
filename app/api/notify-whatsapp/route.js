@@ -19,10 +19,15 @@ export async function POST(request) {
       address,
       date,
       startTime,
+      endTime,
+      shiftType,
       hours,
       totalPrice,
       specialNotes
     } = body;
+
+    const timeDisplay = endTime ? `${startTime} to ${endTime}` : (startTime || "08:00 AM");
+    const shiftLine = shiftType ? `• Shift: ${shiftType}\n` : "";
 
     // Format the clean WhatsApp Notification Message
     const formattedMessage =
@@ -37,7 +42,7 @@ export async function POST(request) {
 • Location / City: ${city || "Aurangabad / Bihar"}
 • Full Address: ${address || "N/A"}
 • Date: ${date || "Immediate"}
-• Start Time: ${startTime || "08:00 AM"}
+${shiftLine}• Timing (From - To): ${timeDisplay} (${hours || 8} Hours)
 • Shift Duration: ${hours || 8} Hours
 • Estimated Total: ₹${totalPrice ? Number(totalPrice).toLocaleString("en-IN") : "N/A"}
 ${specialNotes ? `• Notes: ${specialNotes}\n` : ""}-----------------------------------
