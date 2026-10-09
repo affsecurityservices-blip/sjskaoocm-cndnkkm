@@ -27,6 +27,8 @@ export const createWhatsAppBookingUrl = ({
   name,
   phone,
   eventType,
+  state,
+  city,
   address,
   date,
   startTime,
@@ -39,6 +41,8 @@ export const createWhatsAppBookingUrl = ({
   const formattedEnd = endTime ? (formatTime12h(endTime) || endTime) : null;
   const timingText = formattedEnd ? `${formattedStart} to ${formattedEnd}` : formattedStart;
   const shiftLine = shiftType ? `• Shift: ${shiftType}\n` : "";
+  const locationParts = [city, state].filter(Boolean);
+  const locationLine = locationParts.length > 0 ? `• State / Location: ${locationParts.join(", ")}\n` : "";
 
   const text =
 `🛡️ *NEW SECURITY ENQUIRY - AAF SECURITY SERVICES*
@@ -52,7 +56,7 @@ export const createWhatsAppBookingUrl = ({
 
 📍 *DEPLOYMENT DETAILS:*
 • Event / Service: ${eventType}
-• Venue Address: ${address}
+${locationLine}• Venue Address: ${address}
 • Date: ${date}
 ${shiftLine}• Timing (From - To): ${timingText} (${hours} hours)
 • Shift Duration: ${hours} hours

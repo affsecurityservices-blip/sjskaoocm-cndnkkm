@@ -15,6 +15,7 @@ export async function POST(request) {
       name,
       phone,
       guardType,
+      state,
       city,
       address,
       date,
@@ -28,6 +29,7 @@ export async function POST(request) {
 
     const timeDisplay = endTime ? `${startTime} to ${endTime}` : (startTime || "08:00 AM");
     const shiftLine = shiftType ? `• Shift: ${shiftType}\n` : "";
+    const locationDisplay = [city, state].filter(Boolean).join(", ") || (city || "Aurangabad / Bihar");
 
     // Format the clean WhatsApp Notification Message
     const formattedMessage =
@@ -39,7 +41,7 @@ export async function POST(request) {
 
 📍 *DEPLOYMENT DETAILS:*
 • Service / Guard Type: ${guardType || "Security Guard"}
-• Location / City: ${city || "Aurangabad / Bihar"}
+• State & City: ${locationDisplay}
 • Full Address: ${address || "N/A"}
 • Date: ${date || "Immediate"}
 ${shiftLine}• Timing (From - To): ${timeDisplay} (${hours || 8} Hours)

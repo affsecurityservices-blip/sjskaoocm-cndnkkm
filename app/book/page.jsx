@@ -75,6 +75,7 @@ function BookingPageContent() {
   const { language, t } = useLanguage();
   const { addBooking } = useBooking();
 
+  const initialState = searchParams.get("state") || "Bihar";
   const initialCity = searchParams.get("city") || "";
   const initialType = searchParams.get("type") || "";
 
@@ -83,6 +84,8 @@ function BookingPageContent() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    state: initialState,
+    customState: "",
     city: initialCity === "All Cities/Districts" ? "" : initialCity,
     guardType: initialType && initialType !== "All Types" ? initialType : "Manned Guarding",
     guardCount: 1,
@@ -97,11 +100,13 @@ function BookingPageContent() {
 
   // Pre-fill state whenever searchParams changes
   useEffect(() => {
+    const stateParam = searchParams.get("state");
     const cityParam = searchParams.get("city");
     const typeParam = searchParams.get("type");
-    if (cityParam !== null || typeParam !== null) {
+    if (stateParam !== null || cityParam !== null || typeParam !== null) {
       setFormData((prev) => ({
         ...prev,
+        state: stateParam || prev.state,
         city: cityParam && cityParam !== "All Cities/Districts" ? cityParam : prev.city,
         guardType: typeParam && typeParam !== "All Types" ? typeParam : prev.guardType
       }));
@@ -109,6 +114,30 @@ function BookingPageContent() {
   }, [searchParams]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Available Indian States for quick selection
+  const stateOptions = useMemo(() => [
+    { value: "Bihar", label: language === "hi" ? "बिहार (Bihar)" : "Bihar" },
+    { value: "Jharkhand", label: language === "hi" ? "झारखंड (Jharkhand)" : "Jharkhand" },
+    { value: "Uttar Pradesh", label: language === "hi" ? "उत्तर प्रदेश (UP)" : "Uttar Pradesh" },
+    { value: "Delhi NCR", label: language === "hi" ? "दिल्ली NCR (Delhi NCR)" : "Delhi NCR" },
+    { value: "West Bengal", label: language === "hi" ? "पश्चिम बंगाल (WB)" : "West Bengal" },
+    { value: "Maharashtra", label: language === "hi" ? "महाराष्ट्र (Maharashtra)" : "Maharashtra" },
+    { value: "Madhya Pradesh", label: language === "hi" ? "मध्य प्रदेश (MP)" : "Madhya Pradesh" },
+    { value: "Rajasthan", label: language === "hi" ? "राजस्थान (Rajasthan)" : "Rajasthan" },
+    { value: "Punjab & Haryana", label: language === "hi" ? "पंजाब / हरियाणा (Punjab & Haryana)" : "Punjab & Haryana" },
+    { value: "Gujarat", label: language === "hi" ? "गुजरात (Gujarat)" : "Gujarat" },
+    { value: "Karnataka", label: language === "hi" ? "कर्नाटक (Karnataka)" : "Karnataka" },
+    { value: "Telangana & AP", label: language === "hi" ? "तेलंगाना / आंध्र प्रदेश" : "Telangana & AP" },
+    { value: "Tamil Nadu", label: language === "hi" ? "तमिलनाडु (Tamil Nadu)" : "Tamil Nadu" },
+    { value: "Odisha", label: language === "hi" ? "ओडिशा (Odisha)" : "Odisha" },
+    { value: "Chhattisgarh", label: language === "hi" ? "छत्तीसगढ़ (Chhattisgarh)" : "Chhattisgarh" },
+    { value: "Uttarakhand", label: language === "hi" ? "उत्तराखंड (Uttarakhand)" : "Uttarakhand" },
+    { value: "Assam", label: language === "hi" ? "असम (Assam)" : "Assam" },
+    { value: "Goa", label: language === "hi" ? "गोवा (Goa)" : "Goa" },
+    { value: "Kerala", label: language === "hi" ? "केरल (Kerala)" : "Kerala" },
+    { value: "Other", label: language === "hi" ? "अन्य राज्य (Other State)" : "Other State" }
+  ], [language]);
 
   // Dynamic Quantity & Unit Config based on selected Service
   const quantityConfig = useMemo(() => {
@@ -126,10 +155,10 @@ function BookingPageContent() {
         };
       case "Mobile Patrolling":
         return {
-          label: language === "hi" ? "गश्त वाहन / यूनिट्स *" : "Patrol Vans / Units *",
+          label: language === "hi" ? "गश्त वाहन / यूनिट्स संख्या *" : "Patrol Vans / Units *",
           icon: Radio,
           options: [
-            { value: 1, label: language === "hi" ? "1 गश्त वाहन / पेट्रोल वैन" : "1 Patrol Van / Mobile Unit" },
+            { value: 1, label: language === "hi" ? "1 गश्त वाहन (पेट्रोल वैन)" : "1 Patrol Van / Mobile Unit" },
             { value: 2, label: language === "hi" ? "2 गश्त वाहन / यूनिट्स" : "2 Patrol Vans / Units" },
             { value: 3, label: language === "hi" ? "3 पेट्रोल वैन फ्लीट" : "3 Patrol Fleet Units" },
             { value: 5, label: language === "hi" ? "फुल एरिया मोबाइल फ्लीट (5+)" : "Full Area Fleet (5+ Units)" }
@@ -137,7 +166,7 @@ function BookingPageContent() {
         };
       case "Risk Management":
         return {
-          label: language === "hi" ? "ऑडिट दायरा / साइट्स *" : "Audit Scope & Sites *",
+          label: language === "hi" ? "ऑडिट दायरा / साइट्स संख्या *" : "Audit Scope & Sites *",
           icon: ShieldCheck,
           options: [
             { value: 1, label: language === "hi" ? "1 परिसर सुरक्षा ऑडिट" : "1 Facility Security Audit" },
@@ -164,13 +193,13 @@ function BookingPageContent() {
           options: [
             { value: 1, label: language === "hi" ? "1 बाउंसर (Bouncer)" : "1 Bouncer" },
             { value: 2, label: language === "hi" ? "2 बाउंसर" : "2 Bouncers" },
-            { value: 4, label: language === "hi" ? "4 बाउंसर स्क्वाड" : "4 Bouncers (Squad)" },
+            { value: 4, label: language === "hi" ? "4 बाउंसर दस्ता" : "4 Bouncers (Squad)" },
             { value: 6, label: language === "hi" ? "6+ बाउंसर (इवेंट / क्लब)" : "6+ Bouncers (Event / Club)" }
           ]
         };
       case "Personal Bodyguard":
         return {
-          label: language === "hi" ? "बॉडीगार्ड संख्या *" : "Number of Bodyguards *",
+          label: language === "hi" ? "पर्सनल बॉडीगार्ड संख्या *" : "Number of Bodyguards *",
           icon: Users,
           options: [
             { value: 1, label: language === "hi" ? "1 वीआईपी बॉडीगार्ड" : "1 VIP Bodyguard" },
@@ -180,7 +209,7 @@ function BookingPageContent() {
         };
       case "Event Security":
         return {
-          label: language === "hi" ? "इवेंट सुरक्षा दल संख्या *" : "Event Security Personnel *",
+          label: language === "hi" ? "इवेंट सुरक्षा कर्मी संख्या *" : "Event Security Personnel *",
           icon: Users,
           options: [
             { value: 2, label: language === "hi" ? "2 सुरक्षा कर्मी" : "2 Security Personnel" },
@@ -191,14 +220,14 @@ function BookingPageContent() {
         };
       default:
         return {
-          label: language === "hi" ? "गार्ड्स की संख्या *" : "Number of Guards *",
+          label: language === "hi" ? "सुरक्षा गार्डों की संख्या *" : "Number of Guards *",
           icon: Users,
           options: [
-            { value: 1, label: language === "hi" ? "1 गार्ड (Guard)" : "1 Guard / Operative" },
-            { value: 2, label: language === "hi" ? "2 गार्ड्स" : "2 Guards" },
-            { value: 3, label: language === "hi" ? "3 गार्ड्स" : "3 Guards" },
-            { value: 5, label: language === "hi" ? "5 गार्ड्स (टीम)" : "5 Guards (Team)" },
-            { value: 10, label: language === "hi" ? "10+ गार्ड्स (बड़ा दस्ता)" : "10+ Guards (Large Contingent)" }
+            { value: 1, label: language === "hi" ? "1 सुरक्षा गार्ड (Guard)" : "1 Guard / Operative" },
+            { value: 2, label: language === "hi" ? "2 सुरक्षा गार्ड" : "2 Guards" },
+            { value: 3, label: language === "hi" ? "3 सुरक्षा गार्ड" : "3 Guards" },
+            { value: 5, label: language === "hi" ? "5 सुरक्षा गार्ड (दस्ता)" : "5 Guards (Team)" },
+            { value: 10, label: language === "hi" ? "10+ सुरक्षा गार्ड (बड़ी टीम)" : "10+ Guards (Large Contingent)" }
           ]
         };
     }
@@ -222,10 +251,10 @@ function BookingPageContent() {
     { value: "CCTV Surveillance", label: language === "hi" ? "सीसीटीवी निगरानी (CCTV Surveillance)" : "CCTV Surveillance & Monitoring", baseRate: 800 },
     { value: "Mobile Patrolling", label: language === "hi" ? "मोबाइल गश्त (Mobile Patrolling)" : "Mobile Patrolling & Patrol Van", baseRate: 1000 },
     { value: "Event Security", label: language === "hi" ? "इवेंट एवं भीड़ सुरक्षा (Event Security)" : "Event Security & Crowd Control", baseRate: 900 },
-    { value: "Risk Management", label: language === "hi" ? "रिस्क मैनेजमेंट (Risk Management)" : "Risk Management & Security Audit", baseRate: 1200 },
+    { value: "Risk Management", label: language === "hi" ? "रिस्क मैनेजमेंट / ऑडिट (Risk Management)" : "Risk Management & Security Audit", baseRate: 1200 },
     { value: "Armed Security", label: language === "hi" ? "सशस्त्र गनमैन (Armed Security)" : "Armed Security Gunners", baseRate: 1500 },
     { value: "Bouncer", label: language === "hi" ? "बाउंसर (Bouncers & Club Protection)" : "Bouncers & Club Protection", baseRate: 1200 },
-    { value: "Personal Bodyguard", label: language === "hi" ? "पर्सनल बॉडीगार्ड (VIP Bodyguard)" : "VIP Personal Bodyguard Escort", baseRate: 1800 }
+    { value: "Personal Bodyguard", label: language === "hi" ? "पर्सनल बॉडीगार्ड (VIP Escort)" : "VIP Personal Bodyguard Escort", baseRate: 1800 }
   ];
 
   // Auto-detect shift based on time From & To
@@ -251,7 +280,7 @@ function BookingPageContent() {
       return {
         type: "night",
         label: "Night Shift",
-        labelHi: "रात की शिफ्ट (Night Shift)",
+        labelHi: "रात की शिफ्ट",
         isNight: true,
         spansNextDay
       };
@@ -260,7 +289,7 @@ function BookingPageContent() {
     return {
       type: "day",
       label: "Day Shift",
-      labelHi: "दिन की शिफ्ट (Day Shift)",
+      labelHi: "दिन की शिफ्ट",
       isNight: false,
       spansNextDay
     };
@@ -388,6 +417,11 @@ function BookingPageContent() {
     setIsSubmitting(true);
 
     const shiftLabel = language === "hi" ? detectedShift.labelHi : detectedShift.label;
+    const resolvedState = formData.state === "Other" && formData.customState?.trim()
+      ? formData.customState.trim()
+      : (formData.state || "Bihar");
+    const locationParts = [formData.city, resolvedState].filter(Boolean);
+    const locationStr = locationParts.join(", ") || "Aurangabad, Bihar";
 
     const bookingPayload = {
       guardId: `SRV-${Date.now()}`,
@@ -395,8 +429,10 @@ function BookingPageContent() {
       guardType: formData.guardType,
       name: formData.name,
       phone: formData.phone,
-      eventType: `${formData.guardType} (${formData.city !== "All Cities/Districts" ? formData.city : "Aurangabad / Bihar"})`,
-      address: `${formData.address}${formData.city !== "All Cities/Districts" ? `, ${formData.city}` : ""}`,
+      state: resolvedState,
+      city: formData.city,
+      eventType: `${formData.guardType} (${locationStr})`,
+      address: `${formData.address}${locationStr ? `, ${locationStr}` : ""}`,
       date: formData.date,
       shiftMode: formData.shiftMode,
       shiftType: shiftLabel,
@@ -419,6 +455,7 @@ function BookingPageContent() {
         name: formData.name,
         phone: formData.phone,
         guardType: formData.guardType,
+        state: resolvedState,
         city: formData.city,
         address: bookingPayload.address,
         date: formData.date,
@@ -439,6 +476,8 @@ function BookingPageContent() {
       name: formData.name,
       phone: formData.phone,
       eventType: formData.guardType,
+      state: resolvedState,
+      city: formData.city,
       address: bookingPayload.address,
       date: formData.date,
       shiftType: shiftLabel,
@@ -489,7 +528,7 @@ function BookingPageContent() {
           <div className="space-y-5">
             <h2 className="text-sm sm:text-base uppercase tracking-wider font-black text-amber-600 dark:text-amber-400 flex items-center gap-2.5 border-b-2 border-slate-200 dark:border-[#262636] pb-3">
               <User className="w-5 h-5 text-amber-500" />
-              {language === "hi" ? "1. क्लाइंट संपर्क जानकारी" : "1. CLIENT INFORMATION"}
+              {language === "hi" ? "1. आपकी संपर्क जानकारी" : "1. CLIENT INFORMATION"}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -503,7 +542,7 @@ function BookingPageContent() {
                 <input
                   type="text"
                   required
-                  placeholder={language === "hi" ? "जैसे: भूपेंद्र कुमार" : "e.g. Rahul Sharma"}
+                  placeholder={language === "hi" ? "जैसे: राहुल शर्मा" : "e.g. Rahul Sharma"}
                   value={formData.name}
                   onChange={(e) => handleChange("name", e.target.value)}
                   className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base sm:text-lg font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-400 focus:outline-none transition-colors shadow-sm"
@@ -536,10 +575,26 @@ function BookingPageContent() {
               {language === "hi" ? "2. सुरक्षा आवश्यकता एवं स्थान" : "2. SECURITY & LOCATION REQUIREMENTS"}
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               
+              {/* State / राज्य */}
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-amber-500" />
+                  {language === "hi" ? "राज्य (State) *" : "State *"}
+                </label>
+                <CustomSelect
+                  options={stateOptions}
+                  value={formData.state}
+                  onChange={(val) => handleChange("state", val)}
+                  size="lg"
+                  icon={MapPin}
+                  placeholder={language === "hi" ? "राज्य चुनें" : "Select State"}
+                />
+              </div>
+
               {/* City / District */}
-              <div className="space-y-2 sm:col-span-1">
+              <div className="space-y-2">
                 <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                   <MapPin className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "शहर / जिला *" : "City / District *"}
@@ -559,7 +614,7 @@ function BookingPageContent() {
               </div>
 
               {/* Service Type */}
-              <div className="space-y-2 sm:col-span-1">
+              <div className="space-y-2">
                 <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                   <Shield className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "सुरक्षा प्रकार *" : "Security Type *"}
@@ -570,12 +625,12 @@ function BookingPageContent() {
                   onChange={(val) => handleChange("guardType", val)}
                   size="lg"
                   icon={Shield}
-                  placeholder="Select Security Type"
+                  placeholder={language === "hi" ? "सुरक्षा प्रकार चुनें" : "Select Security Type"}
                 />
               </div>
 
               {/* Dynamic Quantity / Units / Guards Selector */}
-              <div className="space-y-2 sm:col-span-1">
+              <div className="space-y-2">
                 <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                   <quantityConfig.icon className="w-4 h-4 text-amber-500" />
                   {quantityConfig.label}
@@ -586,17 +641,35 @@ function BookingPageContent() {
                   onChange={(val) => handleChange("guardCount", Number(val))}
                   size="lg"
                   icon={quantityConfig.icon}
-                  placeholder="Select Quantity / Units"
+                  placeholder={language === "hi" ? "संख्या चुनें" : "Select Quantity / Units"}
                 />
               </div>
 
             </div>
 
+            {/* Custom State input if "Other" is chosen */}
+            {formData.state === "Other" && (
+              <div className="space-y-2 pt-1 animate-in fade-in duration-200">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-amber-500" />
+                  {language === "hi" ? "अपने राज्य का नाम लिखें *" : "Specify State Name *"}
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder={language === "hi" ? "जैसे: मध्य प्रदेश, हरियाणा, असम आदि" : "e.g. Madhya Pradesh, Haryana, etc."}
+                  value={formData.customState}
+                  onChange={(e) => handleChange("customState", e.target.value)}
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-400 focus:outline-none transition-colors shadow-sm"
+                />
+              </div>
+            )}
+
             {/* Venue Address */}
             <div className="space-y-2 pt-2">
               <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                 <MapPin className="w-4 h-4 text-amber-500" />
-                {language === "hi" ? "स्थान / पूरा पता (Deployment Venue) *" : "Full Venue Address *"}
+                {language === "hi" ? "ड्यूटी का पूरा पता (स्थान) *" : "Full Deployment Address *"}
               </label>
               <textarea
                 rows={2}
@@ -618,10 +691,10 @@ function BookingPageContent() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-200 dark:border-[#262636] pb-3 gap-2">
               <h2 className="text-sm sm:text-base uppercase tracking-wider font-black text-amber-600 dark:text-amber-400 flex items-center gap-2.5">
                 <Calendar className="w-5 h-5 text-amber-500" />
-                {language === "hi" ? "3. शिफ्ट एवं समय शेड्यूल (Deployment Schedule)" : "3. DEPLOYMENT SCHEDULE"}
+                {language === "hi" ? "3. शिफ्ट एवं ड्यूटी समय" : "3. DEPLOYMENT SCHEDULE"}
               </h2>
               <span className="text-xs font-bold text-slate-500 dark:text-gray-400">
-                {language === "hi" ? "समय के अनुसार ऑटो-शिफ्ट सिंक" : "Time & Shift Auto-Synced"}
+                {language === "hi" ? "समय अनुसार ऑटो-शिफ्ट सिंक" : "Time & Shift Auto-Synced"}
               </span>
             </div>
 
@@ -629,7 +702,7 @@ function BookingPageContent() {
             <div className="space-y-2">
               <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                 <Calendar className="w-4 h-4 text-amber-500" />
-                {language === "hi" ? "तारीख (Deployment Date) *" : "Deployment Date *"}
+                {language === "hi" ? "ड्यूटी की तारीख *" : "Deployment Date *"}
               </label>
               <input
                 type="date"
@@ -646,7 +719,7 @@ function BookingPageContent() {
               <div className="flex items-center justify-between">
                 <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-amber-500" />
-                  {language === "hi" ? "शिफ्ट का प्रकार (Shift Type) *" : "Shift Type *"}
+                  {language === "hi" ? "शिफ्ट का प्रकार चुनें *" : "Shift Type *"}
                 </label>
                 <span className="text-xs font-extrabold text-amber-600 dark:text-amber-400 font-mono">
                   {language === "hi" ? detectedShift.labelHi : detectedShift.label}
@@ -658,28 +731,28 @@ function BookingPageContent() {
                   {
                     id: "day",
                     title: language === "hi" ? "दिन की शिफ्ट" : "Day Shift",
-                    sub: "08:00 AM - 04:00 PM",
+                    sub: language === "hi" ? "सुबह 08:00 - शाम 04:00" : "08:00 AM - 04:00 PM",
                     icon: Sun,
                     active: formData.shiftMode === "day" || (formData.shiftMode !== "custom" && detectedShift.type === "day")
                   },
                   {
                     id: "night",
                     title: language === "hi" ? "रात की शिफ्ट" : "Night Shift",
-                    sub: "08:00 PM - 04:00 AM",
+                    sub: language === "hi" ? "रात 08:00 - सुबह 04:00" : "08:00 PM - 04:00 AM",
                     icon: Moon,
                     active: formData.shiftMode === "night" || (formData.shiftMode !== "custom" && detectedShift.type === "night")
                   },
                   {
                     id: "fullday",
                     title: language === "hi" ? "फुल डे (24 घंटे)" : "Full Day (24 Hrs)",
-                    sub: language === "hi" ? "24/7 सुरक्षा" : "Round the Clock",
+                    sub: language === "hi" ? "24 घंटे सुरक्षा" : "Round the Clock",
                     icon: RotateCw,
                     active: formData.shiftMode === "fullday" || formData.hours === 24
                   },
                   {
                     id: "custom",
                     title: language === "hi" ? "कस्टम समय" : "Custom Time",
-                    sub: language === "hi" ? "From - To सेट करें" : "Set From / To",
+                    sub: language === "hi" ? "अपनी पसंद का समय" : "Set From / To",
                     icon: SlidersHorizontal,
                     active: formData.shiftMode === "custom"
                   }
@@ -720,7 +793,7 @@ function BookingPageContent() {
                 <div className="flex items-center justify-between">
                   <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                     <Clock className="w-4 h-4 text-amber-500" />
-                    {language === "hi" ? "समय से (From Time / Start) *" : "Start Time (From) *"}
+                    {language === "hi" ? "शुरू होने का समय *" : "Start Time (From) *"}
                   </label>
                   <span className="text-xs font-mono font-black text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md">
                     {format12Hour(formData.startTime)}
@@ -740,7 +813,7 @@ function BookingPageContent() {
                 <div className="flex items-center justify-between">
                   <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                     <Clock className="w-4 h-4 text-amber-500" />
-                    {language === "hi" ? "समय तक (To Time / End) *" : "End Time (To) *"}
+                    {language === "hi" ? "समाप्ति का समय *" : "End Time (To) *"}
                   </label>
                   <div className="flex items-center gap-1.5">
                     {detectedShift.spansNextDay && (
@@ -769,19 +842,36 @@ function BookingPageContent() {
               <div className="flex items-center justify-between">
                 <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-amber-500" />
-                  {language === "hi" ? "ड्यूटी अवधि (Total Shift Duration) *" : "Shift Duration *"}
+                  {language === "hi" ? "ड्यूटी अवधि (कुल समय) *" : "Shift Duration *"}
                 </label>
                 <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 font-mono">
-                  {formData.hours} {formData.hours === 1 ? "Hour" : "Hours"}
+                  {formData.hours} {language === "hi" ? "घंटे" : (formData.hours === 1 ? "Hour" : "Hours")}
                 </span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { hours: 4, title: "4 Hours", subtitle: language === "hi" ? "हाफ डे शिफ्ट" : "Half Day Shift" },
-                  { hours: 8, title: "8 Hours", subtitle: language === "hi" ? "स्टैंडर्ड शिफ्ट" : "Standard Shift", recommended: true },
-                  { hours: 12, title: "12 Hours", subtitle: language === "hi" ? "लंबी शिफ्ट" : "Extended Shift" },
-                  { hours: 24, title: "24 Hours", subtitle: language === "hi" ? "24/7 फुल डे" : "Round the Clock" }
+                  {
+                    hours: 4,
+                    title: language === "hi" ? "4 घंटे" : "4 Hours",
+                    subtitle: language === "hi" ? "हाफ डे शिफ्ट" : "Half Day Shift"
+                  },
+                  {
+                    hours: 8,
+                    title: language === "hi" ? "8 घंटे" : "8 Hours",
+                    subtitle: language === "hi" ? "मानक 8 घंटे शिफ्ट" : "Standard Shift",
+                    recommended: true
+                  },
+                  {
+                    hours: 12,
+                    title: language === "hi" ? "12 घंटे" : "12 Hours",
+                    subtitle: language === "hi" ? "लंबी 12 घंटे शिफ्ट" : "Extended Shift"
+                  },
+                  {
+                    hours: 24,
+                    title: language === "hi" ? "24 घंटे" : "24 Hours",
+                    subtitle: language === "hi" ? "फुल डे 24 घंटे" : "Round the Clock"
+                  }
                 ].map((slot) => {
                   const isSelected = formData.hours === slot.hours;
                   return (
@@ -825,7 +915,7 @@ function BookingPageContent() {
                   <div className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                     <span>{language === "hi" ? detectedShift.labelHi : detectedShift.label}</span>
                     <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-400">
-                      {formData.hours} hrs
+                      {formData.hours} {language === "hi" ? "घंटे" : "hrs"}
                     </span>
                   </div>
                   <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-0.5">
@@ -839,7 +929,7 @@ function BookingPageContent() {
                   {language === "hi" ? "ड्यूटी स्थिति" : "Shift Status"}
                 </span>
                 <span className="text-xs font-bold text-slate-900 dark:text-white">
-                  {detectedShift.isNight ? (language === "hi" ? "रात्रि ड्यूटी लागू" : "Night Duty Active") : (language === "hi" ? "दिन की ड्यूटी" : "Day Duty Active")}
+                  {detectedShift.isNight ? (language === "hi" ? "रात्रि ड्यूटी लागू" : "Night Duty Active") : (language === "hi" ? "दिन की ड्यूटी लागू" : "Day Duty Active")}
                 </span>
               </div>
             </div>
@@ -848,13 +938,13 @@ function BookingPageContent() {
             <div className="space-y-2 pt-2">
               <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                 <FileText className="w-4 h-4 text-amber-500" />
-                {language === "hi" ? "अतिरिक्त जानकारी / टिप्पणी (Optional)" : "Special Instructions / Notes (Optional)"}
+                {language === "hi" ? "विशेष निर्देश / अन्य आवश्यकताएं (ऐच्छिक)" : "Special Instructions / Notes (Optional)"}
               </label>
               <input
                 type="text"
                 placeholder={
                   language === "hi"
-                    ? "जैसे: गनमैन या विशेष वर्दी की आवश्यकता"
+                    ? "जैसे: वर्दी का प्रकार, गनमैन की आवश्यकता, वीआईपी सुरक्षा निर्देश आदि"
                     : "e.g. Uniform type, armed requirement, VIP security escort"
                 }
                 value={formData.specialNotes}
