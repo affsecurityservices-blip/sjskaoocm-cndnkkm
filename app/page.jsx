@@ -67,6 +67,23 @@ export default function HomePage() {
     });
   }, [language]);
 
+  const submitButtonText = useMemo(() => {
+    if (selectedType === "All Types" || !selectedType) {
+      return language === "hi" ? "गार्ड बुक करें" : "Book Guard Now";
+    }
+    const typeLabelMap = {
+      "Manned Guarding": language === "hi" ? "सुरक्षा गार्ड बुक करें" : "Book Manned Guard",
+      "CCTV Surveillance": language === "hi" ? "सीसीटीवी बुक करें" : "Book CCTV Security",
+      "Mobile Patrolling": language === "hi" ? "मोबाइल गश्त बुक करें" : "Book Mobile Patrol",
+      "Event Security": language === "hi" ? "इवेंट सुरक्षा बुक करें" : "Book Event Security",
+      "Risk Management": language === "hi" ? "रिस्क मैनेजमेंट बुक करें" : "Book Risk Audit",
+      "Armed Security": language === "hi" ? "सशस्त्र गनमैन बुक करें" : "Book Armed Gunner",
+      "Bouncer": language === "hi" ? "बाउंसर बुक करें" : "Book Bouncer",
+      "Personal Bodyguard": language === "hi" ? "वीआईपी बॉडीगार्ड बुक करें" : "Book VIP Bodyguard"
+    };
+    return typeLabelMap[selectedType] || (language === "hi" ? `${selectedType} बुक करें` : `Book ${selectedType}`);
+  }, [selectedType, language]);
+
   const handleQuickSearch = (e) => {
     e.preventDefault();
     const queryParams = new URLSearchParams();
@@ -226,14 +243,15 @@ export default function HomePage() {
                   />
                 </div>
 
-                {/* Search Button */}
+                {/* Dynamic Submit / Booking Button */}
                 <div>
                   <button
                     type="submit"
-                    className="w-full py-2.5 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(245,158,11,0.3)] cursor-pointer"
+                    className="w-full py-2.5 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-black text-xs rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(245,158,11,0.35)] cursor-pointer"
                   >
-                    <Search className="w-4 h-4" />
-                    {t("hero.findGuardsBtn")}
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>{submitButtonText}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
