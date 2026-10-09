@@ -90,7 +90,7 @@ export default function CustomSelect({
 
       {/* Popover Menu */}
       {isOpen && (
-        <div className={`absolute left-0 min-w-full w-max max-w-[min(100vw-2rem,480px)] top-full mt-2 bg-white dark:bg-[#16161F] border-2 border-slate-300 dark:border-[#262636] rounded-2xl shadow-2xl z-[100] p-2 space-y-1 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${menuClassName}`}>
+        <div className={`absolute left-0 w-full min-w-full max-h-72 overflow-y-auto top-full mt-2 bg-white dark:bg-[#16161F] border-2 border-slate-300 dark:border-[#262636] rounded-2xl shadow-2xl z-[100] p-2 space-y-1 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${menuClassName}`}>
           
           {isGrouped ? (
             /* Grouped Options Rendering */

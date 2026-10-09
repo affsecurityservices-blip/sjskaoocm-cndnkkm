@@ -499,30 +499,30 @@ function BookingPageContent() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8">
       
       {/* HEADER BANNER */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold font-mono uppercase tracking-wider">
-          <Shield className="w-4 h-4 text-amber-500" />
-          <span>{language === "hi" ? "गार्ड बुकिंग एवं सुरक्षा इन्क्वायरी" : "Official Guard Booking Portal"}</span>
+      <div className="text-center space-y-2.5 sm:space-y-3 px-2 sm:px-0">
+        <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider">
+          <Shield className="w-4 h-4 text-amber-500 shrink-0" />
+          <span>{language === "hi" ? "गार्ड बुकिंग एवं सुरक्षा सेवा" : "Official Guard Booking Portal"}</span>
         </div>
         
-        <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
           {language === "hi" ? "सुरक्षा गार्ड बुकिंग फॉर्म" : "Book Security Services"}
         </h1>
         
-        <p className="text-sm sm:text-base text-slate-600 dark:text-gray-300 max-w-xl mx-auto">
+        <p className="text-xs sm:text-base text-slate-600 dark:text-gray-300 max-w-xl mx-auto leading-relaxed">
           {language === "hi"
-            ? "नीचे अपनी आवश्यकता दर्ज करें। आपकी इन्क्वायरी सीधे हमारे डायरेक्टर भूपेंद्र कुमार (सोनू सिंह) को प्राप्त होगी।"
+            ? "नीचे अपनी आवश्यकता अनुसार फॉर्म भरें। आपका अनुरोध सीधे हमारे डायरेक्टर भूपेंद्र कुमार (सोनू सिंह) को प्राप्त होगा।"
             : "Fill in your security deployment details below. Your request will be directly dispatched to Director Sonu Singh."}
         </p>
       </div>
 
       {/* MAIN FORM */}
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
         
-        <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl">
+        <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-10 space-y-6 sm:space-y-8 shadow-2xl">
           
           {/* SECTION 1: CLIENT DETAILS */}
           <div className="space-y-5">

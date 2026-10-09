@@ -31,20 +31,20 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 dark:bg-[#0A0A0F]/90 backdrop-blur-md border-b border-slate-200 dark:border-[#262636] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-2">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 group-hover:border-amber-500 group-hover:bg-amber-500/20 transition-all duration-300 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-              <Shield className="w-6 h-6" />
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-w-0 shrink">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 group-hover:border-amber-500 group-hover:bg-amber-500/20 transition-all duration-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] shrink-0">
+              <Shield className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <div>
-              <span className="text-xl font-black tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
+            <div className="min-w-0">
+              <span className="text-base sm:text-xl font-black tracking-wider text-slate-900 dark:text-white flex items-center gap-1 sm:gap-1.5 truncate">
                 <span className="text-amber-500 font-extrabold">AAF</span> SECURITY
               </span>
-              <span className="text-[11px] sm:text-xs tracking-wide text-slate-500 dark:text-gray-300 block -mt-0.5 font-bold">
-                {language === "hi" ? "विश्वसनीय सुरक्षा • स्थापना 2026" : "Trusted Security • Estd 2026"}
+              <span className="text-[10px] sm:text-xs tracking-wide text-slate-500 dark:text-gray-300 block -mt-0.5 font-bold truncate">
+                {language === "hi" ? "विश्वसनीय सुरक्षा • 2026" : "Trusted Security • Estd 2026"}
               </span>
             </div>
           </Link>
@@ -134,14 +134,15 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu & Theme toggle */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-1.5 sm:gap-2 shrink-0">
             {mounted && (
               <button
                 onClick={toggleLanguage}
                 aria-label="Toggle Language"
-                className="px-2.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold"
+                className="inline-flex items-center gap-1 px-2 py-1.5 sm:px-2.5 sm:py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold shrink-0"
               >
-                {language === "hi" ? "EN" : "हिंदी"}
+                <Globe className="w-3.5 h-3.5" />
+                <span>{language === "hi" ? "EN" : "हिंदी"}</span>
               </button>
             )}
 
@@ -149,18 +150,18 @@ export default function Navbar() {
               <button
                 onClick={toggleTheme}
                 aria-label="Toggle Theme Mode"
-                className="p-2.5 rounded-xl bg-slate-100 dark:bg-[#16161F] border border-slate-300 dark:border-[#262636] text-amber-500 focus:outline-none"
+                className="p-2 sm:p-2.5 rounded-xl bg-slate-100 dark:bg-[#16161F] border border-slate-300 dark:border-[#262636] text-amber-500 focus:outline-none shrink-0"
               >
-                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5 text-slate-800" />}
+                {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5 text-slate-800" />}
               </button>
             )}
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-slate-100 dark:bg-[#16161F] border border-slate-300 dark:border-[#262636] text-slate-800 dark:text-gray-300 focus:outline-none"
+              className="p-2 sm:p-2.5 rounded-xl bg-slate-100 dark:bg-[#16161F] border border-slate-300 dark:border-[#262636] text-slate-800 dark:text-gray-300 focus:outline-none shrink-0"
               aria-label="Toggle Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
 
