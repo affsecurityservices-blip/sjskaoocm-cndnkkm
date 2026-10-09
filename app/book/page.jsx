@@ -133,7 +133,26 @@ function BookingPageContent() {
 
     const newBooking = addBooking(bookingPayload);
 
-    // Create WhatsApp URL
+    // Call server notification API in background (Option B - toggled via ENABLE_SERVER_WHATSAPP_NOTIFY)
+    fetch("/api/notify-whatsapp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        bookingId: newBooking.bookingId,
+        name: formData.name,
+        phone: formData.phone,
+        guardType: formData.guardType,
+        city: formData.city,
+        address: bookingPayload.address,
+        date: formData.date,
+        startTime: formData.startTime,
+        hours: formData.hours,
+        totalPrice: priceEstimate.grandTotal,
+        specialNotes: formData.specialNotes
+      })
+    }).catch((err) => console.error("Background WhatsApp notify trigger error:", err));
+
+    // Create WhatsApp URL for direct client redirect (Option A - ALWAYS ACTIVE)
     const whatsappUrl = createWhatsAppBookingUrl({
       bookingId: newBooking.bookingId,
       guardName: `${formData.guardCount}x ${formData.guardType}`,
