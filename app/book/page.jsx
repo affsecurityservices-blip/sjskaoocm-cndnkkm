@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, Suspense } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CITIES } from "../../data/cities";
@@ -31,17 +31,16 @@ function BookingPageContent() {
   const { language, t } = useLanguage();
   const { addBooking } = useBooking();
 
-  const initialCity = searchParams.get("city") || "All Cities/Districts";
-  const initialType = searchParams.get("type") || "All Types";
-  const initialService = searchParams.get("service") || "";
+  const initialCity = searchParams.get("city") || "";
+  const initialType = searchParams.get("type") || "";
 
   const todayStr = new Date().toISOString().split("T")[0];
 
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    city: initialCity,
-    guardType: initialType !== "All Types" ? initialType : "Manned Guarding",
+    city: initialCity === "All Cities/Districts" ? "" : initialCity,
+    guardType: initialType && initialType !== "All Types" ? initialType : "Manned Guarding",
     guardCount: 1,
     address: "",
     date: todayStr,
@@ -49,6 +48,19 @@ function BookingPageContent() {
     hours: 8,
     specialNotes: ""
   });
+
+  // Pre-fill state whenever searchParams changes
+  useEffect(() => {
+    const cityParam = searchParams.get("city");
+    const typeParam = searchParams.get("type");
+    if (cityParam !== null || typeParam !== null) {
+      setFormData((prev) => ({
+        ...prev,
+        city: cityParam && cityParam !== "All Cities/Districts" ? cityParam : prev.city,
+        guardType: typeParam && typeParam !== "All Types" ? typeParam : prev.guardType
+      }));
+    }
+  }, [searchParams]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -263,12 +275,17 @@ function BookingPageContent() {
                   <MapPin className="w-3.5 h-3.5 text-amber-500" />
                   {language === "hi" ? "शहर / जिला *" : "City / District *"}
                 </label>
-                <CustomSelect
-                  options={localizedCities}
-                  value={formData.city}
-                  onChange={(val) => handleChange("city", val)}
-                  icon={MapPin}
-                  placeholder="Select City"
+                <input
+                  type="text"
+                  required
+                  placeholder={
+                    language === "hi"
+                      ? "जैसे: औरंगाबाद, पटना, गया..."
+                      : "e.g. Aurangabad, Patna, Gaya..."
+                  }
+                  value={formData.city === "All Cities/Districts" ? "" : formData.city}
+                  onChange={(e) => handleChange("city", e.target.value)}
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -426,55 +443,6 @@ function BookingPageContent() {
               />
             </div>
 
-          </div>
-
-          {/* ESTIMATED PRICING SUMMARY BOX */}
-          <div className="bg-slate-50 dark:bg-[#0F0F17] border border-slate-200 dark:border-[#262636] p-6 rounded-2xl space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#262636] pb-3">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-500" />
-                <span className="font-extrabold text-sm text-slate-900 dark:text-white">
-                  {language === "hi" ? "अनुमानित लागत (Estimated Total)" : "Estimated Pricing Summary"}
-                </span>
-              </div>
-              <span className="text-[11px] font-mono text-emerald-500 font-bold flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                {language === "hi" ? "पारदर्शी बिलिंग" : "Transparent Billing"}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
-              <div>
-                <span className="text-slate-500 dark:text-gray-400 block">{language === "hi" ? "सेवा प्रकार:" : "Service:"}</span>
-                <span className="font-bold text-slate-900 dark:text-white">{formData.guardType}</span>
-              </div>
-
-              <div>
-                <span className="text-slate-500 dark:text-gray-400 block">{language === "hi" ? "गार्ड्स संख्या:" : "Personnel:"}</span>
-                <span className="font-bold text-slate-900 dark:text-white">{formData.guardCount} Guard(s)</span>
-              </div>
-
-              <div>
-                <span className="text-slate-500 dark:text-gray-400 block">{language === "hi" ? "अवधि:" : "Duration:"}</span>
-                <span className="font-bold text-slate-900 dark:text-white">{formData.hours} Hours</span>
-              </div>
-            </div>
-
-            <div className="pt-3 border-t border-slate-200 dark:border-[#262636] flex items-center justify-between">
-              <div>
-                <span className="text-xs text-slate-500 dark:text-gray-400 block">
-                  {language === "hi" ? "अनुमानित शुल्क (Estimated Total):" : "Grand Total Rate:"}
-                </span>
-                <span className="text-2xl font-black text-amber-500 font-mono">
-                  ₹{priceEstimate.grandTotal.toLocaleString("en-IN")}
-                </span>
-              </div>
-
-              <div className="text-right text-[11px] text-slate-500 dark:text-gray-400">
-                <span>{language === "hi" ? "डायरेक्टर:" : "Director:"} </span>
-                <span className="font-bold text-slate-900 dark:text-white block">{DIRECTOR_NAME}</span>
-              </div>
-            </div>
           </div>
 
         </div>
