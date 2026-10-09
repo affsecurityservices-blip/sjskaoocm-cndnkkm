@@ -217,18 +217,18 @@ function BookingPageContent() {
         <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl">
           
           {/* SECTION 1: CLIENT DETAILS */}
-          <div className="space-y-4">
-            <h2 className="text-xs uppercase tracking-widest font-extrabold text-amber-500 flex items-center gap-2 border-b border-slate-200 dark:border-[#262636] pb-3">
-              <User className="w-4 h-4" />
-              {language === "hi" ? "1. क्लाइंट संपर्क जानकारी" : "1. Client Information"}
+          <div className="space-y-5">
+            <h2 className="text-sm sm:text-base uppercase tracking-wider font-black text-amber-600 dark:text-amber-400 flex items-center gap-2.5 border-b-2 border-slate-200 dark:border-[#262636] pb-3">
+              <User className="w-5 h-5 text-amber-500" />
+              {language === "hi" ? "1. क्लाइंट संपर्क जानकारी" : "1. CLIENT INFORMATION"}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               
               {/* Name */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-amber-500" />
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <User className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "आपका पूरा नाम *" : "Full Name *"}
                 </label>
                 <input
@@ -237,14 +237,14 @@ function BookingPageContent() {
                   placeholder={language === "hi" ? "जैसे: भूपेंद्र कुमार" : "e.g. Rahul Sharma"}
                   value={formData.name}
                   onChange={(e) => handleChange("name", e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base sm:text-lg font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-400 focus:outline-none transition-colors shadow-sm"
                 />
               </div>
 
               {/* Phone */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-amber-500" />
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <Phone className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "मोबाइल नंबर *" : "Phone Number *"}
                 </label>
                 <input
@@ -253,7 +253,7 @@ function BookingPageContent() {
                   placeholder={language === "hi" ? "10 अंकों का मोबाइल नंबर" : "+91 98765 43210"}
                   value={formData.phone}
                   onChange={(e) => handleChange("phone", e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base sm:text-lg font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-400 focus:outline-none transition-colors shadow-sm"
                 />
               </div>
 
@@ -261,18 +261,18 @@ function BookingPageContent() {
           </div>
 
           {/* SECTION 2: SERVICE & REQUIREMENTS */}
-          <div className="space-y-4 pt-2">
-            <h2 className="text-xs uppercase tracking-widest font-extrabold text-amber-500 flex items-center gap-2 border-b border-slate-200 dark:border-[#262636] pb-3">
-              <ShieldCheck className="w-4 h-4" />
-              {language === "hi" ? "2. सुरक्षा आवश्यकता एवं स्थान" : "2. Security & Location Requirements"}
+          <div className="space-y-5 pt-3">
+            <h2 className="text-sm sm:text-base uppercase tracking-wider font-black text-amber-600 dark:text-amber-400 flex items-center gap-2.5 border-b-2 border-slate-200 dark:border-[#262636] pb-3">
+              <ShieldCheck className="w-5 h-5 text-amber-500" />
+              {language === "hi" ? "2. सुरक्षा आवश्यकता एवं स्थान" : "2. SECURITY & LOCATION REQUIREMENTS"}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               
               {/* City / District */}
-              <div className="space-y-1.5 sm:col-span-1">
-                <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-amber-500" />
+              <div className="space-y-2 sm:col-span-1">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "शहर / जिला *" : "City / District *"}
                 </label>
                 <input
@@ -285,23 +285,23 @@ function BookingPageContent() {
                   }
                   value={formData.city === "All Cities/Districts" ? "" : formData.city}
                   onChange={(e) => handleChange("city", e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base sm:text-lg font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-400 focus:outline-none transition-colors shadow-sm"
                 />
               </div>
 
               {/* Service Type */}
-              <div className="space-y-1.5 sm:col-span-1">
-                <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                  <Shield className="w-3.5 h-3.5 text-amber-500" />
+              <div className="space-y-2 sm:col-span-1">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <Shield className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "सुरक्षा प्रकार *" : "Security Type *"}
                 </label>
                 <select
                   value={formData.guardType}
                   onChange={(e) => handleChange("guardType", e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3.5 text-sm text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors"
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors shadow-sm"
                 >
                   {serviceOptions.map((opt) => (
-                    <option key={opt.value} value={opt.value} className="bg-white dark:bg-[#16161F] text-slate-900 dark:text-white">
+                    <option key={opt.value} value={opt.value} className="bg-white dark:bg-[#16161F] text-slate-900 dark:text-white font-bold">
                       {opt.label}
                     </option>
                   ))}
@@ -309,30 +309,30 @@ function BookingPageContent() {
               </div>
 
               {/* Number of Guards */}
-              <div className="space-y-1.5 sm:col-span-1">
-                <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                  <Users className="w-3.5 h-3.5 text-amber-500" />
+              <div className="space-y-2 sm:col-span-1">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "गार्ड्स की संख्या *" : "Number of Guards *"}
                 </label>
                 <select
                   value={formData.guardCount}
                   onChange={(e) => handleChange("guardCount", Number(e.target.value))}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3.5 text-sm text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors"
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors shadow-sm"
                 >
-                  <option value={1}>1 Guard / Operative</option>
-                  <option value={2}>2 Guards</option>
-                  <option value={3}>3 Guards</option>
-                  <option value={5}>5 Guards (Team)</option>
-                  <option value={10}>10+ Guards (Large Contingent)</option>
+                  <option value={1} className="bg-white dark:bg-[#16161F] font-bold">1 Guard / Operative</option>
+                  <option value={2} className="bg-white dark:bg-[#16161F] font-bold">2 Guards</option>
+                  <option value={3} className="bg-white dark:bg-[#16161F] font-bold">3 Guards</option>
+                  <option value={5} className="bg-white dark:bg-[#16161F] font-bold">5 Guards (Team)</option>
+                  <option value={10} className="bg-white dark:bg-[#16161F] font-bold">10+ Guards (Large Contingent)</option>
                 </select>
               </div>
 
             </div>
 
             {/* Venue Address */}
-            <div className="space-y-1.5 pt-2">
-              <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-amber-500" />
+            <div className="space-y-2 pt-2">
+              <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                <MapPin className="w-4 h-4 text-amber-500" />
                 {language === "hi" ? "स्थान / पूरा पता (Deployment Venue) *" : "Full Venue Address *"}
               </label>
               <textarea
@@ -345,24 +345,24 @@ function BookingPageContent() {
                 }
                 value={formData.address}
                 onChange={(e) => handleChange("address", e.target.value)}
-                className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
+                className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-400 focus:outline-none transition-colors shadow-sm"
               />
             </div>
           </div>
 
           {/* SECTION 3: DATE & TIME */}
-          <div className="space-y-4 pt-2">
-            <h2 className="text-xs uppercase tracking-widest font-extrabold text-amber-500 flex items-center gap-2 border-b border-slate-200 dark:border-[#262636] pb-3">
-              <Calendar className="w-4 h-4" />
-              {language === "hi" ? "3. समय एवं शेड्यूल" : "3. Deployment Schedule"}
+          <div className="space-y-5 pt-3">
+            <h2 className="text-sm sm:text-base uppercase tracking-wider font-black text-amber-600 dark:text-amber-400 flex items-center gap-2.5 border-b-2 border-slate-200 dark:border-[#262636] pb-3">
+              <Calendar className="w-5 h-5 text-amber-500" />
+              {language === "hi" ? "3. समय एवं शेड्यूल" : "3. DEPLOYMENT SCHEDULE"}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               
               {/* Date */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-amber-500" />
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <Calendar className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "तारीख (Deployment Date) *" : "Deployment Date *"}
                 </label>
                 <input
@@ -371,27 +371,27 @@ function BookingPageContent() {
                   min={todayStr}
                   value={formData.date}
                   onChange={(e) => handleChange("date", e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3.5 text-sm text-slate-900 dark:text-white focus:outline-none transition-colors"
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white focus:outline-none transition-colors shadow-sm"
                 />
               </div>
 
               {/* Start Time */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-amber-500" />
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-amber-500" />
                   {language === "hi" ? "शुरुआती समय *" : "Shift Start Time *"}
                 </label>
                 <select
                   value={formData.startTime}
                   onChange={(e) => handleChange("startTime", e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3.5 text-sm text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors"
+                  className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors shadow-sm"
                 >
-                  <option value="08:00" className="bg-white dark:bg-[#16161F]">08:00 AM (Day Shift)</option>
-                  <option value="12:00" className="bg-white dark:bg-[#16161F]">12:00 PM (Afternoon Shift)</option>
-                  <option value="16:00" className="bg-white dark:bg-[#16161F]">04:00 PM (Evening Shift)</option>
-                  <option value="20:00" className="bg-white dark:bg-[#16161F]">08:00 PM (Night Shift)</option>
-                  <option value="22:00" className="bg-white dark:bg-[#16161F]">10:00 PM (Late Night - Night Slot)</option>
-                  <option value="00:00" className="bg-white dark:bg-[#16161F]">12:00 AM Midnight (Night Slot)</option>
+                  <option value="08:00" className="bg-white dark:bg-[#16161F] font-bold">08:00 AM (Day Shift)</option>
+                  <option value="12:00" className="bg-white dark:bg-[#16161F] font-bold">12:00 PM (Afternoon Shift)</option>
+                  <option value="16:00" className="bg-white dark:bg-[#16161F] font-bold">04:00 PM (Evening Shift)</option>
+                  <option value="20:00" className="bg-white dark:bg-[#16161F] font-bold">08:00 PM (Night Shift)</option>
+                  <option value="22:00" className="bg-white dark:bg-[#16161F] font-bold">10:00 PM (Late Night - Night Slot)</option>
+                  <option value="00:00" className="bg-white dark:bg-[#16161F] font-bold">12:00 AM Midnight (Night Slot)</option>
                 </select>
               </div>
 
@@ -399,11 +399,11 @@ function BookingPageContent() {
 
             {/* Hours Slider */}
             <div className="space-y-2 pt-2">
-              <div className="flex items-center justify-between text-xs font-bold">
-                <span className="text-slate-700 dark:text-gray-200">
+              <div className="flex items-center justify-between text-xs sm:text-sm font-black">
+                <span className="text-slate-900 dark:text-white">
                   {language === "hi" ? "ड्यूटी अवधि (Hours):" : "Shift Duration:"}
                 </span>
-                <span className="text-amber-500 font-mono text-sm">
+                <span className="text-amber-500 font-extrabold text-base sm:text-lg">
                   {formData.hours} {formData.hours === 1 ? "Hour" : "Hours"}
                 </span>
               </div>
@@ -414,9 +414,9 @@ function BookingPageContent() {
                 step="4"
                 value={formData.hours}
                 onChange={(e) => handleChange("hours", Number(e.target.value))}
-                className="w-full accent-amber-500 cursor-pointer h-2.5 bg-slate-200 dark:bg-[#0A0A0F] rounded-lg border border-slate-300 dark:border-[#262636]"
+                className="w-full accent-amber-500 cursor-pointer h-3 bg-slate-200 dark:bg-[#0A0A0F] rounded-lg border border-slate-300 dark:border-[#262636]"
               />
-              <div className="flex justify-between text-[10px] text-slate-500 dark:text-gray-400 font-mono">
+              <div className="flex justify-between text-xs font-black text-slate-700 dark:text-gray-300">
                 <span>4 hrs (Half Day)</span>
                 <span>8 hrs (Full Day Base)</span>
                 <span>12 hrs</span>
@@ -425,9 +425,9 @@ function BookingPageContent() {
             </div>
 
             {/* Special Instructions */}
-            <div className="space-y-1.5 pt-2">
-              <label className="text-xs font-bold text-slate-700 dark:text-gray-200 flex items-center gap-1.5">
-                <FileText className="w-3.5 h-3.5 text-amber-500" />
+            <div className="space-y-2 pt-2">
+              <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                <FileText className="w-4 h-4 text-amber-500" />
                 {language === "hi" ? "अतिरिक्त जानकारी / टिप्पणी (Optional)" : "Special Instructions / Notes (Optional)"}
               </label>
               <input
@@ -439,7 +439,7 @@ function BookingPageContent() {
                 }
                 value={formData.specialNotes}
                 onChange={(e) => handleChange("specialNotes", e.target.value)}
-                className="w-full bg-slate-50 dark:bg-[#0A0A0F] border border-slate-200 dark:border-[#262636] focus:border-amber-500 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none transition-colors"
+                className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-400 focus:outline-none transition-colors shadow-sm"
               />
             </div>
 
