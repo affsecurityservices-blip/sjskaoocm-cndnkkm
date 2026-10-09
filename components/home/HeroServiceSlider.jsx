@@ -171,15 +171,11 @@ export default function HeroServiceSlider() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent" />
               
-              {/* Top Status Bar */}
-              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-2 z-20">
-                <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-500/40 text-amber-400 text-[10px] sm:text-xs font-black shadow-lg">
+              {/* Top Status Bar: Badge on left */}
+              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-20">
+                <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 text-[10px] sm:text-xs font-black shadow-lg">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span>{language === "hi" ? slide.badgeHi : slide.badgeEn}</span>
-                </div>
-
-                <div className="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-500/30 text-amber-400 text-[10px] sm:text-xs font-mono font-bold shadow-lg">
-                  {String(idx + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
                 </div>
               </div>
 
@@ -213,30 +209,44 @@ export default function HeroServiceSlider() {
           );
         })}
 
-        {/* Prev / Next Navigation Arrows */}
+        {/* Top-Right Navigation Pill (Never overlaps text) */}
+        <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-30 flex items-center gap-1 px-1.5 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 shadow-xl">
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous slide"
+            className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors cursor-pointer active:scale-90"
+          >
+            <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          </button>
+          <span className="font-mono font-bold px-1.5 text-[11px] sm:text-xs select-none">
+            {String(currentIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+          </span>
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next slide"
+            className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors cursor-pointer active:scale-90"
+          >
+            <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          </button>
+        </div>
+
+      </div>
+
+      {/* Bottom Navigation & Indicator Bar (Clean, spacious, zero text collision) */}
+      <div className="bg-slate-950/95 border-t border-slate-800/80 px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2">
         <button
           type="button"
           onClick={handlePrev}
           aria-label="Previous service slide"
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-950/70 hover:bg-amber-500 hover:text-black border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-lg active:scale-90"
+          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-slate-400 hover:text-amber-400 hover:bg-slate-900 border border-slate-800/90 text-[11px] sm:text-xs font-bold transition-all cursor-pointer active:scale-95"
         >
-          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          <ChevronLeft className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">{language === "hi" ? "पिछला" : "Prev"}</span>
         </button>
 
-        <button
-          type="button"
-          onClick={handleNext}
-          aria-label="Next service slide"
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-950/70 hover:bg-amber-500 hover:text-black border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all opacity-80 group-hover:opacity-100 cursor-pointer shadow-lg active:scale-90"
-        >
-          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-        </button>
-
-      </div>
-
-      {/* Slide Indicators & Quick Service Switcher Bar */}
-      <div className="bg-slate-950/95 border-t border-slate-800/80 px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-        <div className="flex items-center gap-1.5 sm:gap-2 mx-auto">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {slides.map((s, idx) => {
             const isActive = idx === currentIndex;
             return (
@@ -254,6 +264,16 @@ export default function HeroServiceSlider() {
             );
           })}
         </div>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next service slide"
+          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-slate-400 hover:text-amber-400 hover:bg-slate-900 border border-slate-800/90 text-[11px] sm:text-xs font-bold transition-all cursor-pointer active:scale-95"
+        >
+          <span className="hidden sm:inline">{language === "hi" ? "अगला" : "Next"}</span>
+          <ChevronRight className="w-3.5 h-3.5" />
+        </button>
       </div>
 
     </div>
