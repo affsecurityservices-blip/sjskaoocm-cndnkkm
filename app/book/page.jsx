@@ -397,30 +397,54 @@ function BookingPageContent() {
 
             </div>
 
-            {/* Hours Slider */}
-            <div className="space-y-2 pt-2">
-              <div className="flex items-center justify-between text-xs sm:text-sm font-black">
-                <span className="text-slate-900 dark:text-white">
-                  {language === "hi" ? "ड्यूटी अवधि (Hours):" : "Shift Duration:"}
-                </span>
-                <span className="text-amber-500 font-extrabold text-base sm:text-lg">
+            {/* Interactive Shift Duration Selector Cards */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center justify-between">
+                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-amber-500" />
+                  {language === "hi" ? "ड्यूटी अवधि (Shift Duration) *" : "Shift Duration *"}
+                </label>
+                <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 font-mono">
                   {formData.hours} {formData.hours === 1 ? "Hour" : "Hours"}
                 </span>
               </div>
-              <input
-                type="range"
-                min="4"
-                max="24"
-                step="4"
-                value={formData.hours}
-                onChange={(e) => handleChange("hours", Number(e.target.value))}
-                className="w-full accent-amber-500 cursor-pointer h-3 bg-slate-200 dark:bg-[#0A0A0F] rounded-lg border border-slate-300 dark:border-[#262636]"
-              />
-              <div className="flex justify-between text-xs font-black text-slate-700 dark:text-gray-300">
-                <span>4 hrs (Half Day)</span>
-                <span>8 hrs (Full Day Base)</span>
-                <span>12 hrs</span>
-                <span>24 hrs (Full 24/7)</span>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { hours: 4, title: "4 Hours", subtitle: language === "hi" ? "हाफ डे शिफ्ट" : "Half Day Shift" },
+                  { hours: 8, title: "8 Hours", subtitle: language === "hi" ? "स्टैंडर्ड शिफ्ट" : "Standard Shift", recommended: true },
+                  { hours: 12, title: "12 Hours", subtitle: language === "hi" ? "लंबी शिफ्ट" : "Extended Shift" },
+                  { hours: 24, title: "24 Hours", subtitle: language === "hi" ? "24/7 सुरक्षा" : "Round the Clock" }
+                ].map((slot) => {
+                  const isSelected = formData.hours === slot.hours;
+                  return (
+                    <button
+                      key={slot.hours}
+                      type="button"
+                      onClick={() => handleChange("hours", slot.hours)}
+                      className={`relative p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${
+                        isSelected
+                          ? "bg-amber-500/15 border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.25)]"
+                          : "bg-slate-50 dark:bg-[#0A0A0F] border-slate-300 dark:border-[#262636] hover:border-amber-500/50"
+                      }`}
+                    >
+                      {slot.recommended && (
+                        <span className="absolute -top-2.5 right-2 bg-amber-500 text-black text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                          {language === "hi" ? "मानक" : "Standard"}
+                        </span>
+                      )}
+                      <div className="flex items-center justify-between w-full">
+                        <span className={`text-base font-extrabold ${isSelected ? "text-amber-600 dark:text-amber-400" : "text-slate-900 dark:text-white"}`}>
+                          {slot.title}
+                        </span>
+                        {isSelected && <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0" />}
+                      </div>
+                      <span className="text-[11px] font-bold text-slate-500 dark:text-gray-400 mt-1">
+                        {slot.subtitle}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
