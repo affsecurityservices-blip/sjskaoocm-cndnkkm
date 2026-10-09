@@ -25,7 +25,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: t("nav.home") },
-    { href: "/guards", label: t("nav.findPersonnel") },
+    { href: "/book", label: t("nav.bookGuard") },
     { href: "/my-bookings", label: t("nav.enquiryHistory"), count: mounted && bookings ? bookings.length : 0 },
   ];
 
@@ -125,7 +125,7 @@ export default function Navbar() {
             </a>
 
             <Link
-              href="/guards"
+              href="/book"
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl hover:from-amber-400 hover:to-amber-500 transition-all shadow-[0_0_15px_rgba(245,158,11,0.35)] cursor-pointer"
             >
               <Search className="w-4 h-4" />

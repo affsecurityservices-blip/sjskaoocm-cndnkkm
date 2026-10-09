@@ -84,7 +84,7 @@ export default function HomePage() {
     const queryParams = new URLSearchParams();
     if (selectedCity !== "All Cities/Districts") queryParams.set("city", selectedCity);
     if (selectedType !== "All Types") queryParams.set("type", selectedType);
-    router.push(`/guards?${queryParams.toString()}`);
+    router.push(`/book?${queryParams.toString()}`);
   };
 
   const coreServices = [
@@ -379,7 +379,7 @@ export default function HomePage() {
 
                 <div className="pt-4 border-t border-slate-100 dark:border-[#262636]/60">
                   <Link
-                    href="/guards"
+                    href="/book"
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline"
                   >
                     <span>{t("services.requestService")}</span>

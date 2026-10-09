@@ -151,7 +151,7 @@ function SuccessContent() {
 
       <div className="pt-2">
         <Link
-          href="/guards"
+          href="/book"
           className="inline-flex items-center gap-2 text-xs text-slate-600 dark:text-gray-400 hover:text-amber-500 font-medium transition-colors"
         >
           <span>Enquire About Another Guard</span>

@@ -55,42 +55,42 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/guards?type=Premise+Guard" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
+                <Link href="/book?type=Manned+Guarding" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {t("services.s1Title")}
                 </Link>
               </li>
               <li>
-                <Link href="/guards" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
+                <Link href="/book?type=CCTV+Surveillance" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {t("services.s2Title")}
                 </Link>
               </li>
               <li>
-                <Link href="/guards" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
+                <Link href="/book?type=Mobile+Patrolling" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {t("services.s3Title")}
                 </Link>
               </li>
               <li>
-                <Link href="/guards?type=Bouncer" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
+                <Link href="/book?type=Event+Security" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {t("services.s4Title")}
                 </Link>
               </li>
               <li>
-                <Link href="/guards" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
+                <Link href="/book?type=Risk+Management" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {t("services.s5Title")}
                 </Link>
               </li>
               <li>
-                <Link href="/guards?type=Armed+Guard" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
+                <Link href="/book?type=Armed+Security" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {t("services.s6Title")}
                 </Link>
               </li>
               <li>
-                <Link href="/guards?type=Bouncer" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
+                <Link href="/book?type=Bouncer" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {t("services.s7Title")}
                 </Link>
               </li>
               <li>
-                <Link href="/guards?type=Personal+Bodyguard" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
+                <Link href="/book?type=Personal+Bodyguard" className="hover:text-amber-500 transition-colors flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> {t("services.s8Title")}
                 </Link>
               </li>
@@ -109,8 +109,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/guards" className="hover:text-amber-500 transition-colors">
-                  {t("nav.findPersonnel")}
+                <Link href="/book" className="hover:text-amber-500 transition-colors">
+                  {t("nav.bookGuard")}
                 </Link>
               </li>
               <li>
