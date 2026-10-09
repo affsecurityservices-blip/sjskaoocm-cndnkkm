@@ -209,28 +209,7 @@ export default function HeroServiceSlider() {
           );
         })}
 
-        {/* Top-Right Navigation Pill (Never overlaps text) */}
-        <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-30 flex items-center gap-1 px-1.5 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/40 text-amber-400 shadow-xl">
-          <button
-            type="button"
-            onClick={handlePrev}
-            aria-label="Previous slide"
-            className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors cursor-pointer active:scale-90"
-          >
-            <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-          </button>
-          <span className="font-mono font-bold px-1.5 text-[11px] sm:text-xs select-none">
-            {String(currentIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-          </span>
-          <button
-            type="button"
-            onClick={handleNext}
-            aria-label="Next slide"
-            className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-black transition-colors cursor-pointer active:scale-90"
-          >
-            <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-          </button>
-        </div>
+
 
       </div>
 
