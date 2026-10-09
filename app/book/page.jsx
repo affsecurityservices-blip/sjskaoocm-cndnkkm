@@ -22,7 +22,9 @@ import {
   ArrowRight,
   CheckCircle2,
   PhoneCall,
-  Sparkles
+  Sparkles,
+  Camera,
+  Radio
 } from "lucide-react";
 
 function BookingPageContent() {
@@ -63,6 +65,100 @@ function BookingPageContent() {
   }, [searchParams]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Dynamic Quantity & Unit Config based on selected Service
+  const quantityConfig = useMemo(() => {
+    switch (formData.guardType) {
+      case "CCTV Surveillance":
+        return {
+          label: language === "hi" ? "सीसीटीवी कैमरा / सेटअप *" : "CCTV Setup & Cameras *",
+          icon: Camera,
+          options: [
+            { value: 1, label: language === "hi" ? "1 लोकेशन / कैमरा सेटअप" : "1 Location / Camera Setup" },
+            { value: 2, label: language === "hi" ? "2-4 कैमरा मॉनिटरिंग सेटअप" : "2-4 Cameras Setup" },
+            { value: 4, label: language === "hi" ? "4-8 कैमरा लाइव मॉनिटरिंग" : "4-8 Cameras & Live Setup" },
+            { value: 8, label: language === "hi" ? "फुल परिसर (8+ कैमरा सिस्टम)" : "Full Premises (8+ Cameras System)" }
+          ]
+        };
+      case "Mobile Patrolling":
+        return {
+          label: language === "hi" ? "गश्त वाहन / यूनिट्स *" : "Patrol Vans / Units *",
+          icon: Radio,
+          options: [
+            { value: 1, label: language === "hi" ? "1 गश्त वाहन / पेट्रोल वैन" : "1 Patrol Van / Mobile Unit" },
+            { value: 2, label: language === "hi" ? "2 गश्त वाहन / यूनिट्स" : "2 Patrol Vans / Units" },
+            { value: 3, label: language === "hi" ? "3 पेट्रोल वैन फ्लीट" : "3 Patrol Fleet Units" },
+            { value: 5, label: language === "hi" ? "फुल एरिया मोबाइल फ्लीट (5+)" : "Full Area Fleet (5+ Units)" }
+          ]
+        };
+      case "Risk Management":
+        return {
+          label: language === "hi" ? "ऑडिट दायरा / साइट्स *" : "Audit Scope & Sites *",
+          icon: ShieldCheck,
+          options: [
+            { value: 1, label: language === "hi" ? "1 परिसर सुरक्षा ऑडिट" : "1 Facility Security Audit" },
+            { value: 2, label: language === "hi" ? "मल्टी-साइट रिस्क ऑडिट" : "Multi-Site Risk Audit" },
+            { value: 3, label: language === "hi" ? "वीआईपी थ्रेट असेसमेंट" : "VIP Threat Assessment" },
+            { value: 5, label: language === "hi" ? "कॉर्पोरेट सम्पूर्ण रिस्क ऑडिट" : "Corporate Comprehensive Audit" }
+          ]
+        };
+      case "Armed Security":
+        return {
+          label: language === "hi" ? "सशस्त्र गनमैन संख्या *" : "Armed Gunners Count *",
+          icon: Shield,
+          options: [
+            { value: 1, label: language === "hi" ? "1 सशस्त्र गनमैन (Gunman)" : "1 Armed Gunman" },
+            { value: 2, label: language === "hi" ? "2 सशस्त्र गनमैन" : "2 Armed Gunners" },
+            { value: 3, label: language === "hi" ? "3 सशस्त्र गनमैन" : "3 Armed Gunners" },
+            { value: 5, label: language === "hi" ? "सशस्त्र सुरक्षा दस्ता (5+)" : "Armed Security Squad (5+)" }
+          ]
+        };
+      case "Bouncer":
+        return {
+          label: language === "hi" ? "बाउंसरों की संख्या *" : "Number of Bouncers *",
+          icon: Users,
+          options: [
+            { value: 1, label: language === "hi" ? "1 बाउंसर (Bouncer)" : "1 Bouncer" },
+            { value: 2, label: language === "hi" ? "2 बाउंसर" : "2 Bouncers" },
+            { value: 4, label: language === "hi" ? "4 बाउंसर स्क्वाड" : "4 Bouncers (Squad)" },
+            { value: 6, label: language === "hi" ? "6+ बाउंसर (इवेंट / क्लब)" : "6+ Bouncers (Event / Club)" }
+          ]
+        };
+      case "Personal Bodyguard":
+        return {
+          label: language === "hi" ? "बॉडीगार्ड संख्या *" : "Number of Bodyguards *",
+          icon: Users,
+          options: [
+            { value: 1, label: language === "hi" ? "1 वीआईपी बॉडीगार्ड" : "1 VIP Bodyguard" },
+            { value: 2, label: language === "hi" ? "2 वीआईपी बॉडीगार्ड" : "2 VIP Bodyguards" },
+            { value: 4, label: language === "hi" ? "क्लोज़ प्रोटेक्शन टीम (4+)" : "Close Protection Team (4+)" }
+          ]
+        };
+      case "Event Security":
+        return {
+          label: language === "hi" ? "इवेंट सुरक्षा दल संख्या *" : "Event Security Personnel *",
+          icon: Users,
+          options: [
+            { value: 2, label: language === "hi" ? "2 सुरक्षा कर्मी" : "2 Security Personnel" },
+            { value: 4, label: language === "hi" ? "4 सुरक्षा गार्ड्स" : "4 Security Guards" },
+            { value: 6, label: language === "hi" ? "6 इवेंट बाउंसर / गार्ड्स" : "6 Event Bouncers / Guards" },
+            { value: 10, label: language === "hi" ? "10+ क्राउड कंट्रोल दस्ता" : "10+ Crowd Control Contingent" }
+          ]
+        };
+      default:
+        return {
+          label: language === "hi" ? "गार्ड्स की संख्या *" : "Number of Guards *",
+          icon: Users,
+          options: [
+            { value: 1, label: language === "hi" ? "1 गार्ड (Guard)" : "1 Guard / Operative" },
+            { value: 2, label: language === "hi" ? "2 गार्ड्स" : "2 Guards" },
+            { value: 3, label: language === "hi" ? "3 गार्ड्स" : "3 Guards" },
+            { value: 5, label: language === "hi" ? "5 गार्ड्स (टीम)" : "5 Guards (Team)" },
+            { value: 10, label: language === "hi" ? "10+ गार्ड्स (बड़ा दस्ता)" : "10+ Guards (Large Contingent)" }
+          ]
+        };
+    }
+  }, [formData.guardType, language]);
 
   // Localization for dropdowns
   const localizedCities = useMemo(() => {
@@ -308,22 +404,22 @@ function BookingPageContent() {
                 </select>
               </div>
 
-              {/* Number of Guards */}
+              {/* Dynamic Quantity / Units / Guards Selector */}
               <div className="space-y-2 sm:col-span-1">
                 <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-amber-500" />
-                  {language === "hi" ? "गार्ड्स की संख्या *" : "Number of Guards *"}
+                  <quantityConfig.icon className="w-4 h-4 text-amber-500" />
+                  {quantityConfig.label}
                 </label>
                 <select
                   value={formData.guardCount}
                   onChange={(e) => handleChange("guardCount", Number(e.target.value))}
                   className="w-full bg-slate-50 dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-3.5 text-base font-bold text-slate-900 dark:text-white focus:outline-none cursor-pointer transition-colors shadow-sm"
                 >
-                  <option value={1} className="bg-white dark:bg-[#16161F] font-bold">1 Guard / Operative</option>
-                  <option value={2} className="bg-white dark:bg-[#16161F] font-bold">2 Guards</option>
-                  <option value={3} className="bg-white dark:bg-[#16161F] font-bold">3 Guards</option>
-                  <option value={5} className="bg-white dark:bg-[#16161F] font-bold">5 Guards (Team)</option>
-                  <option value={10} className="bg-white dark:bg-[#16161F] font-bold">10+ Guards (Large Contingent)</option>
+                  {quantityConfig.options.map((opt) => (
+                    <option key={opt.value} value={opt.value} className="bg-white dark:bg-[#16161F] font-bold">
+                      {opt.label}
+                    </option>
+                  ))}
                 </select>
               </div>
 
