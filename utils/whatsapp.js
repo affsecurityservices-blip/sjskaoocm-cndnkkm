@@ -5,11 +5,11 @@ export const COMPANY_NAME = "AAF SECURITY SERVICES";
 export const COMPANY_TAGLINE = "Trusted Security. Complete Protection.";
 export const COMPANY_MOTTO = "Your Safety Our Priority";
 export const COMPANY_ESTD = "2026";
-export const DIRECTOR_NAME = "Bhupendra Kumar Singh (Sonu Singh) & Manjeet Singh";
+export const DIRECTOR_NAME = "Bhupendra Kumar Singh & Manjeet Singh";
 export const DIRECTORS = [
   {
-    name: "Bhupendra Kumar Singh (Sonu Singh)",
-    nameHi: "भूपेंद्र कुमार सिंह (सोनू सिंह)",
+    name: "Bhupendra Kumar Singh",
+    nameHi: "भूपेंद्र कुमार सिंह",
     role: "Managing Director (Ex-Indian Army)",
     roleHi: "प्रबंध निदेशक (भारतीय सेना पूर्व सैनिक)",
     tag: "Ex-Indian Army Veteran",
@@ -26,7 +26,7 @@ export const DIRECTORS = [
     image: null
   }
 ];
-export const DIRECTOR_NAMES_HI = "भूपेंद्र कुमार सिंह (सोनू सिंह) एवं मंजीत सिंह";
+export const DIRECTOR_NAMES_HI = "भूपेंद्र कुमार सिंह एवं मंजीत सिंह";
 
 export const COMPANY_PHONES = [
   "+91 94658 57462",

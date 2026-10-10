@@ -332,12 +332,12 @@ export default function HomePage() {
           {/* Dual Director Executive Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
             
-            {/* Card 1: Bhupendra Kumar Singh (Sonu Singh) - Ex-Army Managing Director */}
+            {/* Card 1: Bhupendra Kumar Singh - Ex-Army Managing Director */}
             <div className="bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-md dark:shadow-xl flex flex-col sm:flex-row gap-5 items-center sm:items-start transition-all hover:border-amber-500 hover:shadow-xl">
               <div className="relative shrink-0">
                 <img
                   src="/images/directors/bhupendra-kumar-singh.png"
-                  alt="Bhupendra Kumar Singh (Sonu Singh) - Ex-Army Managing Director"
+                  alt="Bhupendra Kumar Singh - Ex-Army Managing Director"
                   className="w-28 h-36 sm:w-32 sm:h-44 object-cover object-top rounded-xl border-2 border-amber-500 shadow-md"
                 />
                 <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-[10px] tracking-wide uppercase px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-md">
@@ -352,11 +352,11 @@ export default function HomePage() {
                     <span>{language === "hi" ? "संस्थापक एवं प्रबंध निदेशक" : "Managing Director & Founder"}</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-2 tracking-tight">
-                    {language === "hi" ? "भूपेंद्र कुमार सिंह (सोनू सिंह)" : "Bhupendra Kumar Singh (Sonu Singh)"}
+                    {language === "hi" ? "भूपेंद्र कुमार सिंह" : "Bhupendra Kumar Singh"}
                   </h3>
                   <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold">
                     <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                    <span>{language === "hi" ? "भारतीय सेना पूर्व सैनिक (Ex-Indian Army Veteran)" : "Indian Army Veteran • Combat Leadership"}</span>
+                    <span>{language === "hi" ? "पूर्व सैनिक (Ex-Indian Army Veteran) • सैन्य अनुशासन" : "Ex-Indian Army Veteran • Combat Leadership"}</span>
                   </div>
                 </div>
 
@@ -368,7 +368,7 @@ export default function HomePage() {
 
                 <div className="pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
                   <a
-                    href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Sonu%20Singh%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
+                    href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Bhupendra%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs px-3.5 py-2 rounded-xl transition-all shadow-md active:scale-95"

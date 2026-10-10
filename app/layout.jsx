@@ -7,7 +7,7 @@ import Footer from "../components/common/Footer";
 
 export const metadata = {
   title: "AAF Security Services | Bouncers, Bodyguards, Armed Security & 24/7 Protection | Aurangabad (Bihar)",
-  description: "AAF Security Services (Estd 2026) - Trusted Security. Complete Protection. Services: Manned Guarding, CCTV Surveillance, Mobile Patrolling, Event Security, Risk Management, Armed Security, Bouncers & Bodyguards. Director: Bhupendra Kumar (Sonu Singh). Head Office: Aurangabad (Bihar).",
+  description: "AAF Security Services (Estd 2026) - Trusted Security. Complete Protection. Services: Manned Guarding, CCTV Surveillance, Mobile Patrolling, Event Security, Risk Management, Armed Security, Bouncers & Bodyguards. Directors: Bhupendra Kumar Singh & Manjeet Singh. Head Office: Aurangabad (Bihar).",
 };
 
 export default function RootLayout({ children }) {

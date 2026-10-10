@@ -88,7 +88,7 @@ export default function VerificationProtocolPage() {
           </div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">Only Top 5% Candidates Clear Our Vetting Process</h2>
           <p className="text-xs text-slate-600 dark:text-gray-400 max-w-xl">
-            Every bouncer, bodyguard, and security guard available on {COMPANY_NAME} has passed all 7 stringent verification stages under the supervision of Director Bhupendra Kumar (Sonu Singh).
+            Every bouncer, bodyguard, and security guard available on {COMPANY_NAME} has passed all 7 stringent verification stages under the supervision of Managing Director Bhupendra Kumar Singh (Ex-Indian Army Veteran).
           </p>
         </div>
         <div className="shrink-0 text-center bg-slate-50 dark:bg-[#0A0A0F] p-4 rounded-xl border border-slate-200 dark:border-[#262636]">

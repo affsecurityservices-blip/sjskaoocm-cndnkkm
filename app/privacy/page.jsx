@@ -761,7 +761,7 @@ export default function PrivacyPage() {
                     <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
                     <span>
                       <strong className="text-slate-900 dark:text-white">
-                        {isHi ? "भूपेंद्र कुमार सिंह (सोनू सिंह)" : "Bhupendra Kumar Singh (Sonu Singh)"}
+                        {isHi ? "भूपेंद्र कुमार सिंह" : "Bhupendra Kumar Singh"}
                       </strong>{" "}
                       <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold">
                         [{isHi ? "पूर्व सैनिक (Ex-Army) - प्रबंध निदेशक" : "Ex-Indian Army Veteran - MD"}]

@@ -27,8 +27,8 @@ export const translations = {
     },
     director: {
       tag: "Company Leadership & Command",
-      title: "LEADERSHIP: Bhupendra Kumar Singh (Sonu Singh) & Manjeet Singh",
-      desc: "Under the commanding leadership of Managing Director Bhupendra Kumar Singh (Sonu Singh - Ex-Indian Army Veteran) and Director Manjeet Singh, AAF SECURITY SERVICES delivers military-grade tactical discipline, verified operative deployment, and transparent 24/7 protection across Bihar and India.",
+      title: "LEADERSHIP: Bhupendra Kumar Singh & Manjeet Singh",
+      desc: "Under the commanding leadership of Managing Director Bhupendra Kumar Singh (Ex-Indian Army Veteran) and Director Manjeet Singh, AAF SECURITY SERVICES delivers military-grade tactical discipline, verified operative deployment, and transparent 24/7 protection across Bihar and India.",
       whatsappBtn: "Direct WhatsApp Command",
       officeTitle: "Registered Head Office",
       emailLabel: "Official Email:",
@@ -140,8 +140,8 @@ export const translations = {
     },
     director: {
       tag: "कंपनी नेतृत्व एवं कमान",
-      title: "कंपनी कमान: भूपेंद्र कुमार सिंह (सोनू सिंह) एवं मंजीत सिंह",
-      desc: "प्रबंध निदेशक भूपेंद्र कुमार सिंह (सोनू सिंह - पूर्व सैनिक, भारतीय सेना) एवं निदेशक मंजीत सिंह के कुशल व अनुशासित नेतृत्व में, AAF सिक्योरिटी सर्विसेज पूरे बिहार और भारत में 24 घंटे सैन्य स्तर का कड़ा अनुशासन, सत्यापित जवान और अटूट सुरक्षा कवच प्रदान करती है।",
+      title: "कंपनी कमान: भूपेंद्र कुमार सिंह एवं मंजीत सिंह",
+      desc: "प्रबंध निदेशक भूपेंद्र कुमार सिंह (पूर्व सैनिक, भारतीय सेना) एवं निदेशक मंजीत सिंह के कुशल व अनुशासित नेतृत्व में, AAF सिक्योरिटी सर्विसेज पूरे बिहार और भारत में 24 घंटे सैन्य स्तर का कड़ा अनुशासन, सत्यापित जवान और अटूट सुरक्षा कवच प्रदान करती है।",
       whatsappBtn: "व्हाट्सएप पर डायरेक्ट बात करें",
       officeTitle: "रजिस्टर्ड हेड ऑफिस",
       emailLabel: "ऑफिशियल ईमेल:",

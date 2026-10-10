@@ -513,8 +513,8 @@ function BookingPageContent() {
         
         <p className="text-xs sm:text-base text-slate-600 dark:text-gray-300 max-w-xl mx-auto leading-relaxed">
           {language === "hi"
-            ? "नीचे अपनी आवश्यकता अनुसार फॉर्म भरें। आपका अनुरोध सीधे हमारे डायरेक्टर भूपेंद्र कुमार (सोनू सिंह) को प्राप्त होगा।"
-            : "Fill in your security deployment details below. Your request will be directly dispatched to Director Sonu Singh."}
+            ? "नीचे अपनी आवश्यकता अनुसार फॉर्म भरें। आपका अनुरोध सीधे हमारे कमांड सेंटर एवं डायरेक्टर भूपेंद्र कुमार सिंह को प्राप्त होगा।"
+            : "Fill in your security deployment details below. Your request will be directly dispatched to Director Bhupendra Kumar Singh."}
         </p>
       </div>
 
