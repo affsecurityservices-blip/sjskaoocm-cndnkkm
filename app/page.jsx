@@ -333,11 +333,32 @@ export default function HomePage() {
           <div className="flex flex-col gap-8 relative z-10">
             
             {/* Card 1: Bhupendra Kumar Singh - Ex-Army Managing Director (50% Photo Left, 50% Bio Right) */}
-            <div className="w-full bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-md dark:shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-xl">
+            <div className="relative overflow-hidden w-full bg-[#f8f9f6]/95 dark:bg-gradient-to-br dark:from-[#09120c] dark:via-[#0c151b] dark:to-[#080d0f] border-2 border-amber-500/40 dark:border-amber-500/50 rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-2xl">
               
+              {/* Tactical Army Camouflage Canvas Texture Layer */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-[0.16] dark:opacity-[0.28] mix-blend-overlay"
+                style={{ backgroundImage: "url('/images/textures/army-camo-pattern.jpg')" }}
+              />
+
+              {/* Tactical Ambient Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/15 via-transparent to-amber-950/15 pointer-events-none" />
+
+              {/* Tactical HUD Corner Brackets */}
+              <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t-2 border-l-2 border-amber-500/60 pointer-events-none" />
+              <div className="absolute top-3 right-3 w-3.5 h-3.5 border-t-2 border-r-2 border-amber-500/60 pointer-events-none" />
+              <div className="absolute bottom-3 left-3 w-3.5 h-3.5 border-b-2 border-l-2 border-amber-500/60 pointer-events-none" />
+              <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b-2 border-r-2 border-amber-500/60 pointer-events-none" />
+
+              {/* Tactical Status Tag */}
+              <div className="absolute top-3.5 right-4 hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-500/15 dark:bg-emerald-950/50 border border-emerald-500/30 text-[10px] font-mono font-bold tracking-widest uppercase text-emerald-800 dark:text-emerald-400 z-10">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>DEFENSE VETERAN // 2026</span>
+              </div>
+
               {/* 50% Photo on Left */}
               <div 
-                className="relative w-full rounded-2xl overflow-hidden border-2 border-amber-500 shadow-xl bg-slate-950 flex items-center justify-center"
+                className="relative z-10 w-full rounded-2xl overflow-hidden border-2 border-amber-500 shadow-xl bg-slate-950 flex items-center justify-center"
                 style={{ aspectRatio: "1162 / 1354" }}
               >
                 <img
@@ -351,31 +372,82 @@ export default function HomePage() {
               </div>
 
               {/* 50% Bio & Details on Right */}
-              <div className="space-y-4 text-center md:text-left flex flex-col justify-center">
+              <div className="relative z-10 space-y-4 text-center md:text-left flex flex-col justify-center">
+                
+                {/* Indian Army Crossed Swords & Crest Watermark in Background */}
+                <div className="absolute -right-6 top-1/2 -translate-y-1/2 w-72 h-72 sm:w-88 sm:h-88 pointer-events-none opacity-[0.06] dark:opacity-[0.12] text-amber-500 select-none">
+                  <img src="/images/textures/defense-crest.svg" alt="" className="w-full h-full object-contain" />
+                </div>
+
                 <div>
                   {/* Indian Army on TOP */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold shadow-sm">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs font-bold shadow-sm">
                     <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <span>{language === "hi" ? "पूर्व सैनिक (Ex-Indian Army Veteran) • सैन्य कमान" : "Ex-Indian Army Veteran • Combat Leadership"}</span>
                   </div>
 
+                  {/* Defense Tricolor Ribbon Micro-Bar */}
+                  <div className="flex items-center justify-center md:justify-start gap-1.5 mt-2">
+                    <div className="flex items-center h-2 rounded-xs overflow-hidden border border-black/20 dark:border-white/20 shadow-xs">
+                      <span className="w-4 h-full bg-[#FF9933]" />
+                      <span className="w-4 h-full bg-white" />
+                      <span className="w-4 h-full bg-[#138808]" />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-slate-500 dark:text-slate-400">
+                      {language === "hi" ? "भारतीय सशस्त्र बल अनुशासन" : "Armed Forces Discipline"}
+                    </span>
+                  </div>
+
                   {/* Name */}
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-2.5 tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-2 tracking-tight">
                     {language === "hi" ? "भूपेंद्र कुमार सिंह" : "Bhupendra Kumar Singh"}
                   </h3>
 
                   {/* Managing Director BELOW */}
-                  <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
+                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
                     <Award className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                     <span>{language === "hi" ? "संस्थापक एवं प्रबंध निदेशक" : "Managing Director & Founder"}</span>
                   </div>
                 </div>
 
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
                   {language === "hi"
                     ? "भारतीय सेना के वर्षों के जमीनी अनुभव, शस्त्र कौशल और उच्च सुरक्षा अनुशासन के साथ AAF सिक्योरिटी सर्विसेज की ट्रेनिंग, भर्ती और वीआईपी सुरक्षा प्रोटोकॉल का नेतृत्व करते हैं।"
                     : "Bringing frontline Indian Army battlefield discipline, weapons expertise, and high-threat tactical protocols to executive security, recruitment, and premises defense."}
                 </p>
+
+                {/* Tactical Defense Capability Badges */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                  <div className="bg-white/80 dark:bg-slate-900/80 border border-emerald-500/20 dark:border-emerald-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
+                    <div className="text-[10px] uppercase font-bold tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 shrink-0" />
+                      <span>{language === "hi" ? "अनुशासन" : "Discipline"}</span>
+                    </div>
+                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
+                      {language === "hi" ? "सैन्य ड्रिल व भर्ती" : "Army Drill & Vetting"}
+                    </div>
+                  </div>
+
+                  <div className="bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 dark:border-amber-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
+                    <div className="text-[10px] uppercase font-bold tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1">
+                      <ShieldCheck className="w-3 h-3 shrink-0" />
+                      <span>{language === "hi" ? "सुरक्षा कमान" : "Tactical Lead"}</span>
+                    </div>
+                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
+                      {language === "hi" ? "शस्त्र व कॉम्बैट सतर्कता" : "Combat Vigilance"}
+                    </div>
+                  </div>
+
+                  <div className="bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 dark:border-amber-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
+                    <div className="text-[10px] uppercase font-bold tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1">
+                      <Award className="w-3 h-3 shrink-0" />
+                      <span>{language === "hi" ? "प्रोटोकॉल" : "VIP Protocol"}</span>
+                    </div>
+                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
+                      {language === "hi" ? "त्वरित सुरक्षा एस्कॉर्ट" : "Rapid Convoy Escort"}
+                    </div>
+                  </div>
+                </div>
 
                 <div className="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3">
                   <a
@@ -399,13 +471,34 @@ export default function HomePage() {
             </div>
 
             {/* Card 2: Manjeet Singh - Director (Operations & Field Deployment) (50% Bio Left, 50% Image Right) */}
-            <div className="w-full bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-md dark:shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-xl">
+            <div className="relative overflow-hidden w-full bg-[#f8f9f6]/95 dark:bg-gradient-to-br dark:from-[#09120c] dark:via-[#0c151b] dark:to-[#080d0f] border-2 border-amber-500/40 dark:border-amber-500/50 rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-2xl">
               
+              {/* Tactical Army Camouflage Canvas Texture Layer */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-[0.12] dark:opacity-[0.22] mix-blend-overlay"
+                style={{ backgroundImage: "url('/images/textures/army-camo-pattern.jpg')" }}
+              />
+
+              {/* Tactical Ambient Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/10 via-transparent to-amber-950/15 pointer-events-none" />
+
+              {/* Tactical HUD Corner Brackets */}
+              <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t-2 border-l-2 border-amber-500/60 pointer-events-none" />
+              <div className="absolute top-3 right-3 w-3.5 h-3.5 border-t-2 border-r-2 border-amber-500/60 pointer-events-none" />
+              <div className="absolute bottom-3 left-3 w-3.5 h-3.5 border-b-2 border-l-2 border-amber-500/60 pointer-events-none" />
+              <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b-2 border-r-2 border-amber-500/60 pointer-events-none" />
+
+              {/* Tactical Status Tag */}
+              <div className="absolute top-3.5 right-4 hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-amber-500/15 dark:bg-amber-950/50 border border-amber-500/30 text-[10px] font-mono font-bold tracking-widest uppercase text-amber-800 dark:text-amber-400 z-10">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                <span>FIELD COMMAND // 2026</span>
+              </div>
+
               {/* 50% Bio & Details on Left (on mobile: order-2, on md: order-1) */}
-              <div className="space-y-4 text-center md:text-left flex flex-col justify-center order-2 md:order-1">
+              <div className="relative z-10 space-y-4 text-center md:text-left flex flex-col justify-center order-2 md:order-1">
                 <div>
                   {/* Field Operations on TOP */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold shadow-sm">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs font-bold shadow-sm">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <span>{language === "hi" ? "फील्ड डिप्लॉयमेंट एवं सुरक्षा प्रबंधन" : "Field Operations & Security Logistics"}</span>
                   </div>
@@ -422,11 +515,44 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
                   {language === "hi"
                     ? "जिला स्तर पर जवानों की मुस्तैदी, 24/7 पेट्रोलिंग गश्त, क्लाइंट समन्वय और आपातकालीन बैकअप रिस्पांस की कमान संभालते हैं।"
                     : "Spearheading regional guard mobilization, corporate client security coordination, 24/7 mobile patrolling squads, and rapid incident response."}
                 </p>
+
+                {/* Tactical Operations Capability Badges */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                  <div className="bg-white/80 dark:bg-slate-900/80 border border-emerald-500/20 dark:border-emerald-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
+                    <div className="text-[10px] uppercase font-bold tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 shrink-0" />
+                      <span>{language === "hi" ? "24/7 पेट्रोलिंग" : "Patrol"}</span>
+                    </div>
+                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
+                      {language === "hi" ? "सक्रिय गश्त स्क्वाड" : "Mobile Patrol Squad"}
+                    </div>
+                  </div>
+
+                  <div className="bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 dark:border-amber-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
+                    <div className="text-[10px] uppercase font-bold tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1">
+                      <Radio className="w-3 h-3 shrink-0" />
+                      <span>{language === "hi" ? "त्वरित रिस्पांस" : "Dispatch"}</span>
+                    </div>
+                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
+                      {language === "hi" ? "इमरजेंसी बैकअप" : "Emergency Reinforce"}
+                    </div>
+                  </div>
+
+                  <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-500/20 dark:border-slate-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
+                    <div className="text-[10px] uppercase font-bold tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1">
+                      <FileCheck className="w-3 h-3 shrink-0" />
+                      <span>{language === "hi" ? "ड्यूटी ऑडिट" : "Compliance"}</span>
+                    </div>
+                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
+                      {language === "hi" ? "दैनिक ऑन-साइट समीक्षा" : "Daily Duty Logs"}
+                    </div>
+                  </div>
+                </div>
 
                 <div className="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3">
                   <a
@@ -450,7 +576,7 @@ export default function HomePage() {
 
               {/* 50% Photo / Avatar on Right (on mobile: order-1, on md: order-2) */}
               <div 
-                className="relative w-full rounded-2xl border-2 border-amber-500/40 dark:border-amber-500/60 bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-slate-100 dark:from-slate-800 dark:via-slate-850 dark:to-slate-950 flex flex-col items-center justify-center p-6 text-center shadow-lg dark:shadow-xl order-1 md:order-2"
+                className="relative z-10 w-full rounded-2xl border-2 border-amber-500/40 dark:border-amber-500/60 bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-slate-100 dark:from-slate-800 dark:via-slate-850 dark:to-slate-950 flex flex-col items-center justify-center p-6 text-center shadow-lg dark:shadow-xl order-1 md:order-2"
                 style={{ aspectRatio: "1162 / 1354" }}
               >
                 <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-amber-500/15 border-2 border-amber-500/30 text-amber-600 dark:text-amber-400 flex items-center justify-center shadow-inner mb-3">

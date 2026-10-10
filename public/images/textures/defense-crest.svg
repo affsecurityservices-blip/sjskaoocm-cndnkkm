@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Outer Tactical Radar Ring -->
+  <circle cx="200" cy="200" r="185" stroke-dasharray="8 6" opacity="0.3" />
+  <circle cx="200" cy="200" r="160" opacity="0.2" />
+  
+  <!-- Compass / Crosshair Marks -->
+  <line x1="200" y1="5" x2="200" y2="35" stroke-width="3" />
+  <line x1="200" y1="365" x2="200" y2="395" stroke-width="3" />
+  <line x1="5" y1="200" x2="35" y2="200" stroke-width="3" />
+  <line x1="365" y1="200" x2="395" y2="200" stroke-width="3" />
+  
+  <!-- Crossed Military Swords -->
+  <!-- Sword 1: Top-Left to Bottom-Right -->
+  <path d="M70 70 L280 280" stroke-width="6" stroke="currentColor" />
+  <path d="M60 60 L75 75" stroke-width="10" stroke="currentColor" />
+  <circle cx="55" cy="55" r="7" fill="currentColor" />
+  <line x1="85" y1="55" x2="55" y2="85" stroke-width="5" stroke="currentColor" />
+  
+  <!-- Sword 2: Top-Right to Bottom-Left -->
+  <path d="M330 70 L120 280" stroke-width="6" stroke="currentColor" />
+  <path d="M340 60 L325 75" stroke-width="10" stroke="currentColor" />
+  <circle cx="345" cy="55" r="7" fill="currentColor" />
+  <line x1="315" y1="55" x2="345" y2="85" stroke-width="5" stroke="currentColor" />
+
+  <!-- Central Shield -->
+  <path d="M200 110 C250 110 265 140 265 210 C265 270 200 320 200 320 C200 320 135 270 135 210 C135 140 150 110 200 110 Z" fill="currentColor" fill-opacity="0.08" stroke-width="4" />
+  
+  <!-- 5-Pointed Military Star inside Shield -->
+  <polygon points="200,150 212,185 248,185 219,206 230,240 200,218 170,240 181,206 152,185 188,185" fill="currentColor" fill-opacity="0.25" stroke-width="2" />
+  
+  <!-- Laurel Wreath branches at the base -->
+  <path d="M110 280 Q130 340 200 360 Q270 340 290 280" stroke-width="3" stroke-dasharray="4 4" />
+  
+  <!-- Defense Ashoka / Dharma Chakra mini-spokes at center of star -->
+  <circle cx="200" cy="198" r="10" stroke-width="2" />
+  <circle cx="200" cy="198" r="3" fill="currentColor" />
+</svg>
