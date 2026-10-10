@@ -332,7 +332,7 @@ export default function HomePage() {
           {/* Dual Director Executive Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
             
-            {/* Card 1: Bhupendra Kumar Singh - Ex-Army Managing Director */}
+            {/* Card 1: Bhupendra Kumar Singh - Ex-Army Managing Director (Image Left, Bio Right) */}
             <div className="bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-md dark:shadow-xl flex flex-col sm:flex-row gap-5 items-center sm:items-start transition-all hover:border-amber-500 hover:shadow-xl">
               <div className="relative shrink-0">
                 <img
@@ -347,16 +347,21 @@ export default function HomePage() {
 
               <div className="space-y-3 text-center sm:text-left flex-1">
                 <div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
-                    <Award className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                    <span>{language === "hi" ? "संस्थापक एवं प्रबंध निदेशक" : "Managing Director & Founder"}</span>
+                  {/* Indian Army on TOP */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold shadow-sm">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <span>{language === "hi" ? "पूर्व सैनिक (Ex-Indian Army Veteran) • सैन्य कमान" : "Ex-Indian Army Veteran • Combat Leadership"}</span>
                   </div>
+
+                  {/* Name */}
                   <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-2 tracking-tight">
                     {language === "hi" ? "भूपेंद्र कुमार सिंह" : "Bhupendra Kumar Singh"}
                   </h3>
-                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                    <span>{language === "hi" ? "पूर्व सैनिक (Ex-Indian Army Veteran) • सैन्य अनुशासन" : "Ex-Indian Army Veteran • Combat Leadership"}</span>
+
+                  {/* Managing Director BELOW */}
+                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
+                    <Award className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                    <span>{language === "hi" ? "संस्थापक एवं प्रबंध निदेशक" : "Managing Director & Founder"}</span>
                   </div>
                 </div>
 
@@ -387,8 +392,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Card 2: Manjeet Singh - Director (Operations & Field Deployment) */}
-            <div className="bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-md dark:shadow-xl flex flex-col sm:flex-row gap-5 items-center sm:items-start transition-all hover:border-amber-500 hover:shadow-xl">
+            {/* Card 2: Manjeet Singh - Director (Operations & Field Deployment) (Bio Left, Image Right) */}
+            <div className="bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-md dark:shadow-xl flex flex-col sm:flex-row-reverse gap-5 items-center sm:items-start transition-all hover:border-amber-500 hover:shadow-xl">
               <div className="relative shrink-0">
                 <div className="w-28 h-36 sm:w-32 sm:h-44 rounded-xl border-2 border-amber-500/40 dark:border-amber-500/60 bg-gradient-to-b from-amber-500/10 to-slate-100 dark:from-slate-800 dark:to-slate-950 flex flex-col items-center justify-center p-3 text-center shadow-md dark:shadow-xl">
                   <div className="w-14 h-14 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 flex items-center justify-center shadow-inner mb-2">
@@ -404,16 +409,21 @@ export default function HomePage() {
 
               <div className="space-y-3 text-center sm:text-left flex-1">
                 <div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
-                    <ShieldCheck className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                    <span>{language === "hi" ? "निदेशक - ऑपरेशन्स" : "Director (Operations & Deployment)"}</span>
+                  {/* Field Operations on TOP */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold shadow-sm">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <span>{language === "hi" ? "फील्ड डिप्लॉयमेंट एवं सुरक्षा प्रबंधन" : "Field Operations & Security Logistics"}</span>
                   </div>
+
+                  {/* Name */}
                   <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-2 tracking-tight">
                     {language === "hi" ? "मंजीत सिंह" : "Manjeet Singh"}
                   </h3>
-                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                    <span>{language === "hi" ? "फील्ड डिप्लॉयमेंट एवं सुरक्षा प्रबंधन" : "Field Operations & Client Logistics"}</span>
+
+                  {/* Director Operations BELOW */}
+                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
+                    <ShieldCheck className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                    <span>{language === "hi" ? "निदेशक - ऑपरेशन्स" : "Director (Operations & Deployment)"}</span>
                   </div>
                 </div>
 
