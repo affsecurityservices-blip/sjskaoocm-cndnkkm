@@ -305,60 +305,174 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* DIRECTOR LEADERSHIP & CONTACT CARD BANNER */}
+      {/* DIRECTORS & EXECUTIVE LEADERSHIP SHOWCASE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-amber-500/10 via-slate-100 to-amber-500/10 dark:from-amber-500/10 dark:via-[#16161F] dark:to-amber-500/10 border border-amber-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-black border-2 border-amber-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden text-white space-y-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Section Header */}
+          <div className="text-center sm:text-left space-y-2 max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500 text-black text-xs font-black uppercase tracking-wider shadow-sm">
+              <Award className="w-4 h-4" />
+              <span>{language === "hi" ? "कंपनी नेतृत्व एवं कमान" : "Company Command & Leadership"}</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
+              {language === "hi" 
+                ? "भारतीय सेना के अनुशासन व सुरक्षा निष्ठा से संचालित" 
+                : "Guided by Indian Army Discipline & Elite Protection Standards"}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+              {language === "hi"
+                ? "AAF सिक्योरिटी सर्विसेज अनुभवी नेतृत्व व सैन्य कमान के तहत संचालित है, जो पूरे बिहार और भारत में अनुशासित सुरक्षा गार्ड, 24/7 सतर्कता और त्वरित तैनाती सुनिश्चित करती है।"
+                : "AAF Security Services is spearheaded by veteran defense leadership, ensuring military-grade vigilance, rigorously vetted personnel, and round-the-clock rapid dispatch."}
+            </p>
+          </div>
+
+          {/* Dual Director Executive Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
             
-            {/* Director Information */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500 text-black text-xs font-black uppercase tracking-wider">
-                <UserCheck className="w-4 h-4" /> {t("director.tag")}
+            {/* Card 1: Bhupendra Kumar Singh (Sonu Singh) - Ex-Army Managing Director */}
+            <div className="bg-slate-900/90 border-2 border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col sm:flex-row gap-5 items-center sm:items-start transition-all hover:border-amber-400">
+              <div className="relative shrink-0">
+                <img
+                  src="/images/directors/bhupendra-kumar-singh.png"
+                  alt="Bhupendra Kumar Singh (Sonu Singh) - Ex-Army Managing Director"
+                  className="w-28 h-36 sm:w-32 sm:h-44 object-cover object-top rounded-xl border-2 border-amber-500 shadow-xl"
+                />
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-[9px] uppercase px-2 py-0.5 rounded-full whitespace-nowrap shadow-md">
+                  {language === "hi" ? "पूर्व सैनिक (Ex-Army)" : "Ex-Army Veteran"}
+                </span>
               </div>
-              
-              <h2 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white">
-                {t("director.title")}
-              </h2>
 
-              <p className="text-xs sm:text-sm text-slate-700 dark:text-gray-300 leading-relaxed">
-                {t("director.desc")}
-              </p>
-
-              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs">
-                <div className="flex items-center gap-2 bg-white dark:bg-[#0A0A0F] px-4 py-2 rounded-xl border border-slate-200 dark:border-[#262636] font-mono font-bold text-amber-600 dark:text-amber-400">
-                  <PhoneCall className="w-4 h-4 text-amber-500" />
-                  <span>9730218260 • 9465857462 • 7004951129</span>
+              <div className="space-y-3 text-center sm:text-left flex-1">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[11px] font-mono font-bold">
+                    <Award className="w-3.5 h-3.5 text-amber-400" />
+                    <span>{language === "hi" ? "संस्थापक एवं प्रबंध निदेशक" : "Managing Director & Founder"}</span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-black text-white mt-1.5">
+                    {language === "hi" ? "भूपेंद्र कुमार सिंह (सोनू सिंह)" : "Bhupendra Kumar Singh (Sonu Singh)"}
+                  </h3>
+                  <p className="text-[11px] font-mono text-emerald-400 font-bold flex items-center justify-center sm:justify-start gap-1 mt-0.5">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>{language === "hi" ? "भारतीय सेना के पूर्व सैनिक (Ex-Indian Army)" : "Indian Army Veteran • Combat Leadership"}</span>
+                  </p>
                 </div>
 
-                <a
-                  href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Sonu%20Singh%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-4 py-2 rounded-xl transition-all shadow-md"
-                >
-                  <WhatsAppIcon className="w-4 h-4 fill-black" />
-                  {t("director.whatsappBtn")}
-                </a>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {language === "hi"
+                    ? "भारतीय सेना के वर्षों के जमीनी अनुभव, शस्त्र कौशल और उच्च सुरक्षा अनुशासन के साथ AAF सिक्योरिटी सर्विसेज की ट्रेनिंग, भर्ती और वीआईपी सुरक्षा प्रोटोकॉल का नेतृत्व करते हैं।"
+                    : "Bringing frontline Indian Army battlefield discipline, weapons expertise, and high-threat tactical protocols to executive security, recruitment, and premises defense."}
+                </p>
+
+                <div className="pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Sonu%20Singh%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs px-3.5 py-2 rounded-xl transition-all shadow-md active:scale-95"
+                  >
+                    <WhatsAppIcon className="w-3.5 h-3.5 fill-black" />
+                    <span>{language === "hi" ? "व्हाट्सएप चैट" : "WhatsApp"}</span>
+                  </a>
+                  <a
+                    href="tel:9465857462"
+                    className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl border border-slate-700 transition-all active:scale-95"
+                  >
+                    <PhoneCall className="w-3.5 h-3.5 text-amber-400" />
+                    <span>9465857462</span>
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Address & Office Box */}
-            <div className="lg:col-span-5 bg-white dark:bg-[#0A0A0F] p-6 rounded-2xl border border-slate-200 dark:border-[#262636] space-y-4 shadow-xl">
-              <h3 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-amber-500 flex items-center gap-2">
-                <MapPin className="w-4 h-4" /> {t("director.officeTitle")}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-800 dark:text-gray-200 leading-relaxed font-semibold">
-                {t("director.companyAddress")}
-              </p>
-              <div className="pt-2 border-t border-slate-200 dark:border-[#262636] flex items-center justify-between text-xs">
-                <span className="text-slate-500 dark:text-gray-400">{t("director.emailLabel")}</span>
-                <a href={`mailto:${COMPANY_EMAIL}`} className="font-bold text-amber-600 dark:text-amber-400 hover:underline">
-                  {COMPANY_EMAIL}
-                </a>
+            {/* Card 2: Manjeet Singh - Director (Operations & Field Deployment) */}
+            <div className="bg-slate-900/90 border-2 border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col sm:flex-row gap-5 items-center sm:items-start transition-all hover:border-amber-400">
+              <div className="relative shrink-0">
+                <div className="w-28 h-36 sm:w-32 sm:h-44 rounded-xl border-2 border-amber-500/60 bg-gradient-to-b from-slate-800 to-slate-950 flex flex-col items-center justify-center p-3 text-center shadow-xl">
+                  <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 flex items-center justify-center shadow-inner mb-2">
+                    <UserCheck className="w-8 h-8" />
+                  </div>
+                  <span className="text-[10px] font-mono uppercase text-slate-400 font-bold tracking-wider">Director</span>
+                  <span className="text-xs font-black text-amber-400">Operations</span>
+                </div>
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-[9px] uppercase px-2 py-0.5 rounded-full whitespace-nowrap shadow-md">
+                  {language === "hi" ? "फील्ड कमान" : "Field Command"}
+                </span>
+              </div>
+
+              <div className="space-y-3 text-center sm:text-left flex-1">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[11px] font-mono font-bold">
+                    <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                    <span>{language === "hi" ? "निदेशक - ऑपरेशन्स" : "Director (Operations & Deployment)"}</span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-black text-white mt-1.5">
+                    {language === "hi" ? "मंजीत सिंह" : "Manjeet Singh"}
+                  </h3>
+                  <p className="text-[11px] font-mono text-emerald-400 font-bold flex items-center justify-center sm:justify-start gap-1 mt-0.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>{language === "hi" ? "फील्ड डिप्लॉयमेंट एवं सुरक्षा प्रबंधन" : "Field Operations & Client Logistics"}</span>
+                  </p>
+                </div>
+
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {language === "hi"
+                    ? "जिला स्तर पर जवानों की मुस्तैदी, 24/7 पेट्रोलिंग गश्त, क्लाइंट समन्वय और आपातकालीन बैकअप रिस्पांस की कमान संभालते हैं।"
+                    : "Spearheading regional guard mobilization, corporate client security coordination, 24/7 mobile patrolling squads, and rapid incident response."}
+                </p>
+
+                <div className="pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Manjeet%20Singh%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs px-3.5 py-2 rounded-xl transition-all shadow-md active:scale-95"
+                  >
+                    <WhatsAppIcon className="w-3.5 h-3.5 fill-black" />
+                    <span>{language === "hi" ? "व्हाट्सएप चैट" : "WhatsApp"}</span>
+                  </a>
+                  <a
+                    href="tel:9465857462"
+                    className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl border border-slate-700 transition-all active:scale-95"
+                  >
+                    <PhoneCall className="w-3.5 h-3.5 text-amber-400" />
+                    <span>9465857462</span>
+                  </a>
+                </div>
               </div>
             </div>
 
+          </div>
+
+          {/* Bottom Registered Office Banner */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+            <div className="flex items-center gap-3 text-left">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center shrink-0">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-mono tracking-wider text-slate-400 block font-bold">
+                  {language === "hi" ? "रजिस्टर्ड हेड ऑफिस" : "Registered Headquarters"}
+                </span>
+                <span className="text-slate-200 font-semibold leading-tight block">
+                  {COMPANY_ADDRESS}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 font-mono font-bold text-amber-400 text-xs shrink-0">
+              <a href="tel:9465857462" className="hover:underline flex items-center gap-1 bg-black/40 px-3 py-1.5 rounded-lg border border-slate-800">
+                <PhoneCall className="w-3 h-3 text-amber-500" /> 9465857462
+              </a>
+              <a href="tel:9730218260" className="hover:underline bg-black/40 px-3 py-1.5 rounded-lg border border-slate-800">
+                9730218260
+              </a>
+              <a href="tel:7004951129" className="hover:underline bg-black/40 px-3 py-1.5 rounded-lg border border-slate-800">
+                7004951129
+              </a>
+            </div>
           </div>
 
         </div>
