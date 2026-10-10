@@ -986,7 +986,7 @@ function BookingPageContent() {
               className="font-mono font-bold text-amber-600 dark:text-amber-400 hover:underline inline-flex items-center gap-1"
             >
               <PhoneCall className="w-3.5 h-3.5" />
-              9730218260 • 9465857462
+              9465857462 (WhatsApp & Call) • 9730218260
             </a>
           </p>
         </div>

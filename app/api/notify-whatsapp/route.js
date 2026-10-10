@@ -28,29 +28,28 @@ export async function POST(request) {
     } = body;
 
     const timeDisplay = endTime ? `${startTime} to ${endTime}` : (startTime || "08:00 AM");
-    const shiftLine = shiftType ? `• Shift: ${shiftType}\n` : "";
-    const locationDisplay = [city, state].filter(Boolean).join(", ") || (city || "Aurangabad / Bihar");
+    const shiftInfo = shiftType ? `${shiftType} (${timeDisplay}, ${hours || 8} hrs)` : `${timeDisplay} (${hours || 8} hrs)`;
+    const locationDisplay = [city, state].filter(Boolean).join(", ") || (city || "Aurangabad, Bihar");
 
     // Format the clean WhatsApp Notification Message
     const formattedMessage =
-`🛡️ *NEW WEBSITE ENQUIRY - ${COMPANY_NAME}*
------------------------------------
-📋 *Ref ID:* ${bookingId || "N/A"}
-👤 *Client Name:* ${name || "N/A"}
-📞 *Client Phone:* ${phone || "N/A"}
+`🛡️ *NEW SECURITY ENQUIRY*
+Ref: *${bookingId || "N/A"}*
+──────────────────────
+👤 *CLIENT DETAILS:*
+• Name: ${name || "N/A"}
+• Phone: ${phone || "N/A"}
 
-📍 *DEPLOYMENT DETAILS:*
-• Service / Guard Type: ${guardType || "Security Guard"}
-• State & City: ${locationDisplay}
-• Full Address: ${address || "N/A"}
+📍 *DEPLOYMENT REQUIREMENTS:*
+• Service: ${guardType || "Security Guard"}
+• Location: ${address || locationDisplay}
 • Date: ${date || "Immediate"}
-${shiftLine}• Timing (From - To): ${timeDisplay} (${hours || 8} Hours)
-• Shift Duration: ${hours || 8} Hours
-• Estimated Total: ₹${totalPrice ? Number(totalPrice).toLocaleString("en-IN") : "N/A"}
-${specialNotes ? `• Notes: ${specialNotes}\n` : ""}-----------------------------------
-🏢 *AAF SECURITY SERVICES* (Estd 2026)
-👤 Director: ${DIRECTOR_NAME}
-📞 Hotline: 9730218260, 9465857462`;
+• Shift & Time: ${shiftInfo}
+${specialNotes ? `• Notes: ${specialNotes}\n` : ""}
+📞 *STATUS:* Awaiting company callback for requirement discussion & custom quote.
+──────────────────────
+*AAF SECURITY SERVICES* (Director: ${DIRECTOR_NAME})
+Helpline: +91 94658 57462`;
 
     // If server notification is toggled OFF (as requested by user), return graceful status
     if (!isEnabled) {
@@ -64,7 +63,7 @@ ${specialNotes ? `• Notes: ${specialNotes}\n` : ""}---------------------------
     }
 
     // CallMeBot / Meta Cloud API Dispatch (When feature flag is toggled ON)
-    const targetPhone = process.env.WHATSAPP_NOTIFY_PHONE || "919730218260";
+    const targetPhone = process.env.WHATSAPP_NOTIFY_PHONE || "919465857462";
     const apiKey = process.env.CALLMEBOT_API_KEY || "";
 
     if (!apiKey) {
