@@ -439,8 +439,8 @@ function BookingPageContent() {
       startTime: formData.startTime,
       endTime: formData.endTime,
       hours: formData.hours,
-      totalPrice: priceEstimate.grandTotal,
-      isNightSlot: priceEstimate.isNight,
+      totalPrice: 0,
+      isNightSlot: detectedShift.isNight,
       specialNotes: formData.specialNotes
     };
 
@@ -463,7 +463,6 @@ function BookingPageContent() {
         startTime: format12Hour(formData.startTime),
         endTime: format12Hour(formData.endTime),
         hours: formData.hours,
-        totalPrice: priceEstimate.grandTotal,
         specialNotes: formData.specialNotes
       })
     }).catch((err) => console.error("Background WhatsApp notify trigger error:", err));
@@ -484,7 +483,7 @@ function BookingPageContent() {
       startTime: format12Hour(formData.startTime),
       endTime: format12Hour(formData.endTime),
       hours: formData.hours,
-      totalPrice: priceEstimate.grandTotal
+      specialNotes: formData.specialNotes
     });
 
     try {

@@ -535,8 +535,8 @@ export default function BookingForm({ guard }) {
 
       </div>
 
-      {/* Real-time Price Widget */}
-      <PriceSummary priceBreakdown={priceBreakdown} guard={guard} />
+      {/* Custom Quote on Call Notice */}
+      <PriceSummary />
 
       {/* Submit Enquiry Button */}
       <button
