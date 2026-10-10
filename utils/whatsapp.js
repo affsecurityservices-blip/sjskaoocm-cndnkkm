@@ -5,7 +5,28 @@ export const COMPANY_NAME = "AAF SECURITY SERVICES";
 export const COMPANY_TAGLINE = "Trusted Security. Complete Protection.";
 export const COMPANY_MOTTO = "Your Safety Our Priority";
 export const COMPANY_ESTD = "2026";
-export const DIRECTOR_NAME = "Bhupendra Kumar (Sonu Singh)";
+export const DIRECTOR_NAME = "Bhupendra Kumar Singh (Sonu Singh) & Manjeet Singh";
+export const DIRECTORS = [
+  {
+    name: "Bhupendra Kumar Singh (Sonu Singh)",
+    nameHi: "भूपेंद्र कुमार सिंह (सोनू सिंह)",
+    role: "Managing Director (Ex-Indian Army)",
+    roleHi: "प्रबंध निदेशक (भारतीय सेना पूर्व सैनिक)",
+    tag: "Ex-Indian Army Veteran",
+    tagHi: "पूर्व सैनिक (Ex-Army)",
+    image: "/images/directors/bhupendra-kumar-singh.png"
+  },
+  {
+    name: "Manjeet Singh",
+    nameHi: "मंजीत सिंह",
+    role: "Director (Operations & Deployment)",
+    roleHi: "निदेशक (फील्ड ऑपरेशन्स एवं सुरक्षा)",
+    tag: "Director - Operations",
+    tagHi: "निदेशक - ऑपरेशन्स",
+    image: null
+  }
+];
+export const DIRECTOR_NAMES_HI = "भूपेंद्र कुमार सिंह (सोनू सिंह) एवं मंजीत सिंह";
 
 export const COMPANY_PHONES = [
   "+91 94658 57462",
@@ -61,7 +82,7 @@ Ref: *${bookingId}*
 ${notesLine}
 📞 *STATUS:* Awaiting company callback for requirement discussion & custom quote.
 ──────────────────────
-*AAF SECURITY SERVICES* (Director: ${DIRECTOR_NAME})
+*AAF SECURITY SERVICES* (Directors: Bhupendra Kumar Singh & Manjeet Singh)
 Helpline: +91 94658 57462`;
 
   return `https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=${encodeURIComponent(text)}`;

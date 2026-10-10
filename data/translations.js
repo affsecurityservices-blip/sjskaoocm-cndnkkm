@@ -26,10 +26,10 @@ export const translations = {
       stat4Desc: "Command Helpline"
     },
     director: {
-      tag: "Company Leadership",
-      title: "DIRECTOR: Bhupendra Kumar (Sonu Singh)",
-      desc: "Under the expert direction of Bhupendra Kumar (Sonu Singh), AAF SECURITY SERVICES is committed to delivering unyielding security standards, elite operative deployment, and transparent 24/7 protection across Bihar and India.",
-      whatsappBtn: "Direct WhatsApp Chat",
+      tag: "Company Leadership & Command",
+      title: "LEADERSHIP: Bhupendra Kumar Singh (Sonu Singh) & Manjeet Singh",
+      desc: "Under the commanding leadership of Managing Director Bhupendra Kumar Singh (Sonu Singh - Ex-Indian Army Veteran) and Director Manjeet Singh, AAF SECURITY SERVICES delivers military-grade tactical discipline, verified operative deployment, and transparent 24/7 protection across Bihar and India.",
+      whatsappBtn: "Direct WhatsApp Command",
       officeTitle: "Registered Head Office",
       emailLabel: "Official Email:",
       companyAddress: "Narbdeshwar Nagar, Rambillash Nagar, Bharthauli Road, Jasoiya, Near Haveli Resort, Dist.- Aurangabad (Bihar) - 824101"
@@ -139,9 +139,9 @@ export const translations = {
       stat4Desc: "कमांड हेल्पलाइन"
     },
     director: {
-      tag: "कंपनी नेतृत्व",
-      title: "डायरेक्टर: भूपेंद्र कुमार (सोनू सिंह)",
-      desc: "भूपेंद्र कुमार (सोनू सिंह) के कुशल मार्गदर्शन में, AAF सिक्योरिटी सर्विसेज पूरे बिहार और भारत में 24 घंटे मजबूत सुरक्षा और भरोसेमंद गार्ड उपलब्ध कराने के लिए प्रतिबद्ध है।",
+      tag: "कंपनी नेतृत्व एवं कमान",
+      title: "कंपनी कमान: भूपेंद्र कुमार सिंह (सोनू सिंह) एवं मंजीत सिंह",
+      desc: "प्रबंध निदेशक भूपेंद्र कुमार सिंह (सोनू सिंह - पूर्व सैनिक, भारतीय सेना) एवं निदेशक मंजीत सिंह के कुशल व अनुशासित नेतृत्व में, AAF सिक्योरिटी सर्विसेज पूरे बिहार और भारत में 24 घंटे सैन्य स्तर का कड़ा अनुशासन, सत्यापित जवान और अटूट सुरक्षा कवच प्रदान करती है।",
       whatsappBtn: "व्हाट्सएप पर डायरेक्ट बात करें",
       officeTitle: "रजिस्टर्ड हेड ऑफिस",
       emailLabel: "ऑफिशियल ईमेल:",

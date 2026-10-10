@@ -198,7 +198,7 @@ export default function TermsPage() {
           ) : (
             <div className="space-y-2.5 text-slate-700 dark:text-gray-300 text-xs sm:text-sm">
               <p>
-                This Terms of Service &amp; Deployment Agreement (&quot;<strong>Agreement</strong>&quot;) constitutes a legally binding contract between the entity or person requisitioning security services (&quot;<strong>Client</strong>&quot;, &quot;<strong>You</strong>&quot;) and <strong>{COMPANY_NAME}</strong>, represented by its Director, <strong>{DIRECTOR_NAME}</strong>, having its central administrative office at Narbdeshwar Nagar, Bharthauli Road, Jasoiya, Aurangabad, Bihar - 824101 (&quot;<strong>Agency</strong>&quot;, &quot;<strong>AAF Security</strong>&quot;, &quot;<strong>We</strong>&quot;).
+                This Terms of Service &amp; Deployment Agreement (&quot;<strong>Agreement</strong>&quot;) constitutes a legally binding contract between the entity or person requisitioning security services (&quot;<strong>Client</strong>&quot;, &quot;<strong>You</strong>&quot;) and <strong>{COMPANY_NAME}</strong>, represented by its Directors, <strong>{DIRECTOR_NAME}</strong>, having its central administrative office at Narbdeshwar Nagar, Bharthauli Road, Jasoiya, Aurangabad, Bihar - 824101 (&quot;<strong>Agency</strong>&quot;, &quot;<strong>AAF Security</strong>&quot;, &quot;<strong>We</strong>&quot;).
               </p>
               <p>
                 This Agreement is governed by and executed under the <strong>Indian Contract Act, 1872</strong>, the <strong>Private Security Agencies (Regulation) Act, 2005 (PSARA 2005)</strong>, the <strong>Arms Act, 1959</strong>, the <strong>Bharatiya Nyaya Sanhita, 2023 (BNS) / IPC</strong>, and the <strong>Information Technology Act, 2000</strong>.
@@ -943,7 +943,7 @@ export default function TermsPage() {
                   {COMPANY_NAME}
                 </div>
                 <div className="text-xs text-slate-600 dark:text-gray-300">
-                  {isHi ? "निदेशक:" : "Director:"} <span className="font-bold text-slate-900 dark:text-white">{DIRECTOR_NAME}</span>
+                  {isHi ? "निदेशक:" : "Directors:"} <span className="font-bold text-slate-900 dark:text-white">{DIRECTOR_NAME}</span>
                 </div>
                 <div className="text-[11px] text-slate-500 dark:text-gray-400 font-mono">
                   {isHi ? "स्थापना वर्ष:" : "Estd Year:"} {COMPANY_ESTD} • Dist. Aurangabad (Bihar)
