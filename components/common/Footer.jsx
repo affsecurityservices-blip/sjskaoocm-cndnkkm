@@ -148,8 +148,8 @@ export default function Footer() {
                   <span>{t("footer.helplineLabel")}</span>
                 </div>
                 <div className="pl-6 space-y-1 font-mono text-[11px] text-amber-600 dark:text-amber-400 font-bold">
+                  <div><a href="tel:9465857462" className="hover:underline">9465857462 (WhatsApp & Call)</a></div>
                   <div><a href="tel:9730218260" className="hover:underline">9730218260</a></div>
-                  <div><a href="tel:9465857462" className="hover:underline">9465857462</a></div>
                   <div><a href="tel:7004951129" className="hover:underline">7004951129</a></div>
                 </div>
               </li>

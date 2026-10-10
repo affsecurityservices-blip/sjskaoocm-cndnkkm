@@ -8,13 +8,13 @@ export const COMPANY_ESTD = "2026";
 export const DIRECTOR_NAME = "Bhupendra Kumar (Sonu Singh)";
 
 export const COMPANY_PHONES = [
-  "+91 97302 18260",
   "+91 94658 57462",
+  "+91 97302 18260",
   "+91 70049 51129"
 ];
 
-export const COMPANY_PHONE = "+91 97302 18260";
-export const COMPANY_WHATSAPP_NUMBER = "919730218260";
+export const COMPANY_PHONE = "+91 94658 57462";
+export const COMPANY_WHATSAPP_NUMBER = "919465857462";
 export const COMPANY_EMAIL = "singhsonu45000@gmail.com";
 export const COMPANY_ADDRESS = "Narbdeshwar Nagar, Rambillash Nagar, Bharthauli Road, Jasoiya, Near Haveli Resort, Dist.- Aurangabad (Bihar) - 824101";
 
@@ -64,7 +64,7 @@ ${shiftLine}• Timing (From - To): ${timingText} (${hours} hours)
 -----------------------------------
 🏢 *AAF SECURITY SERVICES* (Estd 2026)
 👤 Director: ${DIRECTOR_NAME}
-📞 Contact: 9730218260, 9465857462, 7004951129
+📞 Contact: 9465857462 (WhatsApp), 9730218260, 7004951129
 📍 Aurangabad (Bihar) - 824101
 
 Please confirm operative availability & dispatch protocol!`;
