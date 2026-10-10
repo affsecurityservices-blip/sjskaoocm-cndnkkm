@@ -336,11 +336,14 @@ export default function HomePage() {
             <div className="w-full bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-md dark:shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-xl">
               
               {/* 50% Photo on Left */}
-              <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-amber-500 shadow-md">
+              <div 
+                className="relative w-full rounded-2xl overflow-hidden border-2 border-amber-500 shadow-xl bg-slate-950 flex items-center justify-center"
+                style={{ aspectRatio: "1162 / 1354" }}
+              >
                 <img
                   src="/images/directors/bhupendra-kumar-singh.png"
                   alt="Bhupendra Kumar Singh - Ex-Army Managing Director"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover"
                 />
                 <span className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-xs tracking-wider uppercase px-4 py-1 rounded-full whitespace-nowrap shadow-lg">
                   {language === "hi" ? "पूर्व सैनिक (Ex-Army)" : "Ex-Army Veteran"}
@@ -446,7 +449,10 @@ export default function HomePage() {
               </div>
 
               {/* 50% Photo / Avatar on Right (on mobile: order-1, on md: order-2) */}
-              <div className="relative w-full h-80 sm:h-96 rounded-2xl border-2 border-amber-500/40 dark:border-amber-500/60 bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-slate-100 dark:from-slate-800 dark:via-slate-850 dark:to-slate-950 flex flex-col items-center justify-center p-6 text-center shadow-md dark:shadow-xl order-1 md:order-2">
+              <div 
+                className="relative w-full rounded-2xl border-2 border-amber-500/40 dark:border-amber-500/60 bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-slate-100 dark:from-slate-800 dark:via-slate-850 dark:to-slate-950 flex flex-col items-center justify-center p-6 text-center shadow-lg dark:shadow-xl order-1 md:order-2"
+                style={{ aspectRatio: "1162 / 1354" }}
+              >
                 <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-amber-500/15 border-2 border-amber-500/30 text-amber-600 dark:text-amber-400 flex items-center justify-center shadow-inner mb-3">
                   <UserCheck className="w-12 h-12 sm:w-16 sm:h-16" />
                 </div>
