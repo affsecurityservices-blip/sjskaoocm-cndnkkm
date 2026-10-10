@@ -112,11 +112,18 @@ function SuccessContent() {
             </div>
           </div>
 
-          {/* Pricing summary */}
-          <div className="pt-4 border-t border-slate-200 dark:border-[#262636] flex items-center justify-between">
-            <span className="text-xs text-slate-500 dark:text-gray-400 font-medium">Estimated Total Amount</span>
-            <span className="text-2xl font-black text-amber-500">
-              {formatCurrency(booking.totalPrice)}
+          {/* Pricing callback card */}
+          <div className="pt-4 border-t border-slate-200 dark:border-[#262636] flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30">
+            <div>
+              <div className="text-xs font-bold text-amber-600 dark:text-amber-400">
+                दरें एवं कोटेशन (Custom Pricing on Call)
+              </div>
+              <div className="text-[11px] text-slate-600 dark:text-gray-300 mt-0.5">
+                हमारी टीम आपके दिए गए नंबर पर कॉल करके आवश्यकतानुसार बेस्ट रेट कोट करेगी।
+              </div>
+            </div>
+            <span className="text-xs font-mono font-bold px-3 py-1 rounded-md bg-amber-500 text-black shrink-0 self-start sm:self-auto shadow-sm">
+              Discuss on Call
             </span>
           </div>
 

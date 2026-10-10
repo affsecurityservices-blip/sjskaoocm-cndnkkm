@@ -35,39 +35,34 @@ export const createWhatsAppBookingUrl = ({
   endTime,
   shiftType,
   hours,
-  totalPrice
+  specialNotes
 }) => {
   const formattedStart = formatTime12h(startTime) || startTime;
   const formattedEnd = endTime ? (formatTime12h(endTime) || endTime) : null;
   const timingText = formattedEnd ? `${formattedStart} to ${formattedEnd}` : formattedStart;
-  const shiftLine = shiftType ? `• Shift: ${shiftType}\n` : "";
-  const locationParts = [city, state].filter(Boolean);
-  const locationLine = locationParts.length > 0 ? `• State / Location: ${locationParts.join(", ")}\n` : "";
+  const shiftInfo = shiftType ? `${shiftType} (${timingText}, ${hours} hrs)` : `${timingText} (${hours} hrs)`;
+
+  const serviceName = guardName || guardType || eventType || "Security Guard Deployment";
+  const notesLine = specialNotes?.trim() ? `• Notes: ${specialNotes.trim()}\n` : "";
 
   const text =
-`🛡️ *NEW SECURITY ENQUIRY - AAF SECURITY SERVICES*
------------------------------------
-📋 *Booking Ref:* ${bookingId}
-👤 *Guard Requested:* ${guardName} (${guardType})
-
-👤 *CLIENT INFO:*
+`🛡️ *NEW SECURITY ENQUIRY*
+Ref: *${bookingId}*
+──────────────────────
+👤 *CLIENT DETAILS:*
 • Name: ${name}
 • Phone: ${phone}
 
-📍 *DEPLOYMENT DETAILS:*
-• Event / Service: ${eventType}
-${locationLine}• Venue Address: ${address}
+📍 *DEPLOYMENT REQUIREMENTS:*
+• Service: ${serviceName}
+• Location: ${address}
 • Date: ${date}
-${shiftLine}• Timing (From - To): ${timingText} (${hours} hours)
-• Shift Duration: ${hours} hours
-💰 *Estimated Total:* ₹${totalPrice}
------------------------------------
-🏢 *AAF SECURITY SERVICES* (Estd 2026)
-👤 Director: ${DIRECTOR_NAME}
-📞 Contact: 9465857462 (WhatsApp), 9730218260, 7004951129
-📍 Aurangabad (Bihar) - 824101
-
-Please confirm operative availability & dispatch protocol!`;
+• Shift & Time: ${shiftInfo}
+${notesLine}
+📞 *STATUS:* Awaiting company callback for requirement discussion & custom quote.
+──────────────────────
+*AAF SECURITY SERVICES* (Director: ${DIRECTOR_NAME})
+Helpline: +91 94658 57462`;
 
   return `https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=${encodeURIComponent(text)}`;
 };
