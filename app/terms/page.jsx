@@ -119,30 +119,30 @@ export default function TermsPage() {
       </div>
 
       {/* Main Title Badge */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-black text-white border-2 border-amber-500/30 shadow-2xl relative overflow-hidden">
+      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-amber-50/80 via-white to-amber-100/40 dark:from-slate-900 dark:via-slate-950 dark:to-black text-slate-900 dark:text-white border-2 border-amber-500/30 shadow-xl dark:shadow-2xl relative overflow-hidden transition-colors">
         <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
-              <Scale className="w-3.5 h-3.5 text-amber-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
+              <Scale className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
               <span>{isHi ? "वैधानिक सेवा नियम एवं अनुबंध" : "Statutory Deployment & Service Agreement"}</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
+            <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
               {isHi ? "नियम एवं सेवा शर्तें (Terms of Service)" : "Terms of Service & Deployment Agreement"}
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
               {isHi
                 ? `${COMPANY_NAME} द्वारा प्रदान की जाने वाली सभी सुरक्षा सेवाओं, गार्ड तैनाती, गनमैन, बाउंसर एवं निगरानी ऑपरेशन्स के लिए वैधानिक नियम।`
                 : `Comprehensive Client Deployment Agreement governing private security personnel, armed protection, bouncers, and surveillance operations provided by ${COMPANY_NAME}.`}
             </p>
           </div>
 
-          <div className="bg-slate-900/90 border border-amber-500/30 rounded-2xl p-4 text-xs font-mono space-y-1.5 shrink-0 w-full sm:w-auto shadow-inner">
-            <div className="text-slate-400 uppercase tracking-widest text-[10px]">{isHi ? "संस्था एवं निदेशक" : "Agency Details"}</div>
-            <div className="font-extrabold text-amber-400 text-sm">{COMPANY_NAME}</div>
-            <div className="text-slate-300 font-semibold">{isHi ? `निदेशक: ${DIRECTOR_NAME}` : `Director: ${DIRECTOR_NAME}`}</div>
-            <div className="text-slate-400 text-[11px]">{isHi ? `स्थापना: ${COMPANY_ESTD} | जिला: औरंगाबाद (बिहार)` : `Estd: ${COMPANY_ESTD} | Dist: Aurangabad (Bihar)`}</div>
-            <div className="text-emerald-400 text-[10px] font-bold flex items-center gap-1 pt-1">
+          <div className="bg-white/90 dark:bg-slate-900/90 border border-amber-500/30 rounded-2xl p-4 text-xs font-mono space-y-1.5 shrink-0 w-full sm:w-auto shadow-sm dark:shadow-inner">
+            <div className="text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[10px]">{isHi ? "संस्था एवं निदेशक" : "Agency Details"}</div>
+            <div className="font-extrabold text-amber-700 dark:text-amber-400 text-sm">{COMPANY_NAME}</div>
+            <div className="text-slate-800 dark:text-slate-300 font-semibold">{isHi ? `निदेशक: ${DIRECTOR_NAME}` : `Director: ${DIRECTOR_NAME}`}</div>
+            <div className="text-slate-500 dark:text-slate-400 text-[11px]">{isHi ? `स्थापना: ${COMPANY_ESTD} | जिला: औरंगाबाद (बिहार)` : `Estd: ${COMPANY_ESTD} | Dist: Aurangabad (Bihar)`}</div>
+            <div className="text-emerald-700 dark:text-emerald-400 text-[10px] font-bold flex items-center gap-1 pt-1">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>{isHi ? "PSARA 2005 एवं आर्म्स एक्ट फ्रेमवर्क" : "PSARA 2005 & Arms Act Compliant"}</span>
             </div>

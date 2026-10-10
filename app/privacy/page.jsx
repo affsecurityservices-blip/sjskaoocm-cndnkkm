@@ -126,42 +126,42 @@ export default function PrivacyPage() {
       </div>
 
       {/* Header Banner */}
-      <div className="relative p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-black text-white border border-amber-500/30 shadow-2xl overflow-hidden">
+      <div className="relative p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-amber-50/80 via-white to-amber-100/40 dark:from-slate-900 dark:via-slate-950 dark:to-black text-slate-900 dark:text-white border-2 border-amber-500/30 shadow-xl dark:shadow-2xl overflow-hidden transition-colors">
         <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="relative space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 font-mono text-xs font-bold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-400 font-mono text-xs font-bold">
             <Lock className="w-3.5 h-3.5" />
             <span>DPDP ACT 2023 &amp; IT ACT 2000 COMPLIANT</span>
           </div>
 
           <div className="space-y-2">
-            <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
+            <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
               {isHi ? "गोपनीयता नीति एवं डेटा संरक्षण घोषणा" : "Privacy Policy & Statutory Data Protection Charter"}
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
               {isHi
                 ? `${COMPANY_NAME} की आधिकारिक डेटा गोपनीयता नीति। डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम (DPDP Act, 2023), सूचना प्रौद्योगिकी अधिनियम 2000 (IT Act) एवं PSARA 2005 के वैधानिक प्रावधानों के अंतर्गत ग्राहक गोपनीयता, बायोमेट्रिक व सीसीटीवी फुटेज सुरक्षा की गारंटी।`
                 : `Official Data Privacy Policy of ${COMPANY_NAME}. Governed in strict conformance with the Digital Personal Data Protection Act (DPDP Act, 2023), Information Technology Act 2000 (SPDI Rules 2011), and PSARA 2005 regulating physical security operations, surveillance, and client telemetry.`}
             </p>
           </div>
 
-          <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-y-2 gap-x-6 text-[11px] text-slate-400 font-mono">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center gap-y-2 gap-x-6 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
             <div>
               <span className="text-slate-500">{isHi ? "संस्था:" : "Entity:"}</span>{" "}
-              <strong className="text-slate-200">{COMPANY_NAME}</strong>
+              <strong className="text-slate-800 dark:text-slate-200">{COMPANY_NAME}</strong>
             </div>
             <div>
               <span className="text-slate-500">{isHi ? "निदेशक:" : "Directors:"}</span>{" "}
-              <strong className="text-amber-400">{isHi ? DIRECTOR_NAMES_HI : DIRECTOR_NAME}</strong>
+              <strong className="text-amber-700 dark:text-amber-400">{isHi ? DIRECTOR_NAMES_HI : DIRECTOR_NAME}</strong>
             </div>
             <div>
               <span className="text-slate-500">{isHi ? "प्रभावी तिथि:" : "Effective Date:"}</span>{" "}
-              <strong className="text-slate-200">January 1, 2026</strong>
+              <strong className="text-slate-800 dark:text-slate-200">January 1, 2026</strong>
             </div>
             <div>
               <span className="text-slate-500">{isHi ? "क्षेत्राधिकार:" : "Jurisdiction:"}</span>{" "}
-              <strong className="text-slate-200">Aurangabad (Bihar), India</strong>
+              <strong className="text-slate-800 dark:text-slate-200">Aurangabad (Bihar), India</strong>
             </div>
           </div>
         </div>
@@ -763,7 +763,7 @@ export default function PrivacyPage() {
                       <strong className="text-slate-900 dark:text-white">
                         {isHi ? "भूपेंद्र कुमार सिंह (सोनू सिंह)" : "Bhupendra Kumar Singh (Sonu Singh)"}
                       </strong>{" "}
-                      <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold font-mono">
+                      <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold">
                         [{isHi ? "पूर्व सैनिक (Ex-Army) - प्रबंध निदेशक" : "Ex-Indian Army Veteran - MD"}]
                       </span>
                     </span>
@@ -774,7 +774,7 @@ export default function PrivacyPage() {
                       <strong className="text-slate-900 dark:text-white">
                         {isHi ? "मंजीत सिंह" : "Manjeet Singh"}
                       </strong>{" "}
-                      <span className="text-[11px] text-amber-600 dark:text-amber-400 font-semibold font-mono">
+                      <span className="text-[11px] text-amber-600 dark:text-amber-400 font-bold">
                         [{isHi ? "निदेशक - ऑपरेशन्स एवं फील्ड डिप्लॉयमेंट" : "Director - Operations & Deployment"}]
                       </span>
                     </span>
