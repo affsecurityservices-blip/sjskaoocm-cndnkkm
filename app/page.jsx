@@ -329,129 +329,134 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Dual Director Executive Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
+          {/* Dual Director Executive Cards (Stacked Vertically: 50% Photo / 50% Bio Split) */}
+          <div className="flex flex-col gap-8 relative z-10">
             
-            {/* Card 1: Bhupendra Kumar Singh - Ex-Army Managing Director (Image Left, Bio Right) */}
-            <div className="bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-md dark:shadow-xl flex flex-col sm:flex-row gap-5 items-center sm:items-start transition-all hover:border-amber-500 hover:shadow-xl">
-              <div className="relative shrink-0">
+            {/* Card 1: Bhupendra Kumar Singh - Ex-Army Managing Director (50% Photo Left, 50% Bio Right) */}
+            <div className="w-full bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-md dark:shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-xl">
+              
+              {/* 50% Photo on Left */}
+              <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-amber-500 shadow-md">
                 <img
                   src="/images/directors/bhupendra-kumar-singh.png"
                   alt="Bhupendra Kumar Singh - Ex-Army Managing Director"
-                  className="w-28 h-36 sm:w-32 sm:h-44 object-cover object-top rounded-xl border-2 border-amber-500 shadow-md"
+                  className="w-full h-full object-cover object-top"
                 />
-                <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-[10px] tracking-wide uppercase px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-md">
+                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-xs tracking-wider uppercase px-4 py-1 rounded-full whitespace-nowrap shadow-lg">
                   {language === "hi" ? "पूर्व सैनिक (Ex-Army)" : "Ex-Army Veteran"}
                 </span>
               </div>
 
-              <div className="space-y-3 text-center sm:text-left flex-1">
+              {/* 50% Bio & Details on Right */}
+              <div className="space-y-4 text-center md:text-left flex flex-col justify-center">
                 <div>
                   {/* Indian Army on TOP */}
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold shadow-sm">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <span>{language === "hi" ? "पूर्व सैनिक (Ex-Indian Army Veteran) • सैन्य कमान" : "Ex-Indian Army Veteran • Combat Leadership"}</span>
                   </div>
 
                   {/* Name */}
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-2 tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-2.5 tracking-tight">
                     {language === "hi" ? "भूपेंद्र कुमार सिंह" : "Bhupendra Kumar Singh"}
                   </h3>
 
                   {/* Managing Director BELOW */}
-                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
+                  <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
                     <Award className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                     <span>{language === "hi" ? "संस्थापक एवं प्रबंध निदेशक" : "Managing Director & Founder"}</span>
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                   {language === "hi"
                     ? "भारतीय सेना के वर्षों के जमीनी अनुभव, शस्त्र कौशल और उच्च सुरक्षा अनुशासन के साथ AAF सिक्योरिटी सर्विसेज की ट्रेनिंग, भर्ती और वीआईपी सुरक्षा प्रोटोकॉल का नेतृत्व करते हैं।"
                     : "Bringing frontline Indian Army battlefield discipline, weapons expertise, and high-threat tactical protocols to executive security, recruitment, and premises defense."}
                 </p>
 
-                <div className="pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                <div className="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3">
                   <a
                     href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Bhupendra%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs px-3.5 py-2 rounded-xl transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all shadow-md active:scale-95"
                   >
-                    <WhatsAppIcon className="w-3.5 h-3.5 fill-black" />
+                    <WhatsAppIcon className="w-4 h-4 fill-black" />
                     <span>{language === "hi" ? "व्हाट्सएप चैट" : "WhatsApp"}</span>
                   </a>
                   <a
                     href="tel:9465857462"
-                    className="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 transition-all active:scale-95"
+                    className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 transition-all active:scale-95"
                   >
-                    <PhoneCall className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                    <PhoneCall className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                     <span>9465857462</span>
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* Card 2: Manjeet Singh - Director (Operations & Field Deployment) (Bio Left, Image Right) */}
-            <div className="bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-2xl p-5 sm:p-6 shadow-md dark:shadow-xl flex flex-col sm:flex-row-reverse gap-5 items-center sm:items-start transition-all hover:border-amber-500 hover:shadow-xl">
-              <div className="relative shrink-0">
-                <div className="w-28 h-36 sm:w-32 sm:h-44 rounded-xl border-2 border-amber-500/40 dark:border-amber-500/60 bg-gradient-to-b from-amber-500/10 to-slate-100 dark:from-slate-800 dark:to-slate-950 flex flex-col items-center justify-center p-3 text-center shadow-md dark:shadow-xl">
-                  <div className="w-14 h-14 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 flex items-center justify-center shadow-inner mb-2">
-                    <UserCheck className="w-8 h-8" />
-                  </div>
-                  <span className="text-[11px] uppercase text-slate-500 dark:text-slate-400 font-bold tracking-wider">Director</span>
-                  <span className="text-xs font-black text-amber-600 dark:text-amber-400">Operations</span>
-                </div>
-                <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-[10px] tracking-wide uppercase px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-md">
-                  {language === "hi" ? "फील्ड कमान" : "Field Command"}
-                </span>
-              </div>
-
-              <div className="space-y-3 text-center sm:text-left flex-1">
+            {/* Card 2: Manjeet Singh - Director (Operations & Field Deployment) (50% Bio Left, 50% Image Right) */}
+            <div className="w-full bg-white/95 dark:bg-slate-900/90 border-2 border-amber-500/30 dark:border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-md dark:shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-xl">
+              
+              {/* 50% Bio & Details on Left (on mobile: order-2, on md: order-1) */}
+              <div className="space-y-4 text-center md:text-left flex flex-col justify-center order-2 md:order-1">
                 <div>
                   {/* Field Operations on TOP */}
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 dark:text-emerald-400 text-xs font-bold shadow-sm">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <span>{language === "hi" ? "फील्ड डिप्लॉयमेंट एवं सुरक्षा प्रबंधन" : "Field Operations & Security Logistics"}</span>
                   </div>
 
                   {/* Name */}
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-2 tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-2.5 tracking-tight">
                     {language === "hi" ? "मंजीत सिंह" : "Manjeet Singh"}
                   </h3>
 
                   {/* Director Operations BELOW */}
-                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
+                  <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
                     <ShieldCheck className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                     <span>{language === "hi" ? "निदेशक - ऑपरेशन्स" : "Director (Operations & Deployment)"}</span>
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                   {language === "hi"
                     ? "जिला स्तर पर जवानों की मुस्तैदी, 24/7 पेट्रोलिंग गश्त, क्लाइंट समन्वय और आपातकालीन बैकअप रिस्पांस की कमान संभालते हैं।"
                     : "Spearheading regional guard mobilization, corporate client security coordination, 24/7 mobile patrolling squads, and rapid incident response."}
                 </p>
 
-                <div className="pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
+                <div className="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3">
                   <a
                     href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Manjeet%20Singh%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs px-3.5 py-2 rounded-xl transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all shadow-md active:scale-95"
                   >
-                    <WhatsAppIcon className="w-3.5 h-3.5 fill-black" />
+                    <WhatsAppIcon className="w-4 h-4 fill-black" />
                     <span>{language === "hi" ? "व्हाट्सएप चैट" : "WhatsApp"}</span>
                   </a>
                   <a
                     href="tel:9465857462"
-                    className="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 transition-all active:scale-95"
+                    className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 transition-all active:scale-95"
                   >
-                    <PhoneCall className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                    <PhoneCall className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                     <span>9465857462</span>
                   </a>
                 </div>
               </div>
+
+              {/* 50% Photo / Avatar on Right (on mobile: order-1, on md: order-2) */}
+              <div className="relative w-full h-80 sm:h-96 rounded-2xl border-2 border-amber-500/40 dark:border-amber-500/60 bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-slate-100 dark:from-slate-800 dark:via-slate-850 dark:to-slate-950 flex flex-col items-center justify-center p-6 text-center shadow-md dark:shadow-xl order-1 md:order-2">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-amber-500/15 border-2 border-amber-500/30 text-amber-600 dark:text-amber-400 flex items-center justify-center shadow-inner mb-3">
+                  <UserCheck className="w-12 h-12 sm:w-16 sm:h-16" />
+                </div>
+                <span className="text-xs uppercase text-slate-500 dark:text-slate-400 font-bold tracking-widest">Director</span>
+                <span className="text-base font-black text-amber-600 dark:text-amber-400 tracking-wide mt-0.5">Operations & Deployment</span>
+                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-xs tracking-wider uppercase px-4 py-1 rounded-full whitespace-nowrap shadow-lg">
+                  {language === "hi" ? "फील्ड कमान" : "Field Command"}
+                </span>
+              </div>
+
             </div>
 
           </div>
