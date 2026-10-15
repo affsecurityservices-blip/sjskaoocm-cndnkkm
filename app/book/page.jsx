@@ -416,7 +416,7 @@ function BookingPageContent() {
 
     setIsSubmitting(true);
 
-    const shiftLabel = language === "hi" ? detectedShift.labelHi : detectedShift.label;
+    const shiftLabel = language === "hi" ? "कॉल बैक पर तय होगा" : "To be finalized on callback";
     const resolvedState = formData.state === "Other" && formData.customState?.trim()
       ? formData.customState.trim()
       : (formData.state || "Bihar");
@@ -434,13 +434,13 @@ function BookingPageContent() {
       eventType: `${formData.guardType} (${locationStr})`,
       address: `${formData.address}${locationStr ? `, ${locationStr}` : ""}`,
       date: formData.date,
-      shiftMode: formData.shiftMode,
+      shiftMode: "callback",
       shiftType: shiftLabel,
-      startTime: formData.startTime,
-      endTime: formData.endTime,
-      hours: formData.hours,
+      startTime: "",
+      endTime: "",
+      hours: 8,
       totalPrice: 0,
-      isNightSlot: detectedShift.isNight,
+      isNightSlot: false,
       specialNotes: formData.specialNotes
     };
 
@@ -685,15 +685,16 @@ function BookingPageContent() {
             </div>
           </div>
 
-          {/* SECTION 3: DATE, SHIFT & TIMING */}
-          <div className="space-y-6 pt-3">
+          {/* SECTION 3: DATE & CALLBACK NOTICE */}
+          <div className="space-y-5 pt-3">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-200 dark:border-[#262636] pb-3 gap-2">
               <h2 className="text-sm sm:text-base uppercase tracking-wider font-black text-amber-600 dark:text-amber-400 flex items-center gap-2.5">
                 <Calendar className="w-5 h-5 text-amber-500" />
-                {language === "hi" ? "3. शिफ्ट एवं ड्यूटी समय" : "3. DEPLOYMENT SCHEDULE"}
+                {language === "hi" ? "3. ड्यूटी की तारीख" : "3. DEPLOYMENT DATE"}
               </h2>
-              <span className="text-xs font-bold text-slate-500 dark:text-gray-400">
-                {language === "hi" ? "समय अनुसार ऑटो-शिफ्ट सिंक" : "Time & Shift Auto-Synced"}
+              <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+                <PhoneCall className="w-3.5 h-3.5" />
+                {language === "hi" ? "शिफ्ट का समय कॉल पर तय होगा" : "Shift & Hours Finalized on Call"}
               </span>
             </div>
 
@@ -701,7 +702,7 @@ function BookingPageContent() {
             <div className="space-y-2">
               <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                 <Calendar className="w-4 h-4 text-amber-500" />
-                {language === "hi" ? "ड्यूटी की तारीख *" : "Deployment Date *"}
+                {language === "hi" ? "ड्यूटी शुरू होने की तारीख *" : "Deployment Start Date *"}
               </label>
               <input
                 type="date"
@@ -713,228 +714,25 @@ function BookingPageContent() {
               />
             </div>
 
-            {/* 2. Shift Type Presets (Day / Night / Full Day / Custom) */}
-            <div className="space-y-2.5">
-              <div className="flex items-center justify-between">
-                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-amber-500" />
-                  {language === "hi" ? "शिफ्ट का प्रकार चुनें *" : "Shift Type *"}
-                </label>
-                <span className="text-xs font-extrabold text-amber-600 dark:text-amber-400 font-mono">
-                  {language === "hi" ? detectedShift.labelHi : detectedShift.label}
-                </span>
+            {/* Direct Callback Reassurance Banner */}
+            <div className="bg-amber-500/10 border-2 border-amber-500/30 rounded-2xl p-4 sm:p-5 flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-amber-500 text-black flex items-center justify-center shrink-0 shadow-md">
+                <PhoneCall className="w-5 h-5" />
               </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {[
-                  {
-                    id: "day",
-                    title: language === "hi" ? "दिन की शिफ्ट" : "Day Shift",
-                    sub: language === "hi" ? "सुबह 08:00 - शाम 04:00" : "08:00 AM - 04:00 PM",
-                    icon: Sun,
-                    active: formData.shiftMode === "day" || (formData.shiftMode !== "custom" && detectedShift.type === "day")
-                  },
-                  {
-                    id: "night",
-                    title: language === "hi" ? "रात की शिफ्ट" : "Night Shift",
-                    sub: language === "hi" ? "रात 08:00 - सुबह 04:00" : "08:00 PM - 04:00 AM",
-                    icon: Moon,
-                    active: formData.shiftMode === "night" || (formData.shiftMode !== "custom" && detectedShift.type === "night")
-                  },
-                  {
-                    id: "fullday",
-                    title: language === "hi" ? "फुल डे (24 घंटे)" : "Full Day (24 Hrs)",
-                    sub: language === "hi" ? "24 घंटे सुरक्षा" : "Round the Clock",
-                    icon: RotateCw,
-                    active: formData.shiftMode === "fullday" || formData.hours === 24
-                  },
-                  {
-                    id: "custom",
-                    title: language === "hi" ? "कस्टम समय" : "Custom Time",
-                    sub: language === "hi" ? "अपनी पसंद का समय" : "Set From / To",
-                    icon: SlidersHorizontal,
-                    active: formData.shiftMode === "custom"
-                  }
-                ].map((item) => {
-                  const IconCmp = item.icon;
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => handleShiftPreset(item.id)}
-                      className={`relative p-3 sm:p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${
-                        item.active
-                          ? "bg-amber-500/15 border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.25)]"
-                          : "bg-slate-50 dark:bg-[#0A0A0F] border-slate-300 dark:border-[#262636] hover:border-amber-500/50"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between w-full mb-1">
-                        <IconCmp className={`w-4 h-4 ${item.active ? "text-amber-500" : "text-slate-500 dark:text-gray-400"}`} />
-                        {item.active && <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />}
-                      </div>
-                      <span className={`text-xs sm:text-sm font-black ${item.active ? "text-amber-600 dark:text-amber-400" : "text-slate-900 dark:text-white"}`}>
-                        {item.title}
-                      </span>
-                      <span className="text-[10px] font-bold text-slate-500 dark:text-gray-400 mt-0.5 truncate">
-                        {item.sub}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* 3. Time From & To Inputs */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50/80 dark:bg-[#0E0E14] border-2 border-slate-200 dark:border-[#262636] p-4 sm:p-5 rounded-2xl">
-              
-              {/* From Time (Start Time) */}
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-amber-500" />
-                    {language === "hi" ? "शुरू होने का समय *" : "Start Time (From) *"}
-                  </label>
-                  <span className="text-xs font-mono font-black text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md">
-                    {format12Hour(formData.startTime)}
-                  </span>
-                </div>
-                <input
-                  type="time"
-                  required
-                  value={formData.startTime}
-                  onChange={(e) => handleStartTimeChange(e.target.value)}
-                  className="w-full bg-white dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-2.5 text-sm sm:text-base font-bold text-slate-900 dark:text-white focus:outline-none transition-colors shadow-sm cursor-pointer"
-                />
-              </div>
-
-              {/* To Time (End Time) */}
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-amber-500" />
-                    {language === "hi" ? "समाप्ति का समय *" : "End Time (To) *"}
-                  </label>
-                  <div className="flex items-center gap-1.5">
-                    {detectedShift.spansNextDay && (
-                      <span className="text-[10px] font-bold bg-indigo-500/10 border border-indigo-500/30 text-indigo-500 px-1.5 py-0.5 rounded">
-                        {language === "hi" ? "अगले दिन" : "Next Day"}
-                      </span>
-                    )}
-                    <span className="text-xs font-mono font-black text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md">
-                      {format12Hour(formData.endTime)}
-                    </span>
-                  </div>
-                </div>
-                <input
-                  type="time"
-                  required
-                  value={formData.endTime}
-                  onChange={(e) => handleEndTimeChange(e.target.value)}
-                  className="w-full bg-white dark:bg-[#0A0A0F] border-2 border-slate-300 dark:border-[#38384E] focus:border-amber-500 rounded-xl px-4 py-2.5 text-sm sm:text-base font-bold text-slate-900 dark:text-white focus:outline-none transition-colors shadow-sm cursor-pointer"
-                />
-              </div>
-
-            </div>
-
-            {/* 4. Duration Quick Selectors */}
-            <div className="space-y-2.5 pt-1">
-              <div className="flex items-center justify-between">
-                <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-amber-500" />
-                  {language === "hi" ? "ड्यूटी अवधि (कुल समय) *" : "Shift Duration *"}
-                </label>
-                <span className="text-xs font-extrabold px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 font-mono">
-                  {formData.hours} {language === "hi" ? "घंटे" : (formData.hours === 1 ? "Hour" : "Hours")}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {[
-                  {
-                    hours: 4,
-                    title: language === "hi" ? "4 घंटे" : "4 Hours",
-                    subtitle: language === "hi" ? "हाफ डे शिफ्ट" : "Half Day Shift"
-                  },
-                  {
-                    hours: 8,
-                    title: language === "hi" ? "8 घंटे" : "8 Hours",
-                    subtitle: language === "hi" ? "मानक 8 घंटे शिफ्ट" : "Standard Shift",
-                    recommended: true
-                  },
-                  {
-                    hours: 12,
-                    title: language === "hi" ? "12 घंटे" : "12 Hours",
-                    subtitle: language === "hi" ? "लंबी 12 घंटे शिफ्ट" : "Extended Shift"
-                  },
-                  {
-                    hours: 24,
-                    title: language === "hi" ? "24 घंटे" : "24 Hours",
-                    subtitle: language === "hi" ? "फुल डे 24 घंटे" : "Round the Clock"
-                  }
-                ].map((slot) => {
-                  const isSelected = formData.hours === slot.hours;
-                  return (
-                    <button
-                      key={slot.hours}
-                      type="button"
-                      onClick={() => handleDurationChange(slot.hours)}
-                      className={`relative p-3 rounded-xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${
-                        isSelected
-                          ? "bg-amber-500/15 border-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.2)]"
-                          : "bg-slate-50 dark:bg-[#0A0A0F] border-slate-300 dark:border-[#262636] hover:border-amber-500/50"
-                      }`}
-                    >
-                      {slot.recommended && (
-                        <span className="absolute -top-2.5 right-2 bg-amber-500 text-black text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
-                          {language === "hi" ? "मानक" : "Standard"}
-                        </span>
-                      )}
-                      <div className="flex items-center justify-between w-full">
-                        <span className={`text-sm font-extrabold ${isSelected ? "text-amber-600 dark:text-amber-400" : "text-slate-900 dark:text-white"}`}>
-                          {slot.title}
-                        </span>
-                        {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />}
-                      </div>
-                      <span className="text-[10px] font-bold text-slate-500 dark:text-gray-400 mt-0.5">
-                        {slot.subtitle}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* 5. Live Schedule Summary Banner */}
-            <div className="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-amber-500 text-black flex items-center justify-center font-black shrink-0 shadow-md">
-                  {detectedShift.type === "night" ? <Moon className="w-5 h-5" /> : detectedShift.type === "fullday" ? <RotateCw className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-                </div>
-                <div>
-                  <div className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
-                    <span>{language === "hi" ? detectedShift.labelHi : detectedShift.label}</span>
-                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-400">
-                      {formData.hours} {language === "hi" ? "घंटे" : "hrs"}
-                    </span>
-                  </div>
-                  <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-0.5">
-                    {format12Hour(formData.startTime)} &rarr; {format12Hour(formData.endTime)}
-                    {detectedShift.spansNextDay ? ` (${language === "hi" ? "अगले दिन तक" : "Next Day"})` : ""}
-                  </div>
-                </div>
-              </div>
-              <div className="text-right sm:border-l border-amber-500/20 sm:pl-4">
-                <span className="text-[11px] uppercase tracking-wider font-extrabold text-amber-600 dark:text-amber-400 block">
-                  {language === "hi" ? "ड्यूटी स्थिति" : "Shift Status"}
-                </span>
-                <span className="text-xs font-bold text-slate-900 dark:text-white">
-                  {detectedShift.isNight ? (language === "hi" ? "रात्रि ड्यूटी लागू" : "Night Duty Active") : (language === "hi" ? "दिन की ड्यूटी लागू" : "Day Duty Active")}
-                </span>
+              <div className="space-y-1">
+                <h4 className="text-sm sm:text-base font-black text-slate-900 dark:text-white">
+                  {language === "hi" ? "कंपनी सीधे कॉल करके शिफ्ट व समय फाइनल करेगी" : "Company Will Call You to Finalize Shift Timings"}
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                  {language === "hi"
+                    ? "इन्क्वायरी सबमिट होने के बाद हमारे ऑपरेशन्स डायरेक्टर सीधे आपके नंबर पर कॉल करेंगे। आपकी आवश्यकतानुसार दिन (Day Shift), रात (Night Shift) या 24 घंटे की ड्यूटी, गार्ड संख्या और सटीक समय फोन पर तय कर दिया जाएगा।"
+                    : "After you submit this enquiry, our operations command will call you directly to discuss venue requirements, Day/Night duty shifts, guard count, and exact timings."}
+                </p>
               </div>
             </div>
 
             {/* Special Instructions */}
-            <div className="space-y-2 pt-2">
+            <div className="space-y-2 pt-1">
               <label className="text-xs sm:text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                 <FileText className="w-4 h-4 text-amber-500" />
                 {language === "hi" ? "विशेष निर्देश / अन्य आवश्यकताएं (ऐच्छिक)" : "Special Instructions / Notes (Optional)"}
@@ -943,8 +741,8 @@ function BookingPageContent() {
                 type="text"
                 placeholder={
                   language === "hi"
-                    ? "जैसे: वर्दी का प्रकार, गनमैन की आवश्यकता, वीआईपी सुरक्षा निर्देश आदि"
-                    : "e.g. Uniform type, armed requirement, VIP security escort"
+                    ? "जैसे: समय प्राथमिकता, वर्दी का प्रकार, गनमैन की आवश्यकता आदि"
+                    : "e.g. Preferred shift timing, uniform type, armed requirements, etc."
                 }
                 value={formData.specialNotes}
                 onChange={(e) => handleChange("specialNotes", e.target.value)}

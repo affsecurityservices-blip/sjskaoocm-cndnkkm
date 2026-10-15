@@ -61,10 +61,11 @@ export const createWhatsAppBookingUrl = ({
   const formattedStart = formatTime12h(startTime) || startTime;
   const formattedEnd = endTime ? (formatTime12h(endTime) || endTime) : null;
   const timingText = formattedEnd ? `${formattedStart} to ${formattedEnd}` : formattedStart;
-  const shiftInfo = shiftType ? `${shiftType} (${timingText}, ${hours} hrs)` : `${timingText} (${hours} hrs)`;
-
   const serviceName = guardName || guardType || eventType || "Security Guard Deployment";
   const notesLine = specialNotes?.trim() ? `• Notes: ${specialNotes.trim()}\n` : "";
+  const shiftLine = shiftType && startTime && !shiftType.includes("call")
+    ? `• Shift & Time: ${shiftType} (${startTime}${endTime ? ` - ${endTime}` : ""}, ${hours || ""} hrs)\n`
+    : `• Shift & Timings: To be finalized via callback\n`;
 
   const text =
 `🛡️ *NEW SECURITY ENQUIRY*
@@ -78,9 +79,7 @@ Ref: *${bookingId}*
 • Service: ${serviceName}
 • Location: ${address}
 • Date: ${date}
-• Shift & Time: ${shiftInfo}
-${notesLine}
-📞 *STATUS:* Awaiting company callback for requirement discussion & custom quote.
+${shiftLine}${notesLine}📞 *STATUS:* Awaiting company callback for requirement discussion & custom quote.
 ──────────────────────
 *AAF SECURITY SERVICES* (Directors: Bhupendra Kumar Singh & Manjeet Singh)
 Helpline: +91 94658 57462`;

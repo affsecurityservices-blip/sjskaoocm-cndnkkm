@@ -212,7 +212,7 @@ export default function BookingForm({ guard }) {
 
     setIsSubmitting(true);
 
-    const shiftLabel = language === "hi" ? detectedShift.labelHi : detectedShift.label;
+    const shiftLabel = language === "hi" ? "कॉल बैक पर तय होगा" : "To be finalized on callback";
 
     const bookingPayload = {
       guardId: guard.id,
@@ -224,13 +224,13 @@ export default function BookingForm({ guard }) {
       eventType: formData.eventType,
       address: formData.address,
       date: formData.date,
-      shiftMode: formData.shiftMode,
+      shiftMode: "callback",
       shiftType: shiftLabel,
-      startTime: formData.startTime,
-      endTime: formData.endTime,
-      hours: formData.hours,
-      totalPrice: priceBreakdown.totalPrice,
-      isNightSlot: priceBreakdown.isNightSlot,
+      startTime: "",
+      endTime: "",
+      hours: 8,
+      totalPrice: 0,
+      isNightSlot: false,
     };
 
     const newBooking = addBooking(bookingPayload);
@@ -358,14 +358,15 @@ export default function BookingForm({ guard }) {
           </div>
         </div>
 
-        {/* Date, Shift & Timing */}
-        <div className="space-y-5 pt-4 border-t border-slate-200 dark:border-[#262636]">
+        {/* Deployment Date & Callback Notice */}
+        <div className="space-y-4 pt-4 border-t border-slate-200 dark:border-[#262636]">
           <div className="flex items-center justify-between">
             <h3 className="text-xs uppercase tracking-widest font-semibold text-amber-500">
               {t("bookingForm.scheduleSection")}
             </h3>
-            <span className="text-[11px] font-bold text-slate-500 dark:text-gray-400">
-              {language === "hi" ? detectedShift.labelHi : detectedShift.label}
+            <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+              <PhoneCall className="w-3.5 h-3.5" />
+              {language === "hi" ? "कॉल पर समय तय होगा" : "Shift Finalized on Call"}
             </span>
           </div>
 
@@ -385,152 +386,18 @@ export default function BookingForm({ guard }) {
             />
           </div>
 
-          {/* Shift Mode Presets */}
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-slate-700 dark:text-gray-300 flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
-              {language === "hi" ? "शिफ्ट का प्रकार चुनें" : "Select Shift Type"}
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-              {[
-                {
-                  id: "day",
-                  title: language === "hi" ? "दिन की शिफ्ट" : "Day Shift",
-                  sub: "08:00 AM - 04:00 PM",
-                  icon: Sun,
-                  active: formData.shiftMode === "day" || (formData.shiftMode !== "custom" && detectedShift.type === "day")
-                },
-                {
-                  id: "night",
-                  title: language === "hi" ? "रात की शिफ्ट" : "Night Shift",
-                  sub: "08:00 PM - 04:00 AM",
-                  icon: Moon,
-                  active: formData.shiftMode === "night" || (formData.shiftMode !== "custom" && detectedShift.type === "night")
-                },
-                {
-                  id: "fullday",
-                  title: language === "hi" ? "फुल डे (24 घंटे)" : "Full Day (24 Hrs)",
-                  sub: "24/7 Round the Clock",
-                  icon: RotateCw,
-                  active: formData.shiftMode === "fullday" || formData.hours === 24
-                },
-                {
-                  id: "custom",
-                  title: language === "hi" ? "कस्टम समय" : "Custom Time",
-                  sub: "From - To",
-                  icon: SlidersHorizontal,
-                  active: formData.shiftMode === "custom"
-                }
-              ].map((item) => {
-                const IconCmp = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => handleShiftPreset(item.id)}
-                    className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
-                      item.active
-                        ? "bg-amber-500/15 border-amber-500 shadow-sm"
-                        : "bg-slate-50 dark:bg-[#0A0A0F] border-slate-200 dark:border-[#262636] hover:border-amber-500/40"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between w-full mb-1">
-                      <IconCmp className={`w-3.5 h-3.5 ${item.active ? "text-amber-500" : "text-slate-400"}`} />
-                      {item.active && <CheckCircle2 className="w-3 h-3 text-amber-500" />}
-                    </div>
-                    <span className={`text-xs font-bold ${item.active ? "text-amber-600 dark:text-amber-400" : "text-slate-800 dark:text-gray-200"}`}>
-                      {item.title}
-                    </span>
-                    <span className="text-[10px] text-slate-500 dark:text-gray-400 truncate mt-0.5">
-                      {item.sub}
-                    </span>
-                  </button>
-                );
-              })}
+          {/* Direct Callback Notice */}
+          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 flex items-start gap-3">
+            <PhoneCall className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+            <div className="text-xs text-slate-600 dark:text-gray-300 leading-relaxed">
+              <strong className="text-slate-900 dark:text-white block mb-0.5">
+                {language === "hi" ? "शिफ्ट का समय और घंटे कंपनी कॉल पर तय करेगी" : "Shift Timings & Duration Finalized on Call"}
+              </strong>
+              {language === "hi"
+                ? "इन्क्वायरी भेजने के बाद कंपनी प्रतिनिधि आपको सीधे कॉल करके ड्यूटी समय, शिफ्ट (दिन/रात) और अन्य विवरण फाइनल करेंगे।"
+                : "After enquiry submission, our operations command will call you directly to discuss duty hours, day/night shift, and deployment specifics."}
             </div>
           </div>
-
-          {/* Time From & To Inputs */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-50 dark:bg-[#0A0A0F] p-3.5 rounded-xl border border-slate-200 dark:border-[#262636]">
-            
-            {/* From Time */}
-            <div className="space-y-1">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-slate-700 dark:text-gray-300 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-amber-500" />
-                  {language === "hi" ? "समय से (From)" : "Start (From)"}
-                </label>
-                <span className="text-[11px] font-mono font-bold text-amber-600 dark:text-amber-400">
-                  {format12Hour(formData.startTime)}
-                </span>
-              </div>
-              <input
-                type="time"
-                required
-                value={formData.startTime}
-                onChange={(e) => handleStartTimeChange(e.target.value)}
-                className="w-full bg-white dark:bg-[#16161F] border border-slate-300 dark:border-[#262636] focus:border-amber-500 rounded-lg px-3 py-2 text-sm font-bold text-slate-900 dark:text-white focus:outline-none cursor-pointer"
-              />
-            </div>
-
-            {/* To Time */}
-            <div className="space-y-1">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-slate-700 dark:text-gray-300 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-amber-500" />
-                  {language === "hi" ? "समय तक (To)" : "End (To)"}
-                </label>
-                <div className="flex items-center gap-1">
-                  {detectedShift.spansNextDay && (
-                    <span className="text-[9px] bg-indigo-500/10 text-indigo-500 px-1 py-0.5 rounded font-bold">
-                      {language === "hi" ? "अगले दिन" : "Next Day"}
-                    </span>
-                  )}
-                  <span className="text-[11px] font-mono font-bold text-amber-600 dark:text-amber-400">
-                    {format12Hour(formData.endTime)}
-                  </span>
-                </div>
-              </div>
-              <input
-                type="time"
-                required
-                value={formData.endTime}
-                onChange={(e) => handleEndTimeChange(e.target.value)}
-                className="w-full bg-white dark:bg-[#16161F] border border-slate-300 dark:border-[#262636] focus:border-amber-500 rounded-lg px-3 py-2 text-sm font-bold text-slate-900 dark:text-white focus:outline-none cursor-pointer"
-              />
-            </div>
-
-          </div>
-
-          {/* Quick Hours Selector */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-medium">
-              <span className="text-slate-700 dark:text-gray-300">{t("bookingForm.durationLabel")}</span>
-              <span className="text-amber-500 font-bold font-mono">
-                {formData.hours} {formData.hours === 1 ? "Hour" : "Hours"}
-              </span>
-            </div>
-            <div className="grid grid-cols-4 gap-2">
-              {[4, 8, 12, 24].map((hrs) => {
-                const isSelected = formData.hours === hrs;
-                return (
-                  <button
-                    key={hrs}
-                    type="button"
-                    onClick={() => handleDurationChange(hrs)}
-                    className={`py-2 px-1 text-center rounded-lg border text-xs font-bold transition-all cursor-pointer ${
-                      isSelected
-                        ? "bg-amber-500 text-black border-amber-500 shadow-sm"
-                        : "bg-slate-50 dark:bg-[#0A0A0F] border-slate-200 dark:border-[#262636] text-slate-700 dark:text-gray-300 hover:border-amber-500"
-                    }`}
-                  >
-                    {hrs} hrs
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
         </div>
 
       </div>
