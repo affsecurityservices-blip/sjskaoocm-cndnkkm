@@ -20,7 +20,7 @@ export const translations = {
       stat1Desc: "Background Checked",
       stat2Val: "25+",
       stat2Desc: "Verified Personnel",
-      stat3Val: "Bihar H.O.",
+      stat3Val: "Bihar HQ",
       stat3Desc: "Aurangabad Hub",
       stat4Val: "24/7",
       stat4Desc: "Command Helpline"

@@ -281,25 +281,57 @@ export default function HomePage() {
           </div>
 
           {/* Metrics Badges */}
-          <div className="pt-8 sm:pt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
-            <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md hover:border-amber-500/40 transition-all flex flex-col items-center justify-center">
-              <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white font-mono">{t("hero.stat1Val")}</div>
-              <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">{t("hero.stat1Desc")}</div>
+          <div className="pt-8 sm:pt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-center">
+            {/* Stat 1: 100% */}
+            <div className="group bg-white/95 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md hover:border-amber-500/40 dark:hover:border-amber-500/50 transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-2.5 group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <div className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                {t("hero.stat1Val")}
+              </div>
+              <div className="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">
+                {t("hero.stat1Desc")}
+              </div>
             </div>
 
-            <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md hover:border-amber-500/40 transition-all flex flex-col items-center justify-center">
-              <div className="text-xl sm:text-2xl font-black text-amber-500 font-mono">{t("hero.stat2Val")}</div>
-              <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">{t("hero.stat2Desc")}</div>
+            {/* Stat 2: 25+ */}
+            <div className="group bg-white/95 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md hover:border-amber-500/40 dark:hover:border-amber-500/50 transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-2.5 group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
+                <Users className="w-5 h-5" />
+              </div>
+              <div className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                {t("hero.stat2Val")}
+              </div>
+              <div className="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">
+                {t("hero.stat2Desc")}
+              </div>
             </div>
 
-            <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md hover:border-amber-500/40 transition-all flex flex-col items-center justify-center">
-              <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white font-mono">{t("hero.stat3Val")}</div>
-              <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">{t("hero.stat3Desc")}</div>
+            {/* Stat 3: Bihar HQ */}
+            <div className="group bg-white/95 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md hover:border-amber-500/40 dark:hover:border-amber-500/50 transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-2.5 group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                {t("hero.stat3Val")}
+              </div>
+              <div className="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">
+                {t("hero.stat3Desc")}
+              </div>
             </div>
 
-            <div className="bg-white dark:bg-[#16161F] border border-slate-200 dark:border-[#262636] p-4 rounded-2xl shadow-md hover:border-amber-500/40 transition-all flex flex-col items-center justify-center">
-              <div className="text-xl sm:text-2xl font-black text-amber-500 font-mono">{t("hero.stat4Val")}</div>
-              <div className="text-xs font-semibold text-slate-600 dark:text-gray-300 mt-1">{t("hero.stat4Desc")}</div>
+            {/* Stat 4: 24/7 */}
+            <div className="group bg-white/95 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md hover:border-amber-500/40 dark:hover:border-amber-500/50 transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-2.5 group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
+                <Clock className="w-5 h-5" />
+              </div>
+              <div className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                {t("hero.stat4Val")}
+              </div>
+              <div className="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">
+                {t("hero.stat4Desc")}
+              </div>
             </div>
           </div>
 
