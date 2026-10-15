@@ -307,17 +307,17 @@ export default function HomePage() {
 
       {/* DIRECTORS & EXECUTIVE LEADERSHIP SHOWCASE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-amber-50/80 via-white to-amber-100/40 dark:from-slate-900 dark:via-slate-950 dark:to-black border-2 border-amber-500/30 rounded-3xl p-6 sm:p-10 shadow-xl dark:shadow-2xl relative overflow-hidden text-slate-900 dark:text-white space-y-8 transition-colors">
+        <div className="bg-white dark:bg-[#12121A] border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden text-slate-900 dark:text-white transition-colors">
           
           <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
           {/* Section Header */}
-          <div className="text-center sm:text-left space-y-2 max-w-3xl">
+          <div className="text-center sm:text-left space-y-2 max-w-3xl mb-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500 text-black text-xs font-black uppercase tracking-wider shadow-sm">
               <Award className="w-4 h-4" />
               <span>{language === "hi" ? "कंपनी नेतृत्व एवं कमान" : "Company Command & Leadership"}</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
               {language === "hi" 
                 ? "भारतीय सेना के अनुशासन व सुरक्षा निष्ठा से संचालित" 
                 : "Guided by Indian Army Discipline & Elite Protection Standards"}
@@ -329,139 +329,67 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Dual Director Executive Cards (Stacked Vertically: 50% Photo / 50% Bio Split) */}
-          <div className="flex flex-col gap-8 relative z-10">
+          {/* Dual Leadership Grid - Single Unified Card with 2 Columns, No Nested Boxes */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 relative z-10 pt-2 pb-6">
             
-            {/* Card 1: Bhupendra Kumar Singh - Ex-Army Managing Director (50% Photo Left, 50% Bio Right) */}
-            <div className="relative overflow-hidden w-full bg-[#f8f9f6]/95 dark:bg-gradient-to-br dark:from-[#09120c] dark:via-[#0c151b] dark:to-[#080d0f] border-2 border-amber-500/40 dark:border-amber-500/50 rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-2xl">
-              
-              {/* Tactical Army Camouflage Canvas Texture Layer */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-[0.16] dark:opacity-[0.28] mix-blend-overlay"
-                style={{ backgroundImage: "url('/images/textures/army-camo-pattern.jpg')" }}
-              />
-
-              {/* Tactical Ambient Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/15 via-transparent to-amber-950/15 pointer-events-none" />
-
-              {/* Tactical HUD Corner Brackets */}
-              <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t-2 border-l-2 border-amber-500/60 pointer-events-none" />
-              <div className="absolute top-3 right-3 w-3.5 h-3.5 border-t-2 border-r-2 border-amber-500/60 pointer-events-none" />
-              <div className="absolute bottom-3 left-3 w-3.5 h-3.5 border-b-2 border-l-2 border-amber-500/60 pointer-events-none" />
-              <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b-2 border-r-2 border-amber-500/60 pointer-events-none" />
-
-              {/* Tactical Status Tag */}
-              <div className="absolute top-3.5 right-4 hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-500/15 dark:bg-emerald-950/50 border border-emerald-500/30 text-[10px] font-mono font-bold tracking-widest uppercase text-emerald-800 dark:text-emerald-400 z-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>DEFENSE VETERAN // 2026</span>
-              </div>
-
-              {/* 50% Photo on Left */}
-              <div 
-                className="relative z-10 w-full rounded-2xl overflow-hidden border-2 border-amber-500 shadow-xl bg-slate-950 flex items-center justify-center"
-                style={{ aspectRatio: "1162 / 1354" }}
-              >
+            {/* Leader 1: Bhupendra Kumar Singh */}
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+              {/* Photo */}
+              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shrink-0 shadow-md border border-amber-500/30 bg-slate-950">
                 <img
                   src="/images/directors/bhupendra-kumar-singh.png"
                   alt="Bhupendra Kumar Singh - Ex-Army Managing Director"
                   className="w-full h-full object-cover"
                 />
-                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-xs tracking-wider uppercase px-4 py-1 rounded-full whitespace-nowrap shadow-lg">
-                  {language === "hi" ? "पूर्व सैनिक (Ex-Army)" : "Ex-Army Veteran"}
-                </span>
               </div>
 
-              {/* 50% Bio & Details on Right */}
-              <div className="relative z-10 space-y-4 text-center md:text-left flex flex-col justify-center">
-                
-                {/* Indian Army Crossed Swords & Crest Watermark in Background */}
-                <div className="absolute -right-6 top-1/2 -translate-y-1/2 w-72 h-72 sm:w-88 sm:h-88 pointer-events-none opacity-[0.06] dark:opacity-[0.12] text-amber-500 select-none">
-                  <img src="/images/textures/defense-crest.svg" alt="" className="w-full h-full object-contain" />
-                </div>
-
+              {/* Bio & Details */}
+              <div className="flex-1 space-y-3 text-center sm:text-left">
                 <div>
-                  {/* Indian Army on TOP */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs font-bold shadow-sm">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                    <span>{language === "hi" ? "पूर्व सैनिक (Ex-Indian Army Veteran) • सैन्य कमान" : "Ex-Indian Army Veteran • Combat Leadership"}</span>
-                  </div>
-
-                  {/* Defense Tricolor Ribbon Micro-Bar */}
-                  <div className="flex items-center justify-center md:justify-start gap-1.5 mt-2">
-                    <div className="flex items-center h-2 rounded-xs overflow-hidden border border-black/20 dark:border-white/20 shadow-xs">
-                      <span className="w-4 h-full bg-[#FF9933]" />
-                      <span className="w-4 h-full bg-white" />
-                      <span className="w-4 h-full bg-[#138808]" />
-                    </div>
-                    <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-slate-500 dark:text-slate-400">
-                      {language === "hi" ? "भारतीय सशस्त्र बल अनुशासन" : "Armed Forces Discipline"}
-                    </span>
-                  </div>
-
-                  {/* Name */}
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-2 tracking-tight">
+                  <span className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+                    {language === "hi" ? "पूर्व सैनिक (Ex-Army) • संस्थापक एवं प्रबंध निदेशक" : "Ex-Army Veteran • Managing Director & Founder"}
+                  </span>
+                  <h3 className="text-2xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">
                     {language === "hi" ? "भूपेंद्र कुमार सिंह" : "Bhupendra Kumar Singh"}
                   </h3>
-
-                  {/* Managing Director BELOW */}
-                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
-                    <Award className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                    <span>{language === "hi" ? "संस्थापक एवं प्रबंध निदेशक" : "Managing Director & Founder"}</span>
-                  </div>
                 </div>
 
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   {language === "hi"
                     ? "भारतीय सेना के वर्षों के जमीनी अनुभव, शस्त्र कौशल और उच्च सुरक्षा अनुशासन के साथ AAF सिक्योरिटी सर्विसेज की ट्रेनिंग, भर्ती और वीआईपी सुरक्षा प्रोटोकॉल का नेतृत्व करते हैं।"
                     : "Bringing frontline Indian Army battlefield discipline, weapons expertise, and high-threat tactical protocols to executive security, recruitment, and premises defense."}
                 </p>
 
-                {/* Tactical Defense Capability Badges */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
-                  <div className="bg-white/80 dark:bg-slate-900/80 border border-emerald-500/20 dark:border-emerald-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
-                    <div className="text-[10px] uppercase font-bold tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3 shrink-0" />
-                      <span>{language === "hi" ? "अनुशासन" : "Discipline"}</span>
-                    </div>
-                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
-                      {language === "hi" ? "सैन्य ड्रिल व भर्ती" : "Army Drill & Vetting"}
-                    </div>
-                  </div>
+                {/* Clean Highlights - Inline items, no nested boxes */}
+                <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 font-medium">
+                  <li className="flex items-center justify-center sm:justify-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <span>{language === "hi" ? "सैन्य ड्रिल व अनुशासित भर्ती" : "Army Drill & Rigorous Vetting"}</span>
+                  </li>
+                  <li className="flex items-center justify-center sm:justify-start gap-2">
+                    <ShieldCheck className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+                    <span>{language === "hi" ? "शस्त्र व कॉम्बैट सुरक्षा कमान" : "Armed Tactical Vigilance & Defense"}</span>
+                  </li>
+                  <li className="flex items-center justify-center sm:justify-start gap-2">
+                    <Award className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+                    <span>{language === "hi" ? "वीआईपी प्रोटोकॉल व एस्कॉर्ट" : "VIP Convoy & Executive Protocol"}</span>
+                  </li>
+                </ul>
 
-                  <div className="bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 dark:border-amber-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
-                    <div className="text-[10px] uppercase font-bold tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1">
-                      <ShieldCheck className="w-3 h-3 shrink-0" />
-                      <span>{language === "hi" ? "सुरक्षा कमान" : "Tactical Lead"}</span>
-                    </div>
-                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
-                      {language === "hi" ? "शस्त्र व कॉम्बैट सतर्कता" : "Combat Vigilance"}
-                    </div>
-                  </div>
-
-                  <div className="bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 dark:border-amber-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
-                    <div className="text-[10px] uppercase font-bold tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1">
-                      <Award className="w-3 h-3 shrink-0" />
-                      <span>{language === "hi" ? "प्रोटोकॉल" : "VIP Protocol"}</span>
-                    </div>
-                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
-                      {language === "hi" ? "त्वरित सुरक्षा एस्कॉर्ट" : "Rapid Convoy Escort"}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                {/* Actions */}
+                <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-3">
                   <a
                     href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Bhupendra%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs px-4 py-2 rounded-xl transition-all shadow-sm active:scale-95"
                   >
                     <WhatsAppIcon className="w-4 h-4 fill-black" />
                     <span>{language === "hi" ? "व्हाट्सएप चैट" : "WhatsApp"}</span>
                   </a>
                   <a
                     href="tel:9465857462"
-                    className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 transition-all active:scale-95"
+                    className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 transition-all active:scale-95"
                   >
                     <PhoneCall className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                     <span>9465857462</span>
@@ -470,135 +398,75 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Card 2: Manjeet Singh - Director (Operations & Field Deployment) (50% Bio Left, 50% Image Right) */}
-            <div className="relative overflow-hidden w-full bg-[#f8f9f6]/95 dark:bg-gradient-to-br dark:from-[#09120c] dark:via-[#0c151b] dark:to-[#080d0f] border-2 border-amber-500/40 dark:border-amber-500/50 rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center transition-all hover:border-amber-500 hover:shadow-2xl">
-              
-              {/* Tactical Army Camouflage Canvas Texture Layer */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-[0.12] dark:opacity-[0.22] mix-blend-overlay"
-                style={{ backgroundImage: "url('/images/textures/army-camo-pattern.jpg')" }}
-              />
-
-              {/* Tactical Ambient Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/10 via-transparent to-amber-950/15 pointer-events-none" />
-
-              {/* Tactical HUD Corner Brackets */}
-              <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t-2 border-l-2 border-amber-500/60 pointer-events-none" />
-              <div className="absolute top-3 right-3 w-3.5 h-3.5 border-t-2 border-r-2 border-amber-500/60 pointer-events-none" />
-              <div className="absolute bottom-3 left-3 w-3.5 h-3.5 border-b-2 border-l-2 border-amber-500/60 pointer-events-none" />
-              <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b-2 border-r-2 border-amber-500/60 pointer-events-none" />
-
-              {/* Tactical Status Tag */}
-              <div className="absolute top-3.5 right-4 hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-amber-500/15 dark:bg-amber-950/50 border border-amber-500/30 text-[10px] font-mono font-bold tracking-widest uppercase text-amber-800 dark:text-amber-400 z-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                <span>FIELD COMMAND // 2026</span>
+            {/* Leader 2: Manjeet Singh */}
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-slate-800 pt-8 lg:pt-0 lg:pl-10">
+              {/* Avatar Icon */}
+              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl shrink-0 shadow-md bg-amber-500/10 text-amber-600 dark:text-amber-400 flex flex-col items-center justify-center border border-amber-500/30">
+                <UserCheck className="w-12 h-12" />
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 mt-1">Field Command</span>
               </div>
 
-              {/* 50% Bio & Details on Left (on mobile: order-2, on md: order-1) */}
-              <div className="relative z-10 space-y-4 text-center md:text-left flex flex-col justify-center order-2 md:order-1">
+              {/* Bio & Details */}
+              <div className="flex-1 space-y-3 text-center sm:text-left">
                 <div>
-                  {/* Field Operations on TOP */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs font-bold shadow-sm">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                    <span>{language === "hi" ? "फील्ड डिप्लॉयमेंट एवं सुरक्षा प्रबंधन" : "Field Operations & Security Logistics"}</span>
-                  </div>
-
-                  {/* Name */}
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-2.5 tracking-tight">
+                  <span className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+                    {language === "hi" ? "निदेशक - ऑपरेशन्स एवं सुरक्षा प्रबंधन" : "Director — Operations & Security Logistics"}
+                  </span>
+                  <h3 className="text-2xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">
                     {language === "hi" ? "मंजीत सिंह" : "Manjeet Singh"}
                   </h3>
-
-                  {/* Director Operations BELOW */}
-                  <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-sm">
-                    <ShieldCheck className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                    <span>{language === "hi" ? "निदेशक - ऑपरेशन्स" : "Director (Operations & Deployment)"}</span>
-                  </div>
                 </div>
 
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   {language === "hi"
                     ? "जिला स्तर पर जवानों की मुस्तैदी, 24/7 पेट्रोलिंग गश्त, क्लाइंट समन्वय और आपातकालीन बैकअप रिस्पांस की कमान संभालते हैं।"
                     : "Spearheading regional guard mobilization, corporate client security coordination, 24/7 mobile patrolling squads, and rapid incident response."}
                 </p>
 
-                {/* Tactical Operations Capability Badges */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
-                  <div className="bg-white/80 dark:bg-slate-900/80 border border-emerald-500/20 dark:border-emerald-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
-                    <div className="text-[10px] uppercase font-bold tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3 shrink-0" />
-                      <span>{language === "hi" ? "24/7 पेट्रोलिंग" : "Patrol"}</span>
-                    </div>
-                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
-                      {language === "hi" ? "सक्रिय गश्त स्क्वाड" : "Mobile Patrol Squad"}
-                    </div>
-                  </div>
+                {/* Clean Highlights - Inline items, no nested boxes */}
+                <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 font-medium">
+                  <li className="flex items-center justify-center sm:justify-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <span>{language === "hi" ? "24/7 सक्रिय मोबाइल गश्त स्क्वाड" : "24/7 Active Mobile Patrol Squad"}</span>
+                  </li>
+                  <li className="flex items-center justify-center sm:justify-start gap-2">
+                    <Radio className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+                    <span>{language === "hi" ? "त्वरित इमरजेंसी बैकअप रिस्पांस" : "Emergency Reinforce & Rapid Dispatch"}</span>
+                  </li>
+                  <li className="flex items-center justify-center sm:justify-start gap-2">
+                    <FileCheck className="w-4 h-4 text-slate-600 dark:text-slate-400 shrink-0" />
+                    <span>{language === "hi" ? "दैनिक ऑन-साइट ड्यूटी ऑडिट" : "Daily Duty Logs & Compliance Audit"}</span>
+                  </li>
+                </ul>
 
-                  <div className="bg-white/80 dark:bg-slate-900/80 border border-amber-500/20 dark:border-amber-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
-                    <div className="text-[10px] uppercase font-bold tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1">
-                      <Radio className="w-3 h-3 shrink-0" />
-                      <span>{language === "hi" ? "त्वरित रिस्पांस" : "Dispatch"}</span>
-                    </div>
-                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
-                      {language === "hi" ? "इमरजेंसी बैकअप" : "Emergency Reinforce"}
-                    </div>
-                  </div>
-
-                  <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-500/20 dark:border-slate-500/30 rounded-xl p-2.5 text-left shadow-xs backdrop-blur-xs">
-                    <div className="text-[10px] uppercase font-bold tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1">
-                      <FileCheck className="w-3 h-3 shrink-0" />
-                      <span>{language === "hi" ? "ड्यूटी ऑडिट" : "Compliance"}</span>
-                    </div>
-                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1">
-                      {language === "hi" ? "दैनिक ऑन-साइट समीक्षा" : "Daily Duty Logs"}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                {/* Actions */}
+                <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-3">
                   <a
                     href={`https://api.whatsapp.com/send?phone=${COMPANY_WHATSAPP_NUMBER}&text=Hi%20Manjeet%20Singh%20Sir,%20I%20want%20to%20enquire%20about%20AAF%20Security%20Services.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xs px-4 py-2 rounded-xl transition-all shadow-sm active:scale-95"
                   >
                     <WhatsAppIcon className="w-4 h-4 fill-black" />
                     <span>{language === "hi" ? "व्हाट्सएप चैट" : "WhatsApp"}</span>
                   </a>
                   <a
                     href="tel:9465857462"
-                    className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 transition-all active:scale-95"
+                    className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 transition-all active:scale-95"
                   >
                     <PhoneCall className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                     <span>9465857462</span>
                   </a>
                 </div>
               </div>
-
-              {/* 50% Photo / Avatar on Right (on mobile: order-1, on md: order-2) */}
-              <div 
-                className="relative z-10 w-full rounded-2xl border-2 border-amber-500/40 dark:border-amber-500/60 bg-gradient-to-b from-amber-500/10 via-amber-500/5 to-slate-100 dark:from-slate-800 dark:via-slate-850 dark:to-slate-950 flex flex-col items-center justify-center p-6 text-center shadow-lg dark:shadow-xl order-1 md:order-2"
-                style={{ aspectRatio: "1162 / 1354" }}
-              >
-                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-amber-500/15 border-2 border-amber-500/30 text-amber-600 dark:text-amber-400 flex items-center justify-center shadow-inner mb-3">
-                  <UserCheck className="w-12 h-12 sm:w-16 sm:h-16" />
-                </div>
-                <span className="text-xs uppercase text-slate-500 dark:text-slate-400 font-bold tracking-widest">Director</span>
-                <span className="text-base font-black text-amber-600 dark:text-amber-400 tracking-wide mt-0.5">Operations & Deployment</span>
-                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-black font-black text-xs tracking-wider uppercase px-4 py-1 rounded-full whitespace-nowrap shadow-lg">
-                  {language === "hi" ? "फील्ड कमान" : "Field Command"}
-                </span>
-              </div>
-
             </div>
 
           </div>
 
-          {/* Bottom Registered Office Banner */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/80 dark:bg-slate-900/80 border border-amber-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs transition-colors">
+          {/* Bottom Registered Office Line - Clean Divider, No Nested Box */}
+          <div className="mt-4 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
             <div className="flex items-center gap-3 text-left">
-              <div className="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-500 flex items-center justify-center shrink-0">
-                <MapPin className="w-5 h-5" />
-              </div>
+              <MapPin className="w-5 h-5 text-amber-600 dark:text-amber-500 shrink-0" />
               <div>
                 <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 block font-bold">
                   {language === "hi" ? "रजिस्टर्ड हेड ऑफिस" : "Registered Headquarters"}
@@ -609,14 +477,16 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 font-bold text-amber-700 dark:text-amber-400 text-xs shrink-0">
-              <a href="tel:9465857462" className="hover:underline flex items-center gap-1 bg-white hover:bg-amber-50/50 dark:bg-black/40 px-3 py-1.5 rounded-lg border border-amber-200 dark:border-slate-800 shadow-sm transition-colors">
-                <PhoneCall className="w-3 h-3 text-amber-600 dark:text-amber-500" /> 9465857462
+            <div className="flex flex-wrap items-center gap-4 font-bold text-amber-700 dark:text-amber-400 text-xs shrink-0">
+              <a href="tel:9465857462" className="hover:underline flex items-center gap-1.5">
+                <PhoneCall className="w-3.5 h-3.5 text-amber-600 dark:text-amber-500" /> 9465857462
               </a>
-              <a href="tel:9730218260" className="hover:underline bg-white hover:bg-amber-50/50 dark:bg-black/40 px-3 py-1.5 rounded-lg border border-amber-200 dark:border-slate-800 shadow-sm transition-colors">
+              <span className="text-slate-300 dark:text-slate-700">•</span>
+              <a href="tel:9730218260" className="hover:underline">
                 9730218260
               </a>
-              <a href="tel:7004951129" className="hover:underline bg-white hover:bg-amber-50/50 dark:bg-black/40 px-3 py-1.5 rounded-lg border border-amber-200 dark:border-slate-800 shadow-sm transition-colors">
+              <span className="text-slate-300 dark:text-slate-700">•</span>
+              <a href="tel:7004951129" className="hover:underline">
                 7004951129
               </a>
             </div>
