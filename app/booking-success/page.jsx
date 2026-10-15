@@ -55,11 +55,20 @@ function SuccessContent() {
 
           {/* Assigned Guard info */}
           <div className="flex items-center gap-4 bg-slate-50 dark:bg-[#0A0A0F] p-4 rounded-xl border border-slate-200 dark:border-[#262636]">
+          {booking.guardImage && booking.guardImage.trim() !== "" ? (
             <img
               src={booking.guardImage}
-              alt={booking.guardName}
-              className="w-16 h-16 rounded-xl object-cover border border-amber-500/30"
+              alt={booking.guardName || "Guard"}
+              className="w-16 h-16 rounded-xl object-cover border border-amber-500/30 shrink-0"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
             />
+          ) : (
+            <div className="w-16 h-16 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 shrink-0">
+              <ShieldCheck className="w-8 h-8" />
+            </div>
+          )}
             <div>
               <div className="text-xs text-amber-500 font-semibold">{booking.guardType}</div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-1.5">

@@ -30,6 +30,7 @@ import {
   AlertTriangle,
   Award,
   Clock,
+  User,
   UserCheck,
   FileCheck
 } from "lucide-react";
@@ -401,10 +402,9 @@ export default function HomePage() {
 
             {/* Leader 2: Manjeet Singh */}
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-slate-800 pt-8 lg:pt-0 lg:pl-10">
-              {/* Avatar Icon */}
-              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl shrink-0 shadow-md bg-amber-500/10 text-amber-600 dark:text-amber-400 flex flex-col items-center justify-center border border-amber-500/30">
-                <UserCheck className="w-12 h-12" />
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 mt-1">Field Command</span>
+              {/* Profile Icon */}
+              <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl shrink-0 shadow-md border border-amber-500/30 bg-amber-500/10 dark:bg-slate-900/90 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                <User className="w-14 h-14 sm:w-18 sm:h-18 stroke-[1.5]" />
               </div>
 
               {/* Bio & Details */}
