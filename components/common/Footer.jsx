@@ -16,9 +16,11 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="space-y-4 md:col-span-1">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-                <Shield className="w-6 h-6" />
-              </div>
+              <img
+                src="/images/logo.png"
+                alt="AAF Security"
+                className="w-12 h-12 object-contain drop-shadow-[0_2px_12px_rgba(245,158,11,0.3)] shrink-0"
+              />
               <div>
                 <span className="text-lg font-black tracking-wide text-slate-900 dark:text-white block">
                   <span className="text-amber-500">AAF</span> SECURITY

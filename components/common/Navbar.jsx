@@ -35,10 +35,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 sm:h-20 gap-2">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group min-w-0 shrink">
-            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 group-hover:border-amber-500 group-hover:bg-amber-500/20 transition-all duration-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] shrink-0">
-              <Shield className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink">
+            <img
+              src="/images/logo.png"
+              alt="AAF Security"
+              className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_2px_12px_rgba(245,158,11,0.35)] shrink-0 group-hover:scale-105 transition-transform duration-300"
+            />
             <div className="min-w-0">
               <span className="text-base sm:text-xl font-black tracking-wider text-slate-900 dark:text-white flex items-center gap-1 sm:gap-1.5 truncate">
                 <span className="text-amber-500 font-extrabold">AAF</span> SECURITY

@@ -194,8 +194,8 @@ export default function HomePage() {
             <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
               
               {/* ESTD 2026 & Tagline Badge */}
-              <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-[11px] sm:text-xs font-bold font-mono tracking-wider shadow-sm max-w-full">
-                <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 shrink-0" />
+              <div className="inline-flex items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-[11px] sm:text-xs font-bold font-mono tracking-wider shadow-sm max-w-full">
+                <img src="/images/logo.png" alt="AAF" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
                 <span>{t("hero.badge")}</span>
               </div>
 
@@ -310,11 +310,12 @@ export default function HomePage() {
         <div className="bg-white dark:bg-[#12121A] border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden text-slate-900 dark:text-white transition-colors">
           
           <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+          <img src="/images/logo.png" alt="" className="absolute -right-12 -bottom-12 w-64 h-64 sm:w-80 sm:h-80 object-contain opacity-[0.03] dark:opacity-[0.06] pointer-events-none select-none" />
 
           {/* Section Header */}
           <div className="text-center sm:text-left space-y-2 max-w-3xl mb-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500 text-black text-xs font-black uppercase tracking-wider shadow-sm">
-              <Award className="w-4 h-4" />
+              <img src="/images/logo.png" alt="AAF" className="w-4 h-4 object-contain" />
               <span>{language === "hi" ? "कंपनी नेतृत्व एवं कमान" : "Company Command & Leadership"}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white">

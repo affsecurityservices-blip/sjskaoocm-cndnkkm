@@ -503,7 +503,7 @@ function BookingPageContent() {
       {/* HEADER BANNER */}
       <div className="text-center space-y-2.5 sm:space-y-3 px-2 sm:px-0">
         <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider">
-          <Shield className="w-4 h-4 text-amber-500 shrink-0" />
+          <img src="/images/logo.png" alt="AAF" className="w-4 h-4 object-contain shrink-0" />
           <span>{language === "hi" ? "गार्ड बुकिंग एवं सुरक्षा सेवा" : "Official Guard Booking Portal"}</span>
         </div>
         
